@@ -5,7 +5,7 @@ using wtd.wands;
 
 namespace wtd.wands.targets
 {
-    public class FollowingSpellTarget : SpellTarget
+    public class FollowingSpellTarget : ISpellTarget
     {
         // Start is called before the first frame update
         public Transform following;

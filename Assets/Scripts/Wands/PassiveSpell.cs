@@ -13,5 +13,10 @@ namespace wtd.wands
         public virtual void OnBeforeTick(CastedSpell casted) { }
 
         public virtual void OnTick(CastedSpell casted) { }
+
+        public override void addToGroup(SpellGroupBuilder group)
+        {
+
+        }
     }
 }

@@ -369,6 +369,7 @@ MonoBehaviour:
   rechargeRate: 1
   curCastDelay: 0
   curRechargeRate: 0
+  castCount: 1
 --- !u!114 &1875112782
 MonoBehaviour:
   m_ObjectHideFlags: 0

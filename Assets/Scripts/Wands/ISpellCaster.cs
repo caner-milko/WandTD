@@ -4,10 +4,12 @@ using UnityEngine;
 
 namespace wtd.wands
 {
-    public interface SpellTarget
+    public interface ISpellCaster
     {
+        public string CasterType();
+
         public Vector3 GetPosition();
 
-        public string GetTargetType();
+        public CasterSpell NextSpell();
     }
 }

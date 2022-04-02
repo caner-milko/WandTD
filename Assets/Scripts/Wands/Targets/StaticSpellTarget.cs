@@ -6,7 +6,7 @@ using wtd.wands;
 
 namespace wtd.wands.targets
 {
-    class StaticSpellTarget : SpellTarget
+    class StaticSpellTarget : ISpellTarget
     {
         public Vector3 position;
 

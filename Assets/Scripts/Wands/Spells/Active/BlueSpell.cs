@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace wtd.wands.spells
 {
-    public class FireSpell : ActiveSpell
+    public class BlueSpell : ActiveSpell
     {
         public override bool checkHit(CastedSpell casted, out List<ISpellTarget> hitList)
         {
@@ -19,13 +19,13 @@ namespace wtd.wands.spells
 
         public override string SpellType()
         {
-            return "AS_fire";
+            return "AS_blue";
         }
 
 
         public override void OnTick(CastedSpell casted)
         {
-            Vector3 vel = (casted.target.GetPosition() - casted.transform.position).normalized * 3.0f;
+            Vector3 vel = (casted.target.GetPosition() - casted.transform.position).normalized * 1.0f;
             casted.transform.Translate(vel * Time.deltaTime);
         }
 

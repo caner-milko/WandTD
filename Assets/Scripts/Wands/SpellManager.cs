@@ -13,6 +13,8 @@ namespace wtd.wands
         List<CastedSpell> castedSpells = new List<CastedSpell>();
         [SerializeField]
         CastedSpell FirePrefab;
+        [SerializeField]
+        CastedSpell BluePrefab;
 
 
         private void Awake()
@@ -25,8 +27,15 @@ namespace wtd.wands
             FireSpell fs = new FireSpell();
             fs.prefab = FirePrefab;
             spells.Add(fs);
+
+            BlueSpell bs = new BlueSpell();
+            bs.prefab = BluePrefab;
+            spells.Add(bs);
+
             TestPassive tp = new TestPassive();
             spells.Add(tp);
+            MulticastTestPassive mtp = new MulticastTestPassive(2);
+            spells.Add(mtp);
         }
 
         private void Update()
@@ -39,29 +48,29 @@ namespace wtd.wands
 
         private void TickCastedSpell(CastedSpell casted)
         {
-            SpellGroup group = casted.spellGroup;
-            ActiveSpell spell = casted.spell;
+            SingleSpellGroup group = casted.spellGroup;
+            ActiveSpell spell = group.active;
             spell.OnBeforeTick(casted);
-            foreach (PassiveSpell passive in group.Passives)
+            foreach (PassiveSpell passive in group.passives)
                 passive.OnBeforeTick(casted);
             spell.OnTick(casted);
-            foreach (PassiveSpell passive in group.Passives)
+            foreach (PassiveSpell passive in group.passives)
                 passive.OnTick(casted);
             spell.OnAfterTick(casted);
         }
 
         public void AddCastedSpell(CastedSpell casted)
         {
-            SpellGroup group = casted.spellGroup;
-            ActiveSpell spell = casted.spell;
+            SingleSpellGroup group = casted.spellGroup;
+            ActiveSpell spell = group.active;
             castedSpells.Add(casted);
             spell.OnBeforeCast(casted);
-            foreach (PassiveSpell pspell in group.Passives)
+            foreach (PassiveSpell pspell in group.passives)
             {
                 pspell.OnBeforeCast(casted);
             }
             spell.OnCast(casted);
-            foreach (PassiveSpell pspell in group.Passives)
+            foreach (PassiveSpell pspell in group.passives)
             {
                 pspell.OnCast(casted);
             }

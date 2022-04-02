@@ -6,12 +6,14 @@ namespace wtd.wands
 {
     public abstract class ActiveSpell : Spell
     {
+
+        public int triggerCount;
+
         public CastedSpell prefab;
 
-        public CastedSpell CreateCasted(SpellCaster caster, SpellTarget target, SpellGroup group)
+        public CastedSpell CreateCasted(ISpellCaster caster, ISpellTarget target, SingleSpellGroup group)
         {
             CastedSpell casted = GameObject.Instantiate<CastedSpell>(prefab);
-            casted.spell = this;
             casted.target = target;
             casted.spellGroup = group;
 
@@ -31,8 +33,14 @@ namespace wtd.wands
 
         public virtual void OnAfterTick(CastedSpell casted) { }
 
-        public abstract bool checkHit(CastedSpell casted, out List<SpellTarget> hitList);
+        public abstract bool checkHit(CastedSpell casted, out List<ISpellTarget> hitList);
 
-        public abstract SpellHit Hit(CastedSpell from, SpellTarget target);
+        public abstract SpellHit Hit(CastedSpell from, ISpellTarget target);
+
+        public override void addToGroup(SpellGroupBuilder group)
+        {
+            group.AddChildSpellGroup(triggerCount);
+        }
+
     }
 }

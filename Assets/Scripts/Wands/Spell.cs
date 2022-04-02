@@ -6,9 +6,11 @@ namespace wtd.wands
 {
     public abstract class Spell
     {
-        public double CastModifier, RechargeModifier;
-        public int Mana;
+        public float castModifier, rechargeModifier;
+        public int mana;
 
         public abstract string SpellType();
+
+        public abstract void addToGroup(SpellGroupBuilder group);
     }
 }

@@ -5,7 +5,7 @@ using wtd.wands.targets;
 
 namespace wtd.wands
 {
-    public class Wand : MonoBehaviour, SpellCaster, SpellTarget
+    public class Wand : MonoBehaviour, ISpellCaster, ISpellTarget
     {
 
         public int capacity;
@@ -16,35 +16,39 @@ namespace wtd.wands
 
         public double curCastDelay, curRechargeRate;
 
-        public SpellCaster owner;
+        public int castCount;
 
-        public List<Spell> spells = new List<Spell>();
+        public ISpellCaster owner;
 
-        public List<Spell> remSpells = new List<Spell>();
+        public List<CasterSpell> spells = new List<CasterSpell>();
 
-        public List<Spell> lastCast = new List<Spell>(), activeCast = new List<Spell>();
+        public List<CasterSpell> remSpells = new List<CasterSpell>();
 
-        public SpellGroup lastCastGroup, activeCastGroup;
+        public SpellGroupBuilder curBuilder;
 
-        public bool Shoot(SpellTarget target, out CastedSpell casted)
+        public bool Shoot(ISpellTarget target, out List<CastedSpell> casted)
         {
-            SpellGroup group;
-            Cast(target, new List<PassiveSpell>(), out group);
-            casted = group.Cast();
-            return true;
+            SpellGroupBase group;
+            if (PrepareSpellGroup(new List<PassiveSpell>(), out group))
+            {
+                casted = group.Cast(target);
+                return true;
+            }
+            casted = null;
+            return false;
         }
 
-        public bool Cast(SpellTarget target, List<PassiveSpell> passives, out SpellGroup group)
+        public bool PrepareSpellGroup(List<PassiveSpell> passives, out SpellGroupBase group)
         {
             if (remSpells.Count == 0)
             {
-                remSpells = new List<Spell>(spells);
+                remSpells = new List<CasterSpell>(spells);
             }
-            group = NextGroup(target);
-            group.Passives.AddRange(passives);
-            lastCastGroup = activeCastGroup;
-            lastCast = activeCast;
-            activeCastGroup = group;
+            SpellGroupBuilder builder = new SpellGroupBuilder(this, castCount);
+
+            curBuilder = builder;
+
+            group = builder.Build();
             return true;
         }
 
@@ -63,36 +67,22 @@ namespace wtd.wands
             return owner.GetPosition();
         }
 
-        public SpellGroup NextGroup(SpellTarget target)
-        {
-            SpellGroup group = new SpellGroup(this, target);
-            Spell selected;
-            while (true)
-            {
-                selected = nextSpell();
-                if (selected == null)
-                {
-                    break;
-                }
-                remSpells.Remove(selected);
-                activeCast.Add(selected);
-                if (selected is ActiveSpell)
-                {
-                    group.Active = (ActiveSpell)selected;
-                    break;
-                }
-                group.Passives.Add((PassiveSpell)selected);
-            }
-            return group;
-        }
-
-        public Spell nextSpell()
+        public CasterSpell NextSpell()
         {
             if (remSpells.Count == 0)
             {
                 return null;
             }
-            return remSpells[0];
+            CasterSpell next = remSpells[0];
+            remSpells.RemoveAt(0);
+            return next;
+        }
+
+        public CasterSpell AddSpell(Spell spell)
+        {
+            CasterSpell casterSpell = new CasterSpell(spell, this, spells.Count);
+            spells.Add(casterSpell);
+            return casterSpell;
         }
 
     }

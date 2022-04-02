@@ -17,8 +17,10 @@ namespace wtd
         // Start is called before the first frame update
         void Start()
         {
-            wand.spells.Add(SpellManager.manager.GetSpellByType("PS_test"));
-            wand.spells.Add(SpellManager.manager.GetSpellByType("AS_fire"));
+            wand.AddSpell(SpellManager.manager.GetSpellByType("PS_test"));
+            //wand.AddSpell(SpellManager.manager.GetSpellByType("PS_multicastTest"));
+            wand.AddSpell(SpellManager.manager.GetSpellByType("AS_fire"));
+            wand.AddSpell(SpellManager.manager.GetSpellByType("AS_blue"));
         }
 
         // Update is called once per frame
@@ -26,8 +28,8 @@ namespace wtd
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
-                CastedSpell casted;
-                SpellTarget target;
+                List<CastedSpell> casted;
+                ISpellTarget target;
                 if (a++ % 2 == 0)
                 {
                     target = new StaticSpellTarget(new Vector3(0.0f, 0.0f, 0.0f));
@@ -61,7 +63,7 @@ namespace wtd
                 vel.x--;
             }
 
-
+            vel.Normalize();
 
 
             transform.Translate(vel * 5.0f * Time.deltaTime);
