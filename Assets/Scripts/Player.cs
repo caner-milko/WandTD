@@ -21,6 +21,7 @@ namespace wtd
             //wand.AddSpell(SpellManager.manager.GetSpellByType("PS_multicastTest"));
             wand.AddSpell(SpellManager.manager.GetSpellByType("AS_fire"));
             wand.AddSpell(SpellManager.manager.GetSpellByType("AS_blue"));
+            wand.AddSpell(SpellManager.manager.GetSpellByType("AS_blue"));
         }
 
         // Update is called once per frame

@@ -43,14 +43,11 @@ namespace wtd.wands
                 CasterSpell selected = caster.NextSpell();
                 if (selected == null)
                     break;
-                Debug.Log(selected.spell.SpellType());
-                Debug.Log("aaaaa" + (multiCast));
                 //TODO manacheck
                 if (selected.isActive)
                 {
                     if (multiCast)
                     {
-                        Debug.Log("aaaaa");
                         childGroups.Add(new SpellGroupBuilder(selected).Build());
                     }
                     else
