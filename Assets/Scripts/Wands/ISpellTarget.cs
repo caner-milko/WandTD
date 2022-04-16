@@ -16,7 +16,8 @@ namespace wtd.wands
         public Vector3 GetPosition();
 
         /// <summary>
-        /// Should be unique and static for each implementation
+        /// Should be unique and static for each implementation<br/>
+        /// Naming Format: "ST_camelCase"
         /// </summary>
         /// <returns></returns>
         public string GetTargetType();
