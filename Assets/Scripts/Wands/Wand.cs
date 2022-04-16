@@ -27,12 +27,16 @@ namespace wtd.wands
         public ISpellCaster owner;
 
         // Spells in this wand's slot
-        public List<CasterSpell> spells = new List<CasterSpell>();
+        public SpellContainer spells;
 
         // Spells yet to be cast since last recharge
         public Stack<CasterSpell> remSpells = new Stack<CasterSpell>();
 
         public SpellGroupBuilder curBuilder;
+
+        private void Start() {
+            spells = new SpellContainer(capacity);
+        }
 
         /// <summary>
         /// Casts spells towards given target.
@@ -101,11 +105,11 @@ namespace wtd.wands
             return remSpells.Pop();
         }
 
-        
+
         public CasterSpell AddSpell(Spell spell)
         {
             CasterSpell casterSpell = new CasterSpell(spell, this, spells.Count);
-            spells.Add(casterSpell);
+            spells.AddSpell(casterSpell);
             return casterSpell;
         }
 

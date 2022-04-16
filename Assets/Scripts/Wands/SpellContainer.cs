@@ -14,18 +14,35 @@ namespace wtd.wands
         private int _capacity;
 
         // List of spells this container holds.
-        private List<CasterSpell> _spells;
+        private List<SpellSlot> _spellSlots;
 
         // List of validators that every spell in this container has to satisfy.
         private List<Func<CasterSpell, bool>> _spellValidators;
+
+        // Number of spells in this container.
+        public int Count {
+            get {
+                int count = 0;
+                foreach (CasterSpell spell in this) count++;
+                return count;
+            }
+        }
+
+        // Max number of spells that this container can hold.
+        public int Capacity {
+            get => _capacity;
+            set {
+                _spellSlots.Capacity = _capacity = value;
+            }
+        }
 
         /// <summary>
         /// Create a spell container with given capacity.
         /// </summary>
         /// <param name="capacity">Max number of spells that this container can hold.</param>
         public SpellContainer(int capacity) {
-            _capacity = capacity;
-            _spells = new List<CasterSpell>(capacity);
+            Capacity = capacity;
+            _spellSlots = new List<SpellSlot>(capacity);
         }
 
         /// <summary>
@@ -43,7 +60,7 @@ namespace wtd.wands
         /// <param name="spell">Spell to be added to this container.</param>
         /// <returns>true if spell is added, false otherwise.</returns>
         public bool AddSpell(CasterSpell spell) {
-            if(_spells.Count >= _capacity){
+            if(Count >= Capacity){
                 return false;
             }
             else foreach(Func<CasterSpell, bool> spellValidator in _spellValidators) {
@@ -51,7 +68,30 @@ namespace wtd.wands
                     return false;
                 }
             }
-            _spells.Add(spell);
+            _spellSlots.Add(new SpellSlot(spell));
+            return true;
+        }
+
+        public bool InsertSpell(int index, CasterSpell spell) {
+            if(Count >= Capacity || index >= Capacity){
+                return false;
+            }
+            _spellSlots.Insert(index, new SpellSlot(spell));
+            return true;
+        }
+
+        public bool RemoveSpell(CasterSpell spell) {
+            foreach(SpellSlot spellSlot in _spellSlots) {
+                if(spellSlot.Spell.Equals(spell)){
+                    spellSlot.Spell = null;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool RemoveSpell(int index) {
+            _spellSlots[index].Spell = null;
             return true;
         }
 
@@ -66,17 +106,21 @@ namespace wtd.wands
 
             List<CasterSpell> _invalidSpells = new List<CasterSpell>();
 
-            foreach (CasterSpell spell in this)
+            foreach (SpellSlot spellSlot in _spellSlots)
             {
-                if(!spellValidator.Invoke(spell)){
-                    _invalidSpells.Add(spell);
-                    _spells.Remove(spell);
-                }
+                if(!spellValidator.Invoke(spellSlot.Spell)){
+                    _invalidSpells.Add(spellSlot.Spell);
+                    spellSlot.Spell = null;
+                }   
             }
 
             invalidSpells = _invalidSpells.ToArray();
 
             return true;
+        }
+
+        public bool RemoveSpellValidator(Func<CasterSpell, bool> spellValidator) {
+            return _spellValidators.Remove(spellValidator);
         }
 
         public IEnumerator<CasterSpell> GetEnumerator()
@@ -93,19 +137,19 @@ namespace wtd.wands
         /// </summary>
         private class SpellContainerEnumerator : IEnumerator<CasterSpell> {
 
-            private CasterSpell[] _spells;
+            private SpellSlot[] _spellSlots;
             private int index = 0;
 
             object IEnumerator.Current => Current;
-            public CasterSpell Current => _spells[index];
+            public CasterSpell Current => _spellSlots[index].Spell;
 
             public SpellContainerEnumerator(SpellContainer spellContainer) {
-                _spells = spellContainer._spells.ToArray();
+                _spellSlots = spellContainer._spellSlots.GetRange(0, spellContainer.Capacity).ToArray();
             }
 
             public bool MoveNext() {
-                while(_spells[++index] == null);
-                return index < _spells.Length;
+                while(_spellSlots[++index].Spell == null);
+                return index < _spellSlots.Length;
             }
 
             public void Reset() {
@@ -113,7 +157,7 @@ namespace wtd.wands
             }
 
             public void Dispose() {
-                _spells = null;
+                _spellSlots = null;
             }
         }
     }
