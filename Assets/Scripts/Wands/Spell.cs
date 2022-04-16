@@ -13,7 +13,9 @@ namespace wtd.wands
         public int mana;
 
         /// <summary>
-        /// Every spell class should have a static unique name
+        /// Every spell class should have a static unique name<br/>
+        /// Active Spell Naming Format: "AS_camelCase"<br/>
+        /// Passive Spell Naming Format: "PS_camelCase"
         /// </summary>
         /// <returns></returns>
         public abstract string SpellName();

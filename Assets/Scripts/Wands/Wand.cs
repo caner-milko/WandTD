@@ -79,12 +79,12 @@ namespace wtd.wands
 
         public string CasterType()
         {
-            return "wand";
+            return "CT_wand";
         }
 
         public string GetTargetType()
         {
-            return "wand";
+            return "ST_wand";
         }
 
         public Vector3 GetPosition()
