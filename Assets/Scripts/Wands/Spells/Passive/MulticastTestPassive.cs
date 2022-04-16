@@ -12,7 +12,7 @@ namespace wtd.wands.spells
 
         }
 
-        public override string SpellType()
+        public override string SpellName()
         {
             return "PS_multicastTest";
         }

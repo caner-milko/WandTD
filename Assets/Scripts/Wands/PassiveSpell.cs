@@ -4,19 +4,10 @@ using UnityEngine;
 
 namespace wtd.wands
 {
+    /// <summary>
+    /// Every passive spell should be inherited from this class
+    /// </summary>
     public abstract class PassiveSpell : Spell
     {
-        public virtual void OnBeforeCast(CastedSpell casted) { }
-
-        public virtual void OnCast(CastedSpell casted) { }
-
-        public virtual void OnBeforeTick(CastedSpell casted) { }
-
-        public virtual void OnTick(CastedSpell casted) { }
-
-        public override void addToGroup(SpellGroupBuilder group)
-        {
-
-        }
     }
 }

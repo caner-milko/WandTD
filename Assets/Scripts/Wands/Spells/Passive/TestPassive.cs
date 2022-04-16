@@ -6,7 +6,7 @@ namespace wtd.wands.spells
 {
     public class TestPassive : PassiveSpell
     {
-        public override string SpellType()
+        public override string SpellName()
         {
             return "PS_test";
         }

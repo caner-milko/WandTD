@@ -4,7 +4,10 @@ using UnityEngine;
 
 namespace wtd.wands
 {
-    public class SpellInfo : MonoBehaviour
+    /// <summary>
+    /// Not yet implemented, will contain stats of the spells
+    /// </summary>
+    public class SpellInfo : ScriptableObject
     {
         // Start is called before the first frame update
         void Start()

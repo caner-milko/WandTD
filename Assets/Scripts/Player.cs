@@ -11,25 +11,28 @@ namespace wtd
     {
         public Wand wand;
 
+        // alternate between targeting types, used for test purposes
         int a;
 
 
-        // Start is called before the first frame update
+
         void Start()
         {
-            wand.AddSpell(SpellManager.manager.GetSpellByType("PS_test"));
+            // Added manually since there is no wand editing yet
+            wand.AddSpell(SpellManager.instance.GetSpellByType("PS_test"));
             //wand.AddSpell(SpellManager.manager.GetSpellByType("PS_multicastTest"));
-            wand.AddSpell(SpellManager.manager.GetSpellByType("AS_fire"));
-            wand.AddSpell(SpellManager.manager.GetSpellByType("AS_blue"));
-            wand.AddSpell(SpellManager.manager.GetSpellByType("AS_blue"));
+            wand.AddSpell(SpellManager.instance.GetSpellByType("AS_fire"));
+            wand.AddSpell(SpellManager.instance.GetSpellByType("AS_blue"));
+            wand.AddSpell(SpellManager.instance.GetSpellByType("AS_blue"));
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                //output casted spell list
                 List<CastedSpell> casted;
+                //a target is required to shoot a spell
                 ISpellTarget target;
                 if (a++ % 2 == 0)
                 {
@@ -42,6 +45,7 @@ namespace wtd
                 wand.Shoot(target, out casted);
             }
 
+            //basic movement
             Vector3 vel = new Vector3(0.0f, 0.0f, 0.0f);
 
             if (Input.GetKey(KeyCode.W))

@@ -5,25 +5,39 @@ using wtd.wands.spells; //debug purpose
 
 namespace wtd.wands
 {
+    /// <summary>
+    /// Singleton manager for the spells<br/>
+    /// Each <see cref="CastedSpell"/> is added here, updated by the manager<br/>
+    /// Will probably change later
+    /// </summary>
     public class SpellManager : MonoBehaviour
     {
 
-        public static SpellManager manager;
-        List<Spell> spells = new List<Spell>();
-        List<CastedSpell> castedSpells = new List<CastedSpell>();
+        public static SpellManager instance;
+        //For debug
         [SerializeField]
         CastedSpell FirePrefab;
         [SerializeField]
         CastedSpell BluePrefab;
 
+        /// <summary>
+        /// Each <see cref="Spell"/> implemented should be added to the manager, there is only a single instance of each spell
+        /// </summary>
+        List<Spell> spells = new List<Spell>();
+
+        /// <summary>
+        /// Currently alive <see cref="CastedSpell"/>s
+        /// </summary>
+        List<CastedSpell> castedSpells = new List<CastedSpell>();
 
         private void Awake()
         {
-            manager = this;
+            instance = this;
         }
 
         private void Start()
         {
+            ///For Debug, later will be read from <see cref="ScriptableObject"/>s or files
             FireSpell fs = new FireSpell();
             fs.prefab = FirePrefab;
             spells.Add(fs);
@@ -40,12 +54,19 @@ namespace wtd.wands
 
         private void Update()
         {
+            //Update every living casted spell
             foreach (CastedSpell cs in castedSpells)
             {
                 TickCastedSpell(cs);
             }
         }
 
+        /// <summary>
+        /// In order ticking for active and passive spells<br/>
+        /// Order:<br/>
+        /// Active's <see cref="Spell.OnBeforeTick(CastedSpell)"/> => Passives' <see cref="Spell.OnBeforeTick(CastedSpell)"/> => Active's <see cref="Spell.OnTick(CastedSpell)"/> => Active's <see cref="Spell.OnTick(CastedSpell)"/> => Active's <see cref="Spell.OnAfterTick(CastedSpell)"/> => Passives' <see cref="Spell.OnAfterTick(CastedSpell)"/> 
+        /// </summary>
+        /// <param name="casted">Casted spell to be ticked</param>
         private void TickCastedSpell(CastedSpell casted)
         {
             SingleSpellGroup group = casted.spellGroup;
@@ -57,8 +78,18 @@ namespace wtd.wands
             foreach (PassiveSpell passive in group.passives)
                 passive.OnTick(casted);
             spell.OnAfterTick(casted);
+            foreach (PassiveSpell pspell in group.passives)
+            {
+                pspell.OnAfterTick(casted);
+            }
         }
 
+        /// <summary>
+        /// In order casting for active and passive spells<br/>
+        /// Order:<br/>
+        /// Active's <see cref="Spell.OnBeforeCast(CastedSpell)"/> => Passives' <see cref="Spell.OnBeforeCast(CastedSpell)"/> => Active's <see cref="Spell.OnCast(CastedSpell)"/> => Active's <see cref="Spell.OnCast(CastedSpell)"/> => Active's <see cref="Spell.OnAfterCast(CastedSpell)"/> => Passives' <see cref="Spell.OnAfterCast(CastedSpell)"/>
+        /// </summary>
+        /// <param name="casted"></param>
         public void AddCastedSpell(CastedSpell casted)
         {
             SingleSpellGroup group = casted.spellGroup;
@@ -75,13 +106,22 @@ namespace wtd.wands
                 pspell.OnCast(casted);
             }
             spell.OnAfterCast(casted);
+            foreach (PassiveSpell pspell in group.passives)
+            {
+                pspell.OnAfterCast(casted);
+            }
         }
 
-        public Spell GetSpellByType(string type)
+        /// <summary>
+        /// Get spell by name, each spell should have a single instance kept in the manager
+        /// </summary>
+        /// <param name="name">name of the spell</param>
+        /// <returns></returns>
+        public Spell GetSpellByType(string name)
         {
             foreach (Spell spell in spells)
             {
-                if (spell.SpellType() == type)
+                if (spell.SpellName() == name)
                     return spell;
             }
             return null;
