@@ -142,6 +142,8 @@ namespace wtd.wands
             }
             else
             {
+                if (active == null)
+                    return null;
                 ///if has a child group, configure the child group then return
                 if (childGroups.Count > 0)
                 {

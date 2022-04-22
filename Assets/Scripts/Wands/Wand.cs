@@ -30,11 +30,12 @@ namespace wtd.wands
         public SpellContainer spells;
 
         // Spells yet to be cast since last recharge
-        public Stack<CasterSpell> remSpells = new Stack<CasterSpell>();
+        public Queue<CasterSpell> remSpells = new Queue<CasterSpell>();
 
         public SpellGroupBuilder curBuilder;
 
-        private void Start() {
+        private void Awake()
+        {
             spells = new SpellContainer(capacity);
         }
 
@@ -67,14 +68,14 @@ namespace wtd.wands
             // TODO: If there are no remaining spells return false
             if (remSpells.Count == 0)
             {
-                remSpells = new Stack<CasterSpell>(spells);
+                remSpells = new Queue<CasterSpell>(spells);
             }
             SpellGroupBuilder builder = new SpellGroupBuilder(this, castCount);
 
             curBuilder = builder;
 
             group = builder.Build();
-            return true;
+            return group != null;
         }
 
         public string CasterType()
@@ -102,7 +103,7 @@ namespace wtd.wands
             {
                 return null;
             }
-            return remSpells.Pop();
+            return remSpells.Dequeue();
         }
 
 

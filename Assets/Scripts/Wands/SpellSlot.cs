@@ -8,7 +8,10 @@ namespace wtd.wands
     {
         public CasterSpell Spell = null;
 
-        public SpellSlot(CasterSpell spell) {
+        public bool IsEmpty => Spell == null;
+
+        public SpellSlot(CasterSpell spell)
+        {
             Spell = spell;
         }
     }
