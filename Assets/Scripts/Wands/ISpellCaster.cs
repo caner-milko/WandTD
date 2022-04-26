@@ -11,7 +11,7 @@ namespace wtd.wands
     {
         /// <summary>
         /// Should be unique and static for each implementation
-        /// Naming Format: "CT_camelCase"
+        /// Naming Format: "SC_camelCase"
         /// </summary>
         /// <returns></returns>
         public string CasterType();

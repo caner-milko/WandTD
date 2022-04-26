@@ -7,24 +7,47 @@ namespace wtd.tower
 {
     public class Tower : MonoBehaviour, ISpellCaster, ISpellTarget
     {
+        public Wand wand;
+        public List<PassiveSpell> alwaysCast = new List<PassiveSpell>();
+
+        [field: SerializeField]
+        public TowerTargetAdapter TargetAdapter;
+        public TowerTarget Target => TargetAdapter != null ? TargetAdapter.Target : null;
+
+        [field: SerializeField]
+        public float Range { get; private set; }
+        public float RangeSqr => Range * Range;
+
         public string CasterType()
         {
-            throw new System.NotImplementedException();
+            return "SC_tower";
         }
 
         public Vector3 GetPosition()
         {
-            throw new System.NotImplementedException();
+            return transform.position;
         }
 
         public string GetTargetType()
         {
-            throw new System.NotImplementedException();
+            return "ST_tower";
         }
 
         public CasterSpell NextSpell()
         {
-            throw new System.NotImplementedException();
+            return wand.NextSpell();
         }
+
+        public virtual bool shoot(out List<CastedSpell> casted)
+        {
+            ISpellTarget selTarget;
+            if (Target.GetTarget(out selTarget))
+            {
+                return wand.Shoot(selTarget, out casted);
+            }
+            casted = null;
+            return false;
+        }
+
     }
 }

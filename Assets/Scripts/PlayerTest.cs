@@ -7,7 +7,7 @@ using wtd.wands.spells;
 
 namespace wtd
 {
-    public class Player : MonoBehaviour
+    public class PlayerTest : MonoBehaviour, ISpellTarget, ISpellCaster
     {
         public Wand wand;
 
@@ -73,6 +73,27 @@ namespace wtd
 
             transform.Translate(vel * 5.0f * Time.deltaTime);
 
+        }
+
+
+        public string CasterType()
+        {
+            return "SC_player";
+        }
+
+        public Vector3 GetPosition()
+        {
+            return transform.position;
+        }
+
+        public string GetTargetType()
+        {
+            return "ST_player";
+        }
+
+        public CasterSpell NextSpell()
+        {
+            return wand == null ? null : wand.NextSpell();
         }
     }
 }

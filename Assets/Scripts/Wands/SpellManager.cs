@@ -33,10 +33,7 @@ namespace wtd.wands
         private void Awake()
         {
             instance = this;
-        }
 
-        private void Start()
-        {
             ///For Debug, later will be read from <see cref="ScriptableObject"/>s or files
             FireSpell fs = new FireSpell();
             fs.prefab = FirePrefab;
