@@ -39,13 +39,15 @@ namespace wtd.tower
 
 		public Tower GetTowerFromMouse()
 		{
-			Vector2 mousePos = CameraManager.instance.WorldMousePos;
-			RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 1f, LayerMask.GetMask("tower"));
-			if (hit.collider == null)
+			Ray mouseRay = CameraManager.instance.MouseRay;
+			Debug.Log(mouseRay);
+			RaycastHit hit;
+			if (!Physics.Raycast(mouseRay, out hit, 100f, LayerMask.GetMask("tower")))
 				return null;
 			return hit.transform.gameObject.GetComponent<Tower>();
 		}
 
+		//based on position
 		public Tower GetClosestTower(Vector3 pos)
 		{
 			Tower closest = null;
@@ -62,5 +64,46 @@ namespace wtd.tower
 			return closest;
 		}
 
+		public Collider[] GetHittingTowersAsCollider(Vector3 pos, float radius)
+		{
+			return Physics.OverlapSphere(pos, radius, LayerMask.GetMask("tower"));
+		}
+
+		public Tower[] GetHittingTowers(Vector3 pos, float radius)
+		{
+			Collider[] colliders = GetHittingTowersAsCollider(pos, radius);
+			Tower[] towers = new Tower[colliders.Length];
+			for (int i = 0; i < colliders.Length; i++)
+				towers[i] = colliders[i].GetComponent<Tower>();
+			return towers;
+		}
+
+		public Tower GetClosestTower(Vector3 pos, float radius)
+		{
+			Collider[] colliders = GetHittingTowersAsCollider(pos, radius);
+			float minDistSqr = -1f;
+			Collider selected = null;
+			foreach (Collider collider in colliders)
+			{
+				float distSqr = (collider.ClosestPoint(pos) - pos).sqrMagnitude;
+				if (selected == null || distSqr < minDistSqr)
+				{
+					minDistSqr = distSqr;
+					selected = collider;
+				}
+			}
+			return selected.GetComponent<Tower>();
+		}
+
+		public bool IsCloseToTower(Vector3 pos, float radius, Collider collider)
+		{
+			Collider[] colliders = GetHittingTowersAsCollider(pos, radius);
+			return new HashSet<Collider>(colliders).Contains(collider);
+		}
+
+		public bool IsCloseToTower(Vector3 pos, float radius, Tower tower)
+		{
+			return IsCloseToTower(pos, radius, tower.GetComponent<Collider>());
+		}
 	}
 }

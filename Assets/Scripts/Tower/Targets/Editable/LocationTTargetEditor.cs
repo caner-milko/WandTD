@@ -11,12 +11,12 @@ namespace wtd.tower.editor.targetEditors
 
 		}
 
-		public override bool CheckTarget(Vector2 position)
+		public override bool CheckTarget(Vector3 position)
 		{
-			return ((Vector2)Tower.GetPosition() - (Vector2)position).sqrMagnitude <= Tower.RangeSqr;
+			return (Tower.GetPosition() - position).sqrMagnitude <= Tower.RangeSqr;
 		}
 
-		protected override void DoAcceptTarget(Vector2 position)
+		protected override void DoAcceptTarget(Vector3 position)
 		{
 			((LocationTTarget)EditorTarget).SetPosition(position);
 		}

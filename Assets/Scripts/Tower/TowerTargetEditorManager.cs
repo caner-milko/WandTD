@@ -73,7 +73,14 @@ namespace wtd.tower.editor
 				return;
 			}
 			((RectTransform)TowerTargetEditorIndicator.transform).anchoredPosition = CameraManager.instance.ScreenMousePos;
-			bool check = TTargetEditor.CheckTarget(CameraManager.instance.WorldMousePos);
+			//change to raycast
+			RaycastHit hit;
+			bool check = false;
+			if (Physics.Raycast(CameraManager.instance.MouseRay, out hit))
+			{
+				check = TTargetEditor.CheckTarget(hit.point);
+			}
+
 			if (check)
 			{
 				TowerTargetEditorIndicator.GetMaterial(0).color = Color.green;

@@ -17,7 +17,7 @@ namespace wtd.tower.editor
 			this.EditorTarget = editorTarget;
 		}
 
-		public virtual void CancelEditor(Vector2 position)
+		public virtual void CancelEditor(Vector3 position)
 		{
 			if (Tower.TargetAdapter.Target != EditorTarget)
 			{
@@ -25,14 +25,14 @@ namespace wtd.tower.editor
 			}
 		}
 
-		public void AcceptTarget(Vector2 position)
+		public void AcceptTarget(Vector3 position)
 		{
 			Tower.TargetAdapter.ChangeTarget(EditorTarget);
 		}
 
-		protected abstract void DoAcceptTarget(Vector2 position);
+		protected abstract void DoAcceptTarget(Vector3 position);
 
-		public abstract bool CheckTarget(Vector2 position);
+		public abstract bool CheckTarget(Vector3 position);
 
 
 	}
