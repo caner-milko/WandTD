@@ -6,6 +6,7 @@ using wtd.wands.targets;
 using wtd.wands.spells;
 using wtd.tower;
 using wtd.tower.editor;
+using wtd.effect;
 
 namespace wtd
 {
@@ -19,10 +20,14 @@ namespace wtd
 
 		public Wand wand;
 
+		//test variables
+
 		// alternate between targeting types, used for test purposes
 		int a;
 
+		public EffectHolder holder;
 
+		public Effect effectPrefab;
 
 		void Start()
 		{
@@ -36,6 +41,11 @@ namespace wtd
 
 		void Update()
 		{
+			if (Input.GetKeyDown(KeyCode.K))
+			{
+				holder.AddEffect(effectPrefab, true);
+			}
+
 			if (Input.GetKeyDown(KeyCode.Mouse0))
 			{
 				//output casted spell list
