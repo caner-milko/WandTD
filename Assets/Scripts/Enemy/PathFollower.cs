@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace wtd
+namespace wtd.enemy
 {
 	public class PathFollower : MonoBehaviour
 	{
