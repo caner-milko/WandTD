@@ -62,7 +62,6 @@ namespace wtd.effect
 			if (!effect.canStack)
 			{
 				List<Effect> list = GetEffectByType<Effect>(effect.effectName);
-				Debug.Log("Count: " + list.Count);
 				if (list.Count > 0)
 				{
 					Effect eff = list[0];

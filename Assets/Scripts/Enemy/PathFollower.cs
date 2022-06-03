@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using wtd.stat;
 namespace wtd.enemy
 {
 	public class PathFollower : MonoBehaviour
 	{
+		[SerializeField]
+		private StatHolder holder;
+
+		private Stat speedStat => holder.GetStat("speed", false);
+
 		[field: SerializeField]
 		public EnemyPath path { get; private set; }
 		public int lastPoint = -1;
@@ -18,7 +23,14 @@ namespace wtd.enemy
 			}
 		}
 
-		public float speed = 3f;
+		[SerializeField]
+		private bool loop = false;
+
+		private void Awake()
+		{
+			if (holder == null || !holder)
+				holder = GetComponent<StatHolder>();
+		}
 
 		void Start()
 		{
@@ -40,12 +52,16 @@ namespace wtd.enemy
 				}
 				TranslateToNext();
 			}
+			else if (loop)
+			{
+				lastPoint = -1;
+			}
 		}
 
 		private void TranslateToNext()
 		{
 			Vector3 dif = NextPosition - transform.position;
-			dif = dif.normalized * speed * Time.fixedDeltaTime;
+			dif = dif.normalized * speedStat.Value * Time.fixedDeltaTime;
 			transform.Translate(dif);
 		}
 
