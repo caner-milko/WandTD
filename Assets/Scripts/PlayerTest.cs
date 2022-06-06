@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using wtd.wands;
-using wtd.wands.targets;
-using wtd.wands.spells;
-using wtd.tower;
-using wtd.tower.editor;
+using wtd.wand;
+using wtd.spell;
+using wtd.spell.targets;
 using wtd.effect;
 
 namespace wtd
@@ -29,14 +27,12 @@ namespace wtd
 
 		public Effect effectPrefab;
 
+		public List<SpellData> spells;
+
 		void Start()
 		{
-			// Added manually since there is no wand editing yet
-			wand.AddSpell(SpellManager.instance.GetSpellByType("PS_test"));
-			//wand.AddSpell(SpellManager.manager.GetSpellByType("PS_multicastTest"));
-			wand.AddSpell(SpellManager.instance.GetSpellByType("AS_fire"));
-			wand.AddSpell(SpellManager.instance.GetSpellByType("AS_blue"));
-			wand.AddSpell(SpellManager.instance.GetSpellByType("AS_blue"));
+			foreach (SpellData data in spells)
+				wand.AddSpell(data);
 		}
 
 		void Update()

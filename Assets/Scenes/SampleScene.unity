@@ -229,7 +229,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1043633787}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &90344238
 MonoBehaviour:
@@ -1370,8 +1370,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <effects>k__BackingField: []
   EffectsParent: {fileID: 0}
-  getEffectsFromParent: 1
-  createEffectsParent: 1
 --- !u!65 &534804336
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2361,6 +2359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tower: {fileID: 902979548}
+  spells: []
 --- !u!114 &902979547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2380,6 +2379,7 @@ MonoBehaviour:
   curCastDelay: 0
   curRechargeDelay: 0
   castCount: 1
+  castedPrefab: {fileID: 0}
 --- !u!114 &902979548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2393,6 +2393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wand: {fileID: 902979547}
+  alwaysCast: []
   TargetAdapter: {fileID: 902979551}
   <Range>k__BackingField: 3
 --- !u!65 &902979549
@@ -2930,7 +2931,6 @@ Transform:
   m_Children:
   - {fileID: 1477586610}
   - {fileID: 583889229}
-  - {fileID: 1798253862}
   - {fileID: 90344237}
   - {fileID: 1603612487}
   m_Father: {fileID: 0}
@@ -4013,6 +4013,7 @@ MonoBehaviour:
   holder: {fileID: 0}
   <effectors>k__BackingField: []
   defaultVal: 4
+  lastVal: 0
 --- !u!1 &1603612486
 GameObject:
   m_ObjectHideFlags: 0
@@ -4042,7 +4043,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1043633787}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1603612488
 MonoBehaviour:
@@ -4434,6 +4435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wand: {fileID: 1719218582}
+  alwaysCast: []
   TargetAdapter: {fileID: 1719218580}
   <Range>k__BackingField: 3
 --- !u!114 &1719218582
@@ -4455,6 +4457,7 @@ MonoBehaviour:
   curCastDelay: 0
   curRechargeDelay: 0
   castCount: 1
+  castedPrefab: {fileID: 0}
 --- !u!65 &1719218583
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4481,6 +4484,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tower: {fileID: 1719218581}
+  spells: []
 --- !u!4 &1723922138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2041152854709249518, guid: f4931b0e15652b841bf18de710039483, type: 3}
@@ -4653,51 +4657,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &1798253860
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1798253862}
-  - component: {fileID: 1798253861}
-  m_Layer: 0
-  m_Name: SpellManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1798253861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1798253860}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b55a68337ff6ac3448d370f534a7a649, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FirePrefab: {fileID: -2265377668907664168, guid: 550b3bba9b9a1cb4b8ff4693b4b6d2e6, type: 3}
-  BluePrefab: {fileID: 8582857304637938761, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
---- !u!4 &1798253862
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1798253860}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1043633787}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1819476860
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4794,7 +4753,8 @@ MonoBehaviour:
   rechargeDelay: 0
   curCastDelay: 0
   curRechargeDelay: 0
-  castCount: 2
+  castCount: 1
+  castedPrefab: {fileID: 8880163925323000403, guid: 888f7f471174d1c4da7608d3106af5ae, type: 3}
 --- !u!114 &1875112782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4811,6 +4771,11 @@ MonoBehaviour:
   wand: {fileID: 1875112781}
   holder: {fileID: 534804335}
   effectPrefab: {fileID: 2041152854709249512, guid: f4931b0e15652b841bf18de710039483, type: 3}
+  spells:
+  - {fileID: 11400000, guid: 31616c26f3cb9ad42bad4c2b7a7a2d67, type: 2}
+  - {fileID: 11400000, guid: 86a67e62e050d444e9be074f72c32113, type: 2}
+  - {fileID: 11400000, guid: 699796efd881a994a915151deb6fb74c, type: 2}
+  - {fileID: 11400000, guid: af1972d58f57a444e8ad8e556d660ea8, type: 2}
 --- !u!33 &1875112783
 MeshFilter:
   m_ObjectHideFlags: 0

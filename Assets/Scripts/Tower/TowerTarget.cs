@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using wtd.wands;
+using wtd.spell;
 
 namespace wtd.tower
 {

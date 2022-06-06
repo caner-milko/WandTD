@@ -13,19 +13,13 @@ namespace wtd.effect
 		[SerializeField]
 		private Transform EffectsParent;
 
-		[SerializeField]
-		private bool getEffectsFromParent;
-
-		[SerializeField]
-		private bool createEffectsParent;
-
 		private void Start()
 		{
 			foreach (Effect effect in effects)
 			{
 				effect.Add(this);
 			}
-			if (createEffectsParent && (EffectsParent == null || !EffectsParent))
+			if (EffectsParent == null || !EffectsParent)
 			{
 				bool found = false;
 				foreach (Transform tf in transform)
@@ -40,13 +34,10 @@ namespace wtd.effect
 					EffectsParent.parent = transform;
 				}
 			}
-			if (getEffectsFromParent)
-			{
 				foreach (Effect effect in EffectsParent.GetComponentsInChildren<Effect>())
 				{
 					AddEffect(effect, false);
 				}
-			}
 		}
 
 		private void OnDestroy()

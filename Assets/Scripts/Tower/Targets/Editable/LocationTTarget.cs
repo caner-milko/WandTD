@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using wtd.wands;
-using wtd.wands.targets;
+using wtd.spell;
+using wtd.spell.targets;
 using wtd.tower.editor.targetEditors;
 using wtd.tower.editor;
+
+
 
 namespace wtd.tower.targets
 {
