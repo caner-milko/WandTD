@@ -1,23 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 namespace wtd.stat
 {
-	public class Stat : MonoBehaviour
+	[Serializable]
+	public class Stat
 	{
 		public string StatName;
-		public StatHolder holder;
-		[field: SerializeField]
-		public List<StatEffector> effectors { get; private set; }
+
+		public readonly StatHolder holder;
 		public float Value => GetValue();
-		[SerializeField]
-		private float defaultVal = 0.0f;
+		[field: SerializeField]
+		public float defaultVal { get; private set; } = 0.0f;
+
+		[field: SerializeField]
+		public List<StatEffector> effectors { get; private set; } = new List<StatEffector>();
 
 		[SerializeField, ReadOnly]
 		private float lastVal = 0.0f;
 
 		private bool updated = true;
+
+		public Stat(string statName, StatHolder holder, float defaultVal)
+		{
+			StatName = statName;
+			this.holder = holder;
+			this.defaultVal = defaultVal;
+		}
 
 		public float GetValue()
 		{
@@ -84,6 +94,13 @@ namespace wtd.stat
 					effectors.RemoveAt(i);
 			}
 			updated = true;
+		}
+
+		public Stat CloneTo(StatHolder holder)
+		{
+			Stat newStat = new Stat(StatName, this.holder, this.defaultVal);
+			newStat.AddEffector(this.effectors.ToArray());
+			return newStat;
 		}
 	}
 }

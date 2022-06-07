@@ -6,51 +6,35 @@ namespace wtd.stat
 {
 	public class StatHolder : MonoBehaviour
 	{
-		private Dictionary<string, Stat> stats = new Dictionary<string, Stat>();
-
 		[SerializeField]
-		private Transform StatsParent;
+		private List<Stat> Stats;
+
+		private Dictionary<string, Stat> stats = new Dictionary<string, Stat>();
 
 		private void Awake()
 		{
-			if (StatsParent == null || !StatsParent)
+			foreach (Stat stat in Stats)
 			{
-				bool found = false;
-				foreach (Transform tf in transform)
-					if (tf.gameObject.name == "Stats")
-					{
-						StatsParent = tf;
-						found = true;
-					}
-				if (!found)
-				{
-					StatsParent = new GameObject("Stats").transform;
-					StatsParent.parent = transform;
-				}
-			}
-			foreach (Stat stat in StatsParent.GetComponentsInChildren<Stat>())
-			{
-				AddStat(stat, false);
+				AddStat(stat);
 			}
 		}
 
-		public Stat AddStat(Stat stat, bool instantiate)
+		public Stat AddStat(Stat stat, bool clone = false)
 		{
-			if (stats.TryGetValue(stat.name, out Stat result))
+			if (stats.TryGetValue(stat.StatName, out Stat result))
 			{
 				return result;
 			}
 			Stat realStat = stat;
-			if (instantiate)
+			if (clone)
 			{
-				realStat = GameObject.Instantiate<Stat>(stat, transform);
+				realStat = stat.CloneTo(this);
 			}
-			realStat.holder = this;
 			stats.Add(realStat.StatName, realStat);
 			return realStat;
 		}
 
-		public Stat GetStat(string statName, bool createIfNull)
+		public Stat GetStat(string statName, bool createIfNull = false, float defaultVal = 0.0f)
 		{
 			if (stats.TryGetValue(statName, out Stat result))
 			{
@@ -58,19 +42,16 @@ namespace wtd.stat
 			}
 			if (!createIfNull)
 				return null;
-			Stat stat = gameObject.AddComponent<Stat>();
-			AddStat(stat, false);
+			Stat stat = new Stat(statName, this, defaultVal);
+			AddStat(stat);
 			return stat;
 		}
 
-		public float? GetStatValue(string statName, bool createIfNull)
+		public float? GetStatValue(string statName, bool createIfNull = false, float defaultVal = 0.0f)
 		{
-			if (stats.TryGetValue(statName, out Stat result))
-				return result.Value;
-			if (!createIfNull)
-				return null;
-			Stat stat = gameObject.AddComponent<Stat>();
-			AddStat(stat, false);
+			Stat stat = GetStat(statName, createIfNull, defaultVal);
+			if (stat == null)
+				return defaultVal;
 			return stat.Value;
 		}
 

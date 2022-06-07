@@ -12,11 +12,15 @@ namespace wtd.stat
 		{
 			Add = 3, PercentAdd = 2, PercentMul = 1
 		}
+		[field: NonSerialized]
 		public Stat effecting { get; private set; }
-		public readonly float value;
 		public readonly object source;
-		public readonly StatEffectorType type;
-		public readonly int order;
+		[field: ReadOnly, SerializeField]
+		public float value { get; private set; }
+		[field: ReadOnly, SerializeField]
+		public StatEffectorType type { get; private set; }
+		[field: ReadOnly, SerializeField]
+		public int order { get; private set; }
 		public StatHolder holder => effecting.holder;
 
 		public StatEffector(float value, object Source, StatEffectorType type) : this(value, Source, type, (int)type)
