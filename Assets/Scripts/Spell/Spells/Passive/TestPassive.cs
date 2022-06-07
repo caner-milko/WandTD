@@ -11,6 +11,11 @@ namespace wtd.spell.spells
 
 		}
 
+		protected override void OnFixedUpdate()
+		{
+
+		}
+
 		protected override void OnRemove()
 		{
 

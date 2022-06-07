@@ -61,7 +61,10 @@ namespace wtd.enemy
 		private void TranslateToNext()
 		{
 			Vector3 dif = NextPosition - transform.position;
-			dif = dif.normalized * speedStat.Value * Time.fixedDeltaTime;
+			float speed = Mathf.Max(speedStat.Value, dif.magnitude);
+
+
+			dif = dif.normalized * speed * Time.fixedDeltaTime;
 			transform.Translate(dif);
 		}
 

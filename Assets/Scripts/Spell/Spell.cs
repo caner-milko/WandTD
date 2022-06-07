@@ -55,6 +55,14 @@ namespace wtd.spell
 
 		protected abstract void OnUpdate();
 
+		protected virtual void FixedUpdate()
+		{
+			if (spellActive)
+				OnFixedUpdate();
+		}
+
+		protected abstract void OnFixedUpdate();
+
 		public void Trigger(SpellTriggerData trigger)
 		{
 

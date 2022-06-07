@@ -28,9 +28,12 @@ namespace wtd.stat
 			Stat realStat = stat;
 			if (clone)
 			{
-				realStat = stat.CloneTo(this);
+				realStat = stat.CloneToHolder(this);
 			}
 			stats.Add(realStat.StatName, realStat);
+			//to display in inspector
+			if (!Stats.Contains(realStat))
+				Stats.Add(realStat);
 			return realStat;
 		}
 

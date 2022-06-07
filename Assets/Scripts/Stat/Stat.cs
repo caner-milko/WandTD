@@ -96,7 +96,7 @@ namespace wtd.stat
 			updated = true;
 		}
 
-		public Stat CloneTo(StatHolder holder)
+		public Stat CloneToHolder(StatHolder holder)
 		{
 			Stat newStat = new Stat(StatName, this.holder, this.defaultVal);
 			newStat.AddEffector(this.effectors.ToArray());
