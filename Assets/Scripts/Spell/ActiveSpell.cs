@@ -11,17 +11,18 @@ namespace wtd.spell
 	/// </summary>
 	public abstract class ActiveSpell : Spell
 	{
-		public new ActiveSpellData SpellData
-		{
-			get
-			{
-				return (ActiveSpellData)base.SpellData;
-			}
+		public int triggerCount = 0;
 
-			set
-			{
-				base.SpellData = value;
-			}
+		public override void addToGroup(SpellGroupBuilder group)
+		{
+			group.AddChildSpellGroup(triggerCount);
+		}
+
+		public override Spell CastSpell(SingleSpellGroup group, CastedSpell casted)
+		{
+			ActiveSpell activeCreated = (ActiveSpell)base.CastSpell(group, casted);
+			activeCreated.transform.parent = casted.transform;
+			return activeCreated;
 		}
 
 

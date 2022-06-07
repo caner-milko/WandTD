@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using wtd.stat;
+using System;
 namespace wtd.spell
 {
 	/// <summary>
@@ -9,31 +10,41 @@ namespace wtd.spell
 	/// </summary>
 	public abstract class Spell : MonoBehaviour
 	{
-
-		public CastedSpell castedParent;
-		private SpellData spellData;
-		public SpellData SpellData
-		{
-			get
-			{
-				return spellData;
-			}
-
-			set
-			{
-				spellData = value;
-			}
-		}
-
 		protected bool spellActive = false;
 
-		public void Setup(CastedSpell castedParent)
+		public string spellName;
+		public float castModifier, rechargeModifier;
+		public int mana;
+
+		[field: SerializeField]
+		public List<Stat> DefaultStats { get; private set; }
+
+		/// <summary>
+		/// Called when the spelldata is added to a SpellGroupBuilder
+		/// </summary>
+		/// <param name="group"></param>
+		public abstract void addToGroup(SpellGroupBuilder group);
+
+		public virtual Spell CastSpell(SingleSpellGroup group, CastedSpell casted)
 		{
-			this.castedParent = castedParent;
+			Spell created = GameObject.Instantiate<Spell>(this);
+			return created;
 		}
 
+		public CastedSpell castedParent { get; private set; }
 
-
+		public virtual void Setup(CastedSpell castedParent)
+		{
+			if (this.castedParent != null)
+			{
+				throw new NotSupportedException("Cannot set casted parent of a spell twice.");
+			}
+			this.castedParent = castedParent;
+			foreach (Stat stat in DefaultStats)
+			{
+				castedParent.statHolder.AddStat(stat, true);
+			}
+		}
 
 		public void Cast()
 		{

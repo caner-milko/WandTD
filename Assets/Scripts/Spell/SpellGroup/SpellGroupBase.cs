@@ -14,7 +14,7 @@ namespace wtd.spell
 		/// <summary>
 		/// <see cref="PassiveSpell"/>s of the spell group
 		/// </summary>
-		public List<PassiveSpellData> passives { get; private set; } = new List<PassiveSpellData>();
+		public List<PassiveSpell> passives { get; private set; } = new List<PassiveSpell>();
 
 		/// <summary>
 		/// Parent of group of the spell group, can be null
@@ -34,7 +34,7 @@ namespace wtd.spell
 		/// </summary>
 		public ISpellCaster caster { get; private set; }
 
-		protected SpellGroupBase(ISpellCaster caster, List<PassiveSpellData> passives)
+		protected SpellGroupBase(ISpellCaster caster, List<PassiveSpell> passives)
 		{
 			this.caster = caster;
 			this.passives = passives;

@@ -16,20 +16,20 @@ namespace wtd.spell
 		/// <summary>
 		/// Active spell of the group
 		/// </summary>
-		public ActiveSpellData active { get; private set; }
+		public ActiveSpell active { get; private set; }
 
 		/// <summary>
 		/// Child group of the group, might be null
 		/// </summary>
 		public SpellGroupBase childGroup { get; private set; }
 
-		internal SingleSpellGroup(ISpellCaster caster, List<PassiveSpellData> passives, ActiveSpellData active) : base(caster, passives)
+		internal SingleSpellGroup(ISpellCaster caster, List<PassiveSpell> passives, ActiveSpell active) : base(caster, passives)
 		{
 			this.active = active;
 			this.childGroup = null;
 		}
 
-		internal SingleSpellGroup(ISpellCaster caster, List<PassiveSpellData> passives, ActiveSpellData active, SpellGroupBase childGroup) : base(caster, passives)
+		internal SingleSpellGroup(ISpellCaster caster, List<PassiveSpell> passives, ActiveSpell active, SpellGroupBase childGroup) : base(caster, passives)
 		{
 			this.active = active;
 			this.childGroup = childGroup;
@@ -40,7 +40,7 @@ namespace wtd.spell
 		public override float GetCastDelay()
 		{
 			float delay = 0;
-			foreach (PassiveSpellData spell in passives)
+			foreach (PassiveSpell spell in passives)
 			{
 				delay += spell.castModifier;
 			}
@@ -54,7 +54,7 @@ namespace wtd.spell
 		public override float GetRechargeDelay()
 		{
 			float delay = 0;
-			foreach (PassiveSpellData spell in passives)
+			foreach (PassiveSpell spell in passives)
 			{
 				delay += spell.castModifier;
 			}

@@ -109,7 +109,7 @@ namespace wtd.wand
 		}
 
 
-		public CasterSpell AddSpell(SpellData spell)
+		public CasterSpell AddSpell(Spell spell)
 		{
 			CasterSpell casterSpell = new CasterSpell(spell, this, spells.Count);
 			spells.AddSpell(casterSpell);

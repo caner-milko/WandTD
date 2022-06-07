@@ -27,12 +27,12 @@ namespace wtd
 
 		public Effect effectPrefab;
 
-		public List<SpellData> spells;
+		public List<Spell> spells;
 
 		void Start()
 		{
-			foreach (SpellData data in spells)
-				wand.AddSpell(data);
+			foreach (Spell spell in spells)
+				wand.AddSpell(spell);
 		}
 
 		void Update()

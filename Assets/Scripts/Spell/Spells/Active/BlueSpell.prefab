@@ -43,4 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee6948f10fedec418eda4720531eb7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castedParent: {fileID: 0}
+  spellName: Blue
+  castModifier: 0
+  rechargeModifier: 0
+  mana: 0
+  <DefaultStats>k__BackingField: []
+  triggerCount: 0

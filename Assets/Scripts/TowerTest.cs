@@ -11,12 +11,12 @@ namespace wtd
 
 		public Tower tower;
 
-		public List<SpellData> spells;
+		public List<Spell> spells;
 
 		void Start()
 		{
-			foreach (SpellData data in spells)
-				tower.wand.AddSpell(data);
+			foreach (Spell spell in spells)
+				tower.wand.AddSpell(spell);
 		}
 
 

@@ -7,18 +7,18 @@ namespace wtd.spell
 {
 	public class CasterSpell : IComparable<CasterSpell>
 	{
-		public SpellData spellData { get; private set; }
+		public Spell spell { get; private set; }
 		public bool isActive { get; private set; }
 		public ISpellCaster owner { get; private set; }
 
 		int slot;
 
-		public CasterSpell(SpellData spellData, ISpellCaster owner, int slot)
+		public CasterSpell(Spell spell, ISpellCaster owner, int slot)
 		{
-			this.spellData = spellData;
+			this.spell = spell;
 			this.owner = owner;
 			this.slot = slot;
-			this.isActive = spellData is ActiveSpellData;
+			this.isActive = this.spell is ActiveSpell;
 		}
 
 		public int CompareTo(CasterSpell other)

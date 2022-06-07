@@ -17,7 +17,7 @@ namespace wtd.spell
 		/// </summary>
 		public List<SingleSpellGroup> spells { get; private set; } = new List<SingleSpellGroup>();
 
-		internal MultiSpellGroup(ISpellCaster caster, List<PassiveSpellData> passives, List<SingleSpellGroup> spells) : base(caster, passives)
+		internal MultiSpellGroup(ISpellCaster caster, List<PassiveSpell> passives, List<SingleSpellGroup> spells) : base(caster, passives)
 		{
 			this.spells = spells;
 		}
@@ -28,7 +28,7 @@ namespace wtd.spell
 		public override float GetCastDelay()
 		{
 			float delay = 0;
-			foreach (PassiveSpellData spell in passives)
+			foreach (PassiveSpell spell in passives)
 			{
 				delay += spell.castModifier;
 			}
@@ -46,7 +46,7 @@ namespace wtd.spell
 		public override float GetRechargeDelay()
 		{
 			float delay = 0;
-			foreach (PassiveSpellData spell in passives)
+			foreach (PassiveSpell spell in passives)
 			{
 				delay += spell.castModifier;
 			}

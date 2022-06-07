@@ -14,11 +14,11 @@ namespace wtd.spell
 		/// <summary>
 		/// passives in the group
 		/// </summary>
-		public List<PassiveSpellData> passives { get; private set; } = new List<PassiveSpellData>();
+		public List<PassiveSpell> passives { get; private set; } = new List<PassiveSpell>();
 		/// <summary>
 		/// active spell is null if the group is a multicast group
 		/// </summary>
-		public ActiveSpellData active { get; private set; }
+		public ActiveSpell active { get; private set; }
 		/// <summary>
 		/// 2 cases:
 		/// 1. Group is multicast, then childs are <see cref="SingleSpellGroup"/>s which will create the <see cref="MultiSpellGroup"/> at the end
@@ -65,9 +65,9 @@ namespace wtd.spell
 			this.caster = spell.owner;
 			this.multiCast = false;
 			this.remCastCount = 0;
-			this.active = (ActiveSpellData)spell.spellData;
+			this.active = (ActiveSpell)spell.spell;
 			//might be a trigger spell
-			spell.spellData.addToGroup(this);
+			spell.spell.addToGroup(this);
 			StartBuild();
 		}
 
@@ -94,16 +94,16 @@ namespace wtd.spell
 					}
 					else
 					{
-						this.active = (ActiveSpellData)selected.spellData;
-						selected.spellData.addToGroup(this);
+						this.active = (ActiveSpell)selected.spell;
+						selected.spell.addToGroup(this);
 						break;
 					}
 				}
 				//Else, add as a passive spell
 				else
 				{
-					passives.Add((PassiveSpellData)selected.spellData);
-					selected.spellData.addToGroup(this);
+					passives.Add((PassiveSpell)selected.spell);
+					selected.spell.addToGroup(this);
 				}
 			}
 		}
@@ -116,7 +116,11 @@ namespace wtd.spell
 		public void AddChildSpellGroup(int castCount)
 		{
 			if (castCount > 0)
-				childGroups.Add(new SpellGroupBuilder(caster, castCount).Build());
+			{
+				SpellGroupBase cgb = new SpellGroupBuilder(caster, castCount).Build();
+				if (cgb != null)
+					childGroups.Add(cgb);
+			}
 		}
 
 		/// <summary>

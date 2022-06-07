@@ -48,9 +48,9 @@ namespace wtd.spell
 			this.spellGroup = spellGroup;
 
 			this.active = (ActiveSpell)spellGroup.active.CastSpell(spellGroup, this);
-			foreach (PassiveSpellData passivesData in spellGroup.passives)
+			foreach (PassiveSpell passive in spellGroup.passives)
 			{
-				this.passives.Add((PassiveSpell)passivesData.CastSpell(spellGroup, this));
+				this.passives.Add((PassiveSpell)passive.CastSpell(spellGroup, this));
 			}
 
 			active.Setup(this);

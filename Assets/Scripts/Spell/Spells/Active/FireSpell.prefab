@@ -43,4 +43,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad3bd042ab71fb49a33dec0a873a7bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castedParent: {fileID: 0}
+  spellName: Fire
+  castModifier: 0
+  rechargeModifier: 0
+  mana: 0
+  <DefaultStats>k__BackingField:
+  - StatName: speed
+    <defaultVal>k__BackingField: 4
+    <effectors>k__BackingField: []
+    lastVal: 0
+  triggerCount: 2
+  speedStat:
+    StatName: 
+    <defaultVal>k__BackingField: 0
+    <effectors>k__BackingField: []
+    lastVal: 0

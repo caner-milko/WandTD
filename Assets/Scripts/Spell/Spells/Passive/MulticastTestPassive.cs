@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using wtd.wand;
 
 namespace wtd.spell.spells
 {
-	public class MulticastTestPassive : PassiveSpell
+	public class MulticastTestPassive : MulticastPassiveSpell
 	{
 		protected override void OnCast()
 		{
@@ -18,17 +17,14 @@ namespace wtd.spell.spells
 
 		protected override void OnRemove()
 		{
-
 		}
 
 		protected override void OnTrigger(SpellTriggerData trigger)
 		{
-
 		}
 
 		protected override void OnUpdate()
 		{
-
 		}
 	}
 }

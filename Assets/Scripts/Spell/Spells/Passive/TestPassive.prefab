@@ -43,4 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43d944246ba5e3c48858e7be136395d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  castedParent: {fileID: 0}
+  spellName: Test
+  castModifier: 0
+  rechargeModifier: 0
+  mana: 0
+  <DefaultStats>k__BackingField: []

@@ -1444,7 +1444,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 403963184}
-  - {fileID: 894920251}
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1488,7 +1487,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 468495edb590cba4f99d34f50a7bb0cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StatsParent: {fileID: 894920251}
+  Stats:
+  - StatName: speed
+    <defaultVal>k__BackingField: 4
+    <effectors>k__BackingField: []
+    lastVal: 0
 --- !u!1 &572328371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2294,37 +2297,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4996342456383419276, guid: bec171c9e107f8d4fa9bae3eacf830fd, type: 3}
   m_PrefabInstance: {fileID: 1819476860}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &894920250
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 894920251}
-  m_Layer: 0
-  m_Name: Stats
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &894920251
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 894920250}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1581665373}
-  m_Father: {fileID: 534804339}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &902979545
 GameObject:
   m_ObjectHideFlags: 0
@@ -3966,54 +3938,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581320560}
   m_CullTransparentMesh: 1
---- !u!1 &1581665372
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1581665373}
-  - component: {fileID: 1581665374}
-  m_Layer: 0
-  m_Name: Speed Stat
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1581665373
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1581665372}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 894920251}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1581665374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1581665372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 893204b30fc696f43ba7d827afe4e604, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StatName: speed
-  holder: {fileID: 0}
-  <effectors>k__BackingField: []
-  defaultVal: 4
-  lastVal: 0
 --- !u!1 &1603612486
 GameObject:
   m_ObjectHideFlags: 0
@@ -4772,10 +4696,7 @@ MonoBehaviour:
   holder: {fileID: 534804335}
   effectPrefab: {fileID: 2041152854709249512, guid: f4931b0e15652b841bf18de710039483, type: 3}
   spells:
-  - {fileID: 11400000, guid: 31616c26f3cb9ad42bad4c2b7a7a2d67, type: 2}
-  - {fileID: 11400000, guid: 86a67e62e050d444e9be074f72c32113, type: 2}
-  - {fileID: 11400000, guid: 699796efd881a994a915151deb6fb74c, type: 2}
-  - {fileID: 11400000, guid: af1972d58f57a444e8ad8e556d660ea8, type: 2}
+  - {fileID: 7659534831738098046, guid: 1ee5f79777962204ab58c0c4d700a1f4, type: 3}
 --- !u!33 &1875112783
 MeshFilter:
   m_ObjectHideFlags: 0
