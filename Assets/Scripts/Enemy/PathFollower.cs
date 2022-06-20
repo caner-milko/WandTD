@@ -7,7 +7,10 @@ namespace wtd.enemy
 	public class PathFollower : MonoBehaviour
 	{
 		[SerializeField]
-		private StatHolder holder;
+		private StatHolderComp statHolderComp;
+
+		[SerializeField]
+		private StatHolder holder => statHolderComp.statHolder;
 
 		private Stat speedStat => holder.GetStat("speed", false);
 
@@ -28,8 +31,8 @@ namespace wtd.enemy
 
 		private void Awake()
 		{
-			if (holder == null || !holder)
-				holder = GetComponent<StatHolder>();
+			if (statHolderComp == null || !statHolderComp)
+				statHolderComp = GetComponent<StatHolderComp>();
 		}
 
 		void Start()

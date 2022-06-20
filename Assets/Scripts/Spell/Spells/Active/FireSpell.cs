@@ -18,20 +18,17 @@ namespace wtd.spell.spells
 
 		}
 
-		protected override void OnTrigger(SpellTriggerData trigger)
-		{
-
-		}
 
 		protected override void OnUpdate()
 		{
-			Vector3 vel = (castedParent.target.GetPosition() - castedParent.transform.position).normalized * speedStat.Value;
-			castedParent.transform.Translate(vel * Time.deltaTime);
+
 		}
 
 		protected override void OnFixedUpdate()
 		{
-			Vector3 vel = (castedParent.target.GetPosition() - castedParent.transform.position).normalized * speedStat.Value;
+			Vector3 vel = castedParent.target.GetVelocityVector(castedParent.transform.position, speedStat.Value);
+			if (vel.sqrMagnitude < 0.001f)
+				return;
 			castedParent.transform.Translate(vel * Time.deltaTime);
 		}
 

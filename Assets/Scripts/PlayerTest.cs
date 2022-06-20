@@ -56,8 +56,19 @@ namespace wtd
 				{
 					target = new FollowingSpellTarget(transform);
 				}
+				Physics.Raycast(CameraManager.instance.MouseRay, out RaycastHit hit);
+				Vector3 mouseDir = hit.point - transform.position;
+				mouseDir.y = 0;
+				mouseDir = mouseDir.normalized;
+				target = new DirectedSpellTarget(mouseDir);
 				wand.Shoot(target, out casted);
 			}
+
+		}
+
+		private void FixedUpdate()
+		{
+
 
 			//basic movement
 			Vector3 vel = new Vector3(0.0f, 0.0f, 0.0f);
@@ -90,9 +101,7 @@ namespace wtd
 
 
 			transform.Translate(vel * 5.0f * Time.deltaTime);
-
 		}
-
 
 		public string CasterType()
 		{
@@ -112,6 +121,23 @@ namespace wtd
 		public CasterSpell NextSpell()
 		{
 			return wand == null ? null : wand.NextSpell();
+		}
+
+		public float DistanceToSqr(Vector3 from)
+		{
+			return (GetPosition() - from).sqrMagnitude;
+		}
+
+		public Vector3 GetDirection(Vector3 from)
+		{
+			return (GetPosition() - from).normalized;
+		}
+
+		public Vector3 GetVelocityVector(Vector3 from, float speed)
+		{
+			float maxSpeed = Mathf.Min(DistanceToSqr(from), speed * speed);
+
+			return Mathf.Sqrt(maxSpeed) * GetDirection(from);
 		}
 	}
 }

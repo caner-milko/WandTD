@@ -14,7 +14,6 @@ namespace wtd
 
 		private void OnTriggerEnter(Collider other)
 		{
-			Debug.Log("aaaa");
 			bool add = false;
 			foreach (LayerMask mask in layers)
 			{

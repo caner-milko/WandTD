@@ -11,7 +11,7 @@ namespace wtd.effect.effects
 		protected override void OnAdd()
 		{
 			Debug.Log("Added effect to " + holder.gameObject.name);
-			StatHolder statHolder = holder.GetComponent<StatHolder>();
+			StatHolder statHolder = holder.GetComponent<StatHolderComp>().statHolder;
 			if (statHolder != null)
 			{
 				speedStat = statHolder.GetStat("speed", false);

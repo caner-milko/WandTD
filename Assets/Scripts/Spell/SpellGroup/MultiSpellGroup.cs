@@ -17,7 +17,7 @@ namespace wtd.spell
 		/// </summary>
 		public List<SingleSpellGroup> spells { get; private set; } = new List<SingleSpellGroup>();
 
-		internal MultiSpellGroup(ISpellCaster caster, List<PassiveSpell> passives, List<SingleSpellGroup> spells) : base(caster, passives)
+		internal MultiSpellGroup(ISpellCaster caster, CastedSpell castedPrefab, List<PassiveSpell> passives, List<SingleSpellGroup> spells) : base(caster, castedPrefab, passives)
 		{
 			this.spells = spells;
 		}
@@ -62,11 +62,11 @@ namespace wtd.spell
 		/// </summary>
 		/// <param name="target">Target of the spells</param>
 		/// <returns>Created Casted Spells in the end</returns>
-		public override List<CastedSpell> Cast(CastedSpell castedPrefab, ISpellTarget target)
+		public override List<CastedSpell> Cast(Vector3 position, ISpellTarget target)
 		{
 			List<CastedSpell> castedSpells = new List<CastedSpell>();
 			foreach (SingleSpellGroup spg in spells)
-				castedSpells.Add(spg.CastSingle(castedPrefab, target));
+				castedSpells.Add(spg.CastSingle(position, target));
 			return castedSpells;
 		}
 

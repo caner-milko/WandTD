@@ -24,6 +24,16 @@ namespace wtd.tower
 			return "SC_tower";
 		}
 
+		public float DistanceToSqr(Vector3 from)
+		{
+			return (GetPosition() - from).sqrMagnitude;
+		}
+
+		public Vector3 GetDirection(Vector3 from)
+		{
+			return (GetPosition() - from).normalized;
+		}
+
 		public Vector3 GetPosition()
 		{
 			return transform.position;
@@ -32,6 +42,14 @@ namespace wtd.tower
 		public string GetTargetType()
 		{
 			return "ST_tower";
+		}
+
+		public Vector3 GetVelocityVector(Vector3 from, float speed)
+		{
+			float maxSpeed = Mathf.Min(DistanceToSqr(from), speed * speed);
+
+			return Mathf.Sqrt(maxSpeed) * GetDirection(from);
+
 		}
 
 		public CasterSpell NextSpell()

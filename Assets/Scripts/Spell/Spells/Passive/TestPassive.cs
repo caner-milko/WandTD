@@ -21,10 +21,6 @@ namespace wtd.spell.spells
 
 		}
 
-		protected override void OnTrigger(SpellTriggerData trigger)
-		{
-			throw new System.NotImplementedException();
-		}
 
 		protected override void OnUpdate()
 		{

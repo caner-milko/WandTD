@@ -40,7 +40,6 @@ namespace wtd.tower
 		public Tower GetTowerFromMouse()
 		{
 			Ray mouseRay = CameraManager.instance.MouseRay;
-			Debug.Log(mouseRay);
 			RaycastHit hit;
 			if (!Physics.Raycast(mouseRay, out hit, 100f, LayerMask.GetMask("tower")))
 				return null;

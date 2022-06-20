@@ -20,18 +20,19 @@ namespace wtd.stat
 		[SerializeField, ReadOnly]
 		private float lastVal = 0.0f;
 
-		private bool updated = true;
+		private bool calculated = false;
 
 		public Stat(string statName, StatHolder holder, float defaultVal)
 		{
 			StatName = statName;
 			this.holder = holder;
 			this.defaultVal = defaultVal;
+			calculated = false;
 		}
 
 		public float GetValue()
 		{
-			if (!updated)
+			if (calculated)
 				return lastVal;
 			float calc = defaultVal;
 			float percAdd = 1.0f;
@@ -60,7 +61,7 @@ namespace wtd.stat
 			}
 			calc *= percAdd;
 			lastVal = calc;
-			updated = false;
+			calculated = true;
 			return calc;
 		}
 
@@ -77,13 +78,13 @@ namespace wtd.stat
 			}
 			effectors.AddRange(toAdd);
 			effectors.Sort();
-			updated = true;
+			calculated = false;
 		}
 
 		public void RemoveEffector(StatEffector effector)
 		{
 			effectors.Remove(effector);
-			updated = true;
+			calculated = false;
 		}
 
 		public void RemoveEffectorsFromSource(object source)
@@ -93,7 +94,7 @@ namespace wtd.stat
 				if (effectors[i].source == source)
 					effectors.RemoveAt(i);
 			}
-			updated = true;
+			calculated = false;
 		}
 
 		public Stat CloneToHolder(StatHolder holder)

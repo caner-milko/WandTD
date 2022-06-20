@@ -31,6 +31,8 @@ namespace wtd.spell
 		/// </summary>
 		public ISpellCaster caster { get; private set; }
 
+		public CastedSpell castedPrefab { get; private set; }
+
 		/// <summary>
 		/// if group is multicast, create a MultiSpellGroup at the end, if not create a SingleSpellGroup
 		/// MultiSpellGroup consists of multiple <see cref="SingleSpellGroup"> which share the same passives
@@ -46,9 +48,10 @@ namespace wtd.spell
 		/// </summary>
 		/// <param name="caster">Caster who shoot the spell, generally a wand</param>
 		/// <param name="castCount">How many spells should be cast at once in the group</param>
-		public SpellGroupBuilder(ISpellCaster caster, int castCount)
+		public SpellGroupBuilder(ISpellCaster caster, CastedSpell castedPrefab, int castCount)
 		{
 			this.caster = caster;
+			this.castedPrefab = castedPrefab;
 			///group is multicast if there are multiple spells cast
 			///may become a multicastspell later with the <see cref="increaseRemCastCount(int)"/> method
 			this.multiCast = castCount > 1;
@@ -60,9 +63,10 @@ namespace wtd.spell
 		/// Must be a single cast group at the end
 		/// </summary>
 		/// <param name="spell">active spell of the group</param>
-		private SpellGroupBuilder(CasterSpell spell)
+		private SpellGroupBuilder(CasterSpell spell, CastedSpell castedPrefab)
 		{
 			this.caster = spell.owner;
+			this.castedPrefab = castedPrefab;
 			this.multiCast = false;
 			this.remCastCount = 0;
 			this.active = (ActiveSpell)spell.spell;
@@ -89,7 +93,7 @@ namespace wtd.spell
 				{
 					if (multiCast)
 					{
-						childGroups.Add(new SpellGroupBuilder(selected).Build());
+						childGroups.Add(new SpellGroupBuilder(selected, castedPrefab).Build());
 						remCastCount--;
 					}
 					else
@@ -117,7 +121,7 @@ namespace wtd.spell
 		{
 			if (castCount > 0)
 			{
-				SpellGroupBase cgb = new SpellGroupBuilder(caster, castCount).Build();
+				SpellGroupBase cgb = new SpellGroupBuilder(caster, castedPrefab, castCount).Build();
 				if (cgb != null)
 					childGroups.Add(cgb);
 			}
@@ -135,7 +139,7 @@ namespace wtd.spell
 			if (multiCast)
 			{
 				List<SingleSpellGroup> spellGroups = childGroups.Cast<SingleSpellGroup>().ToList();
-				MultiSpellGroup group = new MultiSpellGroup(caster, passives, spellGroups);
+				MultiSpellGroup group = new MultiSpellGroup(caster, castedPrefab, passives, spellGroups);
 				foreach (SingleSpellGroup singleSpellGroup in spellGroups)
 				{
 					singleSpellGroup.passives.AddRange(passives);
@@ -150,13 +154,13 @@ namespace wtd.spell
 				///if has a child group, configure the child group then return
 				if (childGroups.Count > 0)
 				{
-					SingleSpellGroup spg = new SingleSpellGroup(caster, passives, active, childGroups[0]);
+					SingleSpellGroup spg = new SingleSpellGroup(caster, castedPrefab, passives, active, childGroups[0]);
 					spg.childGroup.SetParent(spg);
 					return spg;
 				}
 				else
 				{
-					return new SingleSpellGroup(caster, passives, active);
+					return new SingleSpellGroup(caster, castedPrefab, passives, active);
 				}
 
 			}

@@ -1,37 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using wtd.stat;
 namespace wtd.spell.spells
 {
 	public class BlueSpell : ActiveSpell
 	{
+		[ReadOnly, SerializeField]
+		private Stat speedStat;
 		protected override void OnCast()
 		{
-
+			speedStat = castedParent.statHolder.GetStat(StatName.SPEED);
 		}
 
-		protected override void OnFixedUpdate()
-		{
 
-		}
 
 		protected override void OnRemove()
 		{
-
 		}
 
-		protected override void OnTrigger(SpellTriggerData trigger)
-		{
-
-		}
 
 		protected override void OnUpdate()
 		{
-			Vector3 vel = (castedParent.target.GetPosition() - castedParent.transform.position).normalized * 1.0f;
+		}
+		protected override void OnFixedUpdate()
+		{
+			Vector3 vel = castedParent.target.GetVelocityVector(castedParent.transform.position, speedStat.Value);
+			if (vel.sqrMagnitude < 0.001f)
+				return;
 			castedParent.transform.Translate(vel * Time.deltaTime);
 		}
-
-
 	}
 }

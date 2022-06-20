@@ -4,14 +4,15 @@ using UnityEngine;
 
 namespace wtd.stat
 {
-	public class StatHolder : MonoBehaviour
+	[System.Serializable]
+	public class StatHolder
 	{
 		[SerializeField]
-		private List<Stat> Stats;
+		private List<Stat> Stats = new List<Stat>();
 
 		private Dictionary<string, Stat> stats = new Dictionary<string, Stat>();
 
-		private void Awake()
+		public void setup()
 		{
 			foreach (Stat stat in Stats)
 			{
@@ -50,7 +51,7 @@ namespace wtd.stat
 			return stat;
 		}
 
-		public float? GetStatValue(string statName, bool createIfNull = false, float defaultVal = 0.0f)
+		public float GetStatValue(string statName, bool createIfNull = false, float defaultVal = 0.0f)
 		{
 			Stat stat = GetStat(statName, createIfNull, defaultVal);
 			if (stat == null)

@@ -36,7 +36,6 @@ namespace wtd.tower.editor
 			if (Input.GetKeyUp(KeyCode.Mouse1))
 			{
 				Tower tw = TowerManager.instance.GetTowerFromMouse();
-				Debug.Log(tw);
 			}
 			bool editInput = Input.GetKeyUp(KeyCode.E);
 			if (!IsEditing)

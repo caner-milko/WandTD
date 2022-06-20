@@ -19,9 +19,6 @@ namespace wtd.spell.spells
 		{
 		}
 
-		protected override void OnTrigger(SpellTriggerData trigger)
-		{
-		}
 
 		protected override void OnUpdate()
 		{

@@ -15,6 +15,16 @@ namespace wtd.spell.targets
 			this.following = following;
 		}
 
+		public float DistanceToSqr(Vector3 from)
+		{
+			return (following.position - from).sqrMagnitude;
+		}
+
+		public Vector3 GetDirection(Vector3 from)
+		{
+			return (following.position - from).normalized;
+		}
+
 		public Vector3 GetPosition()
 		{
 			return following.position;
@@ -23,6 +33,14 @@ namespace wtd.spell.targets
 		public string GetTargetType()
 		{
 			return "ST_following";
+		}
+
+		public Vector3 GetVelocityVector(Vector3 from, float speed)
+		{
+			float maxSpeed = Mathf.Min(DistanceToSqr(from), speed * speed);
+
+			return Mathf.Sqrt(maxSpeed) * GetDirection(from);
+
 		}
 	}
 }

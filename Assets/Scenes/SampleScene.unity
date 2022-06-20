@@ -791,7 +791,7 @@ Transform:
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &304233581
 GameObject:
@@ -1003,7 +1003,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 403963184}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Effects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1349,7 +1349,7 @@ GameObject:
   - component: {fileID: 534804340}
   - component: {fileID: 534804341}
   - component: {fileID: 534804342}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TestCube
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1445,7 +1445,7 @@ Transform:
   m_Children:
   - {fileID: 403963184}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &534804340
 MonoBehaviour:
@@ -1459,7 +1459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63baa3c35abd67149adc31494400c5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holder: {fileID: 0}
+  statHolderComp: {fileID: 0}
   <path>k__BackingField: {fileID: 1662975924}
   lastPoint: -1
   loop: 1
@@ -1475,6 +1475,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf68574f026bca24585bad104c261aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <health>k__BackingField: 0
+  maxHealth:
+    StatName: 
+    <defaultVal>k__BackingField: 0
+    <effectors>k__BackingField: []
+    lastVal: 0
+  statHolderComp: {fileID: 0}
 --- !u!114 &534804342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1484,14 +1491,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 534804334}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 468495edb590cba4f99d34f50a7bb0cf, type: 3}
+  m_Script: {fileID: 11500000, guid: c1ad39d22cfd9c6479bc64be561f7597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Stats:
-  - StatName: speed
-    <defaultVal>k__BackingField: 4
-    <effectors>k__BackingField: []
-    lastVal: 0
+  statHolder:
+    Stats:
+    - StatName: speed
+      <defaultVal>k__BackingField: 3
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: maxHealth
+      <defaultVal>k__BackingField: 20
+      <effectors>k__BackingField: []
+      lastVal: 0
 --- !u!1 &572328371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2215,6 +2227,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestEffect
       objectReference: {fileID: 0}
+    - target: {fileID: 2041152854709249519, guid: f4931b0e15652b841bf18de710039483, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4931b0e15652b841bf18de710039483, type: 3}
 --- !u!1 &836651478
@@ -2906,7 +2922,7 @@ Transform:
   - {fileID: 90344237}
   - {fileID: 1603612487}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1049101700
 GameObject:
@@ -4244,10 +4260,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <positions>k__BackingField:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 3}
-  - {x: 2, y: 0, z: 3}
-  - {x: -1.74, y: 0, z: 5.03}
+  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 1, z: 3}
+  - {x: 2, y: 1, z: 3}
+  - {x: -1.74, y: 1, z: 5.03}
 --- !u!4 &1662975925
 Transform:
   m_ObjectHideFlags: 0
@@ -4260,7 +4276,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1710496881
 GameObject:
@@ -4478,7 +4494,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1755281854
 GameObject:
@@ -4574,7 +4590,7 @@ RectTransform:
   - {fileID: 1017642857}
   - {fileID: 1180924082}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4696,7 +4712,8 @@ MonoBehaviour:
   holder: {fileID: 534804335}
   effectPrefab: {fileID: 2041152854709249512, guid: f4931b0e15652b841bf18de710039483, type: 3}
   spells:
-  - {fileID: 7659534831738098046, guid: 1ee5f79777962204ab58c0c4d700a1f4, type: 3}
+  - {fileID: 4667082511915473858, guid: 0c1487294efe12f418a1fe2a2663df3b, type: 3}
+  - {fileID: 465833389401638485, guid: a1574f58876b9e24cb360df68e835636, type: 3}
 --- !u!33 &1875112783
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4718,7 +4735,7 @@ Transform:
   m_Children:
   - {fileID: 149891839}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1875112785
 MeshRenderer:
@@ -4769,7 +4786,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1875112780}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.49999997
   m_Height: 1.9999999
@@ -5106,7 +5123,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &2091035726
 GameObject:
@@ -5138,7 +5155,7 @@ Transform:
   - {fileID: 902979550}
   - {fileID: 1719218579}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2142320456
 GameObject:
@@ -5224,7 +5241,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9121750884510721152, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9121750884510721152, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
       propertyPath: m_LocalPosition.x

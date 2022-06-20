@@ -27,6 +27,7 @@ namespace wtd.spell
 
 		public virtual Spell CastSpell(SingleSpellGroup group, CastedSpell casted)
 		{
+			this.transform.localPosition = Vector3.zero;
 			Spell created = GameObject.Instantiate<Spell>(this);
 			return created;
 		}
@@ -74,12 +75,17 @@ namespace wtd.spell
 
 		protected abstract void OnFixedUpdate();
 
-		public void Trigger(SpellTriggerData trigger)
+		public virtual bool HitTrigger(CollisionSpellTrigger.CollisionSpellTriggerData triggerData)
 		{
-
+			return true;
 		}
 
-		protected abstract void OnTrigger(SpellTriggerData trigger);
+		public virtual bool TimerTrigger(TimedSpellTrigger.TimedSpellTriggerData triggerData)
+		{
+			return true;
+		}
+
+
 
 		public void Remove()
 		{

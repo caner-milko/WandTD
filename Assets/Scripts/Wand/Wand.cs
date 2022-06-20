@@ -52,7 +52,7 @@ namespace wtd.wand
 			SpellGroupBase group;
 			if (PrepareSpellGroup(new List<PassiveSpell>(), out group))
 			{
-				casted = group.Cast(castedPrefab, target);
+				casted = group.Cast(transform.position, target);
 				return true;
 			}
 			casted = null;
@@ -62,7 +62,7 @@ namespace wtd.wand
 		/// <summary>
 		/// Prepares and returns group of spells to be cast. 
 		/// </summary>
-		/// <param name="passives">TODO: Add parameter description</param>
+		/// <param name="passives">passives from outside</param>
 		/// <param name="group">Group of spells that are to be cast.</param>
 		/// <returns>true if there is at least one spell to be cast in returned group, false otherwise.</returns>
 		public bool PrepareSpellGroup(List<PassiveSpell> passives, out SpellGroupBase group)
@@ -72,7 +72,7 @@ namespace wtd.wand
 			{
 				remSpells = new Queue<CasterSpell>(spells);
 			}
-			SpellGroupBuilder builder = new SpellGroupBuilder(this, castCount);
+			SpellGroupBuilder builder = new SpellGroupBuilder(this, castedPrefab, castCount);
 
 			curBuilder = builder;
 
@@ -85,15 +85,7 @@ namespace wtd.wand
 			return "CT_wand";
 		}
 
-		public string GetTargetType()
-		{
-			return "ST_wand";
-		}
 
-		public Vector3 GetPosition()
-		{
-			return owner.GetPosition();
-		}
 
 		/// <summary>
 		/// Returns the next spell to be cast.
@@ -116,5 +108,31 @@ namespace wtd.wand
 			return casterSpell;
 		}
 
+		public float DistanceToSqr(Vector3 from)
+		{
+			return (GetPosition() - from).sqrMagnitude;
+		}
+
+		public Vector3 GetDirection(Vector3 from)
+		{
+			return (GetPosition() - from).normalized;
+		}
+
+		public Vector3 GetVelocityVector(Vector3 from, float speed)
+		{
+			float maxSpeed = Mathf.Min(DistanceToSqr(from), speed * speed);
+
+			return Mathf.Sqrt(maxSpeed) * GetDirection(from);
+		}
+
+		public string GetTargetType()
+		{
+			return "ST_wand";
+		}
+
+		public Vector3 GetPosition()
+		{
+			return owner.GetPosition();
+		}
 	}
 }

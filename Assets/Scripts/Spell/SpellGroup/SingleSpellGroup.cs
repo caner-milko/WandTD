@@ -23,13 +23,13 @@ namespace wtd.spell
 		/// </summary>
 		public SpellGroupBase childGroup { get; private set; }
 
-		internal SingleSpellGroup(ISpellCaster caster, List<PassiveSpell> passives, ActiveSpell active) : base(caster, passives)
+		internal SingleSpellGroup(ISpellCaster caster, CastedSpell castedPrefab, List<PassiveSpell> passives, ActiveSpell active) : base(caster, castedPrefab, passives)
 		{
 			this.active = active;
 			this.childGroup = null;
 		}
 
-		internal SingleSpellGroup(ISpellCaster caster, List<PassiveSpell> passives, ActiveSpell active, SpellGroupBase childGroup) : base(caster, passives)
+		internal SingleSpellGroup(ISpellCaster caster, CastedSpell castedPrefab, List<PassiveSpell> passives, ActiveSpell active, SpellGroupBase childGroup) : base(caster, castedPrefab, passives)
 		{
 			this.active = active;
 			this.childGroup = childGroup;
@@ -85,19 +85,26 @@ namespace wtd.spell
 		/// </summary>
 		/// <param name="target">Target of the spell</param>
 		/// <returns>A list with a single <see cref="CastedSpell"/></returns>
-		public override List<CastedSpell> Cast(CastedSpell castedPrefab, ISpellTarget target)
+		public override List<CastedSpell> Cast(Vector3 position, ISpellTarget target)
 		{
 			List<CastedSpell> castedSpells = new List<CastedSpell>();
-			castedSpells.Add(CastSingle(castedPrefab, target));
+			castedSpells.Add(CastSingle(position, target));
 			return castedSpells;
 		}
 
-		public CastedSpell CastSingle(CastedSpell castedPrefab, ISpellTarget target)
+		public CastedSpell CastSingle(Vector3 position, ISpellTarget target)
 		{
 			CastedSpell casted = GameObject.Instantiate<CastedSpell>(castedPrefab);
-			casted.Init(target, this);
+			casted.Init(position, target, this);
 			casted.Cast();
 			return casted;
+		}
+
+		public List<CastedSpell> CastChild(Vector3 position, ISpellTarget target)
+		{
+			if (childGroup == null)
+				return new List<CastedSpell>();
+			return childGroup.Cast(position, target);
 		}
 
 	}

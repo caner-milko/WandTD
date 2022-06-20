@@ -29,14 +29,17 @@ namespace wtd.spell
 			}
 		}
 
+		protected readonly CastedSpell castedPrefab;
+
 		/// <summary>
 		/// Caster of the spell group
 		/// </summary>
 		public ISpellCaster caster { get; private set; }
 
-		protected SpellGroupBase(ISpellCaster caster, List<PassiveSpell> passives)
+		protected SpellGroupBase(ISpellCaster caster, CastedSpell castedPrefab, List<PassiveSpell> passives)
 		{
 			this.caster = caster;
+			this.castedPrefab = castedPrefab;
 			this.passives = passives;
 		}
 
@@ -57,7 +60,7 @@ namespace wtd.spell
 		/// </summary>
 		/// <param name="target">Target of the spell group</param>
 		/// <returns>Casted spells of the group, might return a single casted spell if the group is <see cref="SingleSpellGroup"/></returns>
-		public abstract List<CastedSpell> Cast(CastedSpell castedPrefab, ISpellTarget target);
+		public abstract List<CastedSpell> Cast(Vector3 position, ISpellTarget target);
 
 
 		/// <summary>
