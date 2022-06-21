@@ -22,6 +22,10 @@ namespace wtd.stat
 
 		private bool calculated = false;
 
+		public Stat(string statName, float defaultVal, params StatEffector[] effectors) : this(statName, null, defaultVal)
+		{
+			AddEffector(effectors);
+		}
 		public Stat(string statName, StatHolder holder, float defaultVal)
 		{
 			StatName = statName;
@@ -72,10 +76,6 @@ namespace wtd.stat
 
 		public void AddEffector(params StatEffector[] toAdd)
 		{
-			foreach (StatEffector effector in toAdd)
-			{
-				effector.SetEffecting(this);
-			}
 			effectors.AddRange(toAdd);
 			effectors.Sort();
 			calculated = false;
@@ -99,7 +99,7 @@ namespace wtd.stat
 
 		public Stat CloneToHolder(StatHolder holder)
 		{
-			Stat newStat = new Stat(StatName, this.holder, this.defaultVal);
+			Stat newStat = new Stat(StatName, holder, this.defaultVal);
 			newStat.AddEffector(this.effectors.ToArray());
 			return newStat;
 		}

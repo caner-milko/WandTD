@@ -6,15 +6,15 @@ using wtd.stat;
 namespace wtd.enemy
 {
 	[RequireComponent(typeof(PathFollower), typeof(EffectHolder), typeof(StatHolderComp))]
-	public class Enemy : MonoBehaviour, IDamageable
+	public class Enemy : MonoBehaviour, IDamageable, IStatUser
 	{
 		[field: SerializeField, ReadOnly]
 		public float health { get; private set; }
-		public Stat maxHealth;
 
-		[SerializeField]
+		[SerializeField, AutoCopyStat(StatNames.MAX_HEALTH)]
+		private Stat maxHealth = new Stat(StatNames.MAX_HEALTH, 20.0f);
+
 		private StatHolderComp statHolderComp;
-		public StatHolder statHolder => statHolderComp == null ? null : statHolderComp.statHolder;
 
 		public float GetHealth()
 		{
@@ -23,14 +23,14 @@ namespace wtd.enemy
 
 		public float InflictDamage(StatHolder damageStats)
 		{
-			float damage = damageStats.GetStatValue("damage");
+			float damage = damageStats.GetStatValue(StatNames.DAMAGE);
 			this.health -= damage;
 			return damage;
 		}
 
 		public float Heal(StatHolder healStats)
 		{
-			float heal = healStats.GetStatValue("heal");
+			float heal = healStats.GetStatValue(StatNames.HEAL);
 			this.health += heal;
 			return heal;
 		}
@@ -38,13 +38,17 @@ namespace wtd.enemy
 		private void Awake()
 		{
 			statHolderComp = GetComponent<StatHolderComp>();
-
+			StatUtils.SetupStats(this);
 		}
 
 		private void Start()
 		{
-			maxHealth = statHolder.GetStat("maxHealth", false, 10.0f);
 			this.health = maxHealth.Value;
+		}
+
+		public StatHolder GetStatHolder()
+		{
+			return statHolderComp.statHolder;
 		}
 	}
 }

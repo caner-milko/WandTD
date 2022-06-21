@@ -20,7 +20,6 @@ namespace wtd
 
 		//test variables
 
-		// alternate between targeting types, used for test purposes
 		int a;
 
 		public EffectHolder holder;
@@ -29,7 +28,7 @@ namespace wtd
 
 		public List<Spell> spells;
 
-		void Start()
+		void Awake()
 		{
 			foreach (Spell spell in spells)
 				wand.AddSpell(spell);
@@ -42,26 +41,14 @@ namespace wtd
 				holder.AddEffect(effectPrefab, true);
 			}
 
-			if (Input.GetKeyDown(KeyCode.Mouse0))
+			if (Input.GetKey(KeyCode.Mouse0))
 			{
 				//output casted spell list
 				List<CastedSpell> casted;
-				//a target is required to shoot a spell
-				ISpellTarget target;
-				if (a++ % 2 == 0)
-				{
-					target = new StaticSpellTarget(new Vector3(0.0f, 0.0f, 0.0f));
-				}
-				else
-				{
-					target = new FollowingSpellTarget(transform);
-				}
 				Physics.Raycast(CameraManager.instance.MouseRay, out RaycastHit hit);
 				Vector3 mouseDir = hit.point - transform.position;
 				mouseDir.y = 0;
-				mouseDir = mouseDir.normalized;
-				target = new DirectedSpellTarget(mouseDir);
-				wand.Shoot(target, out casted);
+				wand.Shoot(new DirectedSpellTarget(mouseDir), out casted);
 			}
 
 		}

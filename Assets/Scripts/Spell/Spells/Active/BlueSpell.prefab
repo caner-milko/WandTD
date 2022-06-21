@@ -47,5 +47,9 @@ MonoBehaviour:
   castModifier: 0
   rechargeModifier: 0
   mana: 0
-  <DefaultStats>k__BackingField: []
   triggerCount: 0
+  speedStat:
+    StatName: speed
+    <defaultVal>k__BackingField: 3
+    <effectors>k__BackingField: []
+    lastVal: 0

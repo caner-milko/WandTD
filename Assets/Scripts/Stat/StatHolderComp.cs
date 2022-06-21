@@ -6,8 +6,8 @@ namespace wtd.stat
 {
 	public class StatHolderComp : MonoBehaviour
 	{
-
-		public StatHolder statHolder = new StatHolder();
+		[field: SerializeField]
+		public StatHolder statHolder { get; private set; } = new StatHolder();
 		// Start is called before the first frame update
 		void Awake()
 		{

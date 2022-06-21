@@ -20,10 +20,14 @@ namespace wtd.stat
 			}
 		}
 
-		public Stat AddStat(Stat stat, bool clone = false)
+		public Stat AddStat(Stat stat, bool clone = false, bool addEffectorsIfExists = true)
 		{
 			if (stats.TryGetValue(stat.StatName, out Stat result))
 			{
+				if (addEffectorsIfExists)
+				{
+					result.AddEffector(stat.effectors.ToArray());
+				}
 				return result;
 			}
 			Stat realStat = stat;

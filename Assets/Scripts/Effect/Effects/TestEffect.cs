@@ -4,21 +4,17 @@ using UnityEngine;
 using wtd.stat;
 namespace wtd.effect.effects
 {
-	public class TestEffect : Effect
+	public class TestEffect : Effect, IStatUser
 	{
-		[SerializeField]
-		private Stat speedStat;
+		[SerializeField, AutoCopyStat(StatNames.SPEED)]
+		private Stat speedStat = new Stat(StatNames.SPEED, null, 3);
 		protected override void OnAdd()
 		{
 			Debug.Log("Added effect to " + holder.gameObject.name);
-			StatHolder statHolder = holder.GetComponent<StatHolderComp>().statHolder;
-			if (statHolder != null)
-			{
-				speedStat = statHolder.GetStat("speed", false);
-				speedStat.AddEffector(new StatEffector(0.5f, this, StatEffector.StatEffectorType.PercentAdd)
-					, new StatEffector(2f, this, StatEffector.StatEffectorType.Add),
-					new StatEffector(1f, this, StatEffector.StatEffectorType.PercentAdd));
-			}
+			StatUtils.SetupStats(this);
+			speedStat.AddEffector(new StatEffector(0.5f, this, StatEffector.StatEffectorType.PercentAdd)
+				, new StatEffector(2f, this, StatEffector.StatEffectorType.Add),
+				new StatEffector(1f, this, StatEffector.StatEffectorType.PercentAdd));
 		}
 
 		protected override void OnRemove()
@@ -43,5 +39,11 @@ namespace wtd.effect.effects
 		{
 			//Debug.Log("Updated effect on " + holder.gameObject.name);
 		}
+
+		public StatHolder GetStatHolder()
+		{
+			return holder.GetComponent<StatHolderComp>().statHolder;
+		}
+
 	}
 }

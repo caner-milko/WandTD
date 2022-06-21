@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2041152854709249518}
   - component: {fileID: 2041152854709249512}
   - component: {fileID: 2041152854709249513}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TestEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,6 +47,11 @@ MonoBehaviour:
   <effectName>k__BackingField: test
   <canStack>k__BackingField: 1
   <trigger>k__BackingField: {fileID: 2041152854709249513}
+  speedStat:
+    StatName: speed
+    <defaultVal>k__BackingField: 3
+    <effectors>k__BackingField: []
+    lastVal: 0
 --- !u!114 &2041152854709249513
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1459,7 +1459,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63baa3c35abd67149adc31494400c5b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statHolderComp: {fileID: 0}
+  speedStat:
+    StatName: speed
+    <defaultVal>k__BackingField: 3
+    <effectors>k__BackingField: []
+    lastVal: 0
   <path>k__BackingField: {fileID: 1662975924}
   lastPoint: -1
   loop: 1
@@ -1477,11 +1481,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <health>k__BackingField: 0
   maxHealth:
-    StatName: 
-    <defaultVal>k__BackingField: 0
+    StatName: maxHealth
+    <defaultVal>k__BackingField: 10
     <effectors>k__BackingField: []
     lastVal: 0
-  statHolderComp: {fileID: 0}
 --- !u!114 &534804342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1494,16 +1497,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ad39d22cfd9c6479bc64be561f7597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statHolder:
-    Stats:
-    - StatName: speed
-      <defaultVal>k__BackingField: 3
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: maxHealth
-      <defaultVal>k__BackingField: 20
-      <effectors>k__BackingField: []
-      lastVal: 0
+  <statHolder>k__BackingField:
+    Stats: []
 --- !u!1 &572328371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2227,10 +2222,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestEffect
       objectReference: {fileID: 0}
-    - target: {fileID: 2041152854709249519, guid: f4931b0e15652b841bf18de710039483, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4931b0e15652b841bf18de710039483, type: 3}
 --- !u!1 &836651478
@@ -2327,6 +2318,7 @@ GameObject:
   - component: {fileID: 902979546}
   - component: {fileID: 902979551}
   - component: {fileID: 902979549}
+  - component: {fileID: 902979552}
   m_Layer: 10
   m_Name: Tower
   m_TagString: Untagged
@@ -2360,14 +2352,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e89f805c3c77943a72675e4ad23039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capacity: 4
-  mana: 100
-  castDelay: 0.3
-  rechargeDelay: 0.3
   curCastDelay: 0
   curRechargeDelay: 0
-  castCount: 1
+  remainingMana: 0
+  <isRecharging>k__BackingField: 0
   castedPrefab: {fileID: 0}
+  <holder>k__BackingField: {fileID: 902979552}
+  mana:
+    StatName: wandMana
+    <defaultVal>k__BackingField: 150
+    <effectors>k__BackingField: []
+    lastVal: 0
+  manaRecharge:
+    StatName: wandManaRecharge
+    <defaultVal>k__BackingField: 20
+    <effectors>k__BackingField: []
+    lastVal: 0
+  capacity:
+    StatName: wandCapacity
+    <defaultVal>k__BackingField: 4
+    <effectors>k__BackingField: []
+    lastVal: 0
+  rechargeDelay:
+    StatName: wandRechargeDelay
+    <defaultVal>k__BackingField: 0.5
+    <effectors>k__BackingField: []
+    lastVal: 0
+  castDelay:
+    StatName: wandCastDelay
+    <defaultVal>k__BackingField: 0.2
+    <effectors>k__BackingField: []
+    lastVal: 0
+  castCount:
+    StatName: wandCastCount
+    <defaultVal>k__BackingField: 1
+    <effectors>k__BackingField: []
+    lastVal: 0
 --- !u!114 &902979548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2428,6 +2448,240 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Tower>k__BackingField: {fileID: 902979548}
   <Target>k__BackingField: {fileID: 3187664563878258050}
+--- !u!114 &902979552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902979545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ad39d22cfd9c6479bc64be561f7597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <statHolder>k__BackingField:
+    Stats:
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
 --- !u!1 &928532514
 GameObject:
   m_ObjectHideFlags: 0
@@ -3593,6 +3847,100 @@ Transform:
   m_Father: {fileID: 583889229}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1312932236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1312932239}
+  - component: {fileID: 1312932237}
+  - component: {fileID: 1312932238}
+  m_Layer: 0
+  m_Name: Wand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1312932237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312932236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69e89f805c3c77943a72675e4ad23039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  curCastDelay: 0
+  curRechargeDelay: 0
+  remainingMana: 0
+  <isRecharging>k__BackingField: 0
+  castedPrefab: {fileID: 8880163925323000403, guid: 888f7f471174d1c4da7608d3106af5ae, type: 3}
+  <holder>k__BackingField: {fileID: 1312932238}
+  mana:
+    StatName: wandMana
+    <defaultVal>k__BackingField: 150
+    <effectors>k__BackingField: []
+    lastVal: 0
+  manaRecharge:
+    StatName: wandManaRecharge
+    <defaultVal>k__BackingField: 20
+    <effectors>k__BackingField: []
+    lastVal: 0
+  capacity:
+    StatName: wandCapacity
+    <defaultVal>k__BackingField: 4
+    <effectors>k__BackingField: []
+    lastVal: 0
+  rechargeDelay:
+    StatName: wandRechargeDelay
+    <defaultVal>k__BackingField: 0.5
+    <effectors>k__BackingField: []
+    lastVal: 0
+  castDelay:
+    StatName: wandCastDelay
+    <defaultVal>k__BackingField: 0.2
+    <effectors>k__BackingField: []
+    lastVal: 0
+  castCount:
+    StatName: wandCastCount
+    <defaultVal>k__BackingField: 1
+    <effectors>k__BackingField: []
+    lastVal: 0
+--- !u!114 &1312932238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312932236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ad39d22cfd9c6479bc64be561f7597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <statHolder>k__BackingField:
+    Stats: []
+--- !u!4 &1312932239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1312932236}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1875112784}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1333872248
 GameObject:
   m_ObjectHideFlags: 0
@@ -4324,6 +4672,7 @@ GameObject:
   - component: {fileID: 1719218584}
   - component: {fileID: 1719218580}
   - component: {fileID: 1719218583}
+  - component: {fileID: 1719218585}
   m_Layer: 10
   m_Name: Tower (1)
   m_TagString: Untagged
@@ -4390,14 +4739,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e89f805c3c77943a72675e4ad23039, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  capacity: 4
-  mana: 100
-  castDelay: 0.3
-  rechargeDelay: 0.3
   curCastDelay: 0
   curRechargeDelay: 0
-  castCount: 1
+  remainingMana: 0
+  <isRecharging>k__BackingField: 0
   castedPrefab: {fileID: 0}
+  <holder>k__BackingField: {fileID: 1719218585}
+  mana:
+    StatName: wandMana
+    <defaultVal>k__BackingField: 150
+    <effectors>k__BackingField: []
+    lastVal: 0
+  manaRecharge:
+    StatName: wandManaRecharge
+    <defaultVal>k__BackingField: 20
+    <effectors>k__BackingField: []
+    lastVal: 0
+  capacity:
+    StatName: wandCapacity
+    <defaultVal>k__BackingField: 4
+    <effectors>k__BackingField: []
+    lastVal: 0
+  rechargeDelay:
+    StatName: wandRechargeDelay
+    <defaultVal>k__BackingField: 0.5
+    <effectors>k__BackingField: []
+    lastVal: 0
+  castDelay:
+    StatName: wandCastDelay
+    <defaultVal>k__BackingField: 0.2
+    <effectors>k__BackingField: []
+    lastVal: 0
+  castCount:
+    StatName: wandCastCount
+    <defaultVal>k__BackingField: 1
+    <effectors>k__BackingField: []
+    lastVal: 0
 --- !u!65 &1719218583
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4425,6 +4802,240 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tower: {fileID: 1719218581}
   spells: []
+--- !u!114 &1719218585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1719218578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1ad39d22cfd9c6479bc64be561f7597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <statHolder>k__BackingField:
+    Stats:
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandMana
+      <defaultVal>k__BackingField: 150
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCapacity
+      <defaultVal>k__BackingField: 4
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandRechargeDelay
+      <defaultVal>k__BackingField: 0.5
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastDelay
+      <defaultVal>k__BackingField: 0.2
+      <effectors>k__BackingField: []
+      lastVal: 0
+    - StatName: wandCastCount
+      <defaultVal>k__BackingField: 1
+      <effectors>k__BackingField: []
+      lastVal: 0
 --- !u!4 &1723922138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2041152854709249518, guid: f4931b0e15652b841bf18de710039483, type: 3}
@@ -4664,7 +5275,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1875112784}
   - component: {fileID: 1875112782}
-  - component: {fileID: 1875112781}
   - component: {fileID: 1875112785}
   - component: {fileID: 1875112783}
   - component: {fileID: 1875112786}
@@ -4675,26 +5285,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1875112781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1875112780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69e89f805c3c77943a72675e4ad23039, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  capacity: 4
-  mana: 100
-  castDelay: 1
-  rechargeDelay: 0
-  curCastDelay: 0
-  curRechargeDelay: 0
-  castCount: 1
-  castedPrefab: {fileID: 8880163925323000403, guid: 888f7f471174d1c4da7608d3106af5ae, type: 3}
 --- !u!114 &1875112782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4708,7 +5298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EditableDistance>k__BackingField: 1
-  wand: {fileID: 1875112781}
+  wand: {fileID: 1312932237}
   holder: {fileID: 534804335}
   effectPrefab: {fileID: 2041152854709249512, guid: f4931b0e15652b841bf18de710039483, type: 3}
   spells:
@@ -4734,6 +5324,7 @@ Transform:
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 149891839}
+  - {fileID: 1312932239}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

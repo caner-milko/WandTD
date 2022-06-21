@@ -12,8 +12,6 @@ namespace wtd.stat
 		{
 			Add = 3, PercentAdd = 2, PercentMul = 1
 		}
-		[field: NonSerialized]
-		public Stat effecting { get; private set; }
 		public readonly object source;
 		[field: ReadOnly, SerializeField]
 		public float value { get; private set; }
@@ -21,7 +19,6 @@ namespace wtd.stat
 		public StatEffectorType type { get; private set; }
 		[field: ReadOnly, SerializeField]
 		public int order { get; private set; }
-		public StatHolder holder => effecting.holder;
 
 		public StatEffector(float value, object Source, StatEffectorType type) : this(value, Source, type, (int)type)
 		{
@@ -33,15 +30,6 @@ namespace wtd.stat
 			this.source = Source;
 			this.type = type;
 			this.order = order;
-		}
-
-		public void SetEffecting(Stat effecting)
-		{
-			if (this.effecting != null)
-			{
-				throw new UnityException("Cannot set effecting of an effector again.");
-			}
-			this.effecting = effecting;
 		}
 
 		public int CompareTo(StatEffector other)

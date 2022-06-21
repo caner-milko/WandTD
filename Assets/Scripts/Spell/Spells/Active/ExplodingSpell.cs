@@ -8,9 +8,12 @@ namespace wtd.spell.spells
 {
 	public class ExplodingSpell : ActiveSpell
 	{
-		private Stat explosionRadius;
-		private Stat damage;
-		private Stat speed;
+		[SerializeField, AutoCopyStat("explosionRadius")]
+		private Stat explosionRadius = new Stat("explosionRadius", null, 3f);
+		[SerializeField, AutoCopyStat(StatNames.DAMAGE)]
+		private Stat damage = new Stat(StatNames.DAMAGE, null, 5f);
+		[SerializeField, AutoCopyStat(StatNames.SPEED)]
+		private Stat speed = new Stat(StatNames.SPEED, null, 5f);
 
 		[SerializeField]
 		private CollisionSpellTrigger collTrigger;
@@ -20,9 +23,7 @@ namespace wtd.spell.spells
 		private Rigidbody body;
 		protected override void OnCast()
 		{
-			explosionRadius = castedParent.statHolder.GetStat("explosionRadius");
-			damage = castedParent.statHolder.GetStat("damage");
-			speed = castedParent.statHolder.GetStat("speed");
+			StatUtils.SetupStats(this);
 
 			collTrigger = (CollisionSpellTrigger)castedParent.AddTrigger(collTrigger, true);
 			body = collTrigger.GetComponent<Rigidbody>();
@@ -33,7 +34,7 @@ namespace wtd.spell.spells
 
 		protected override void OnFixedUpdate()
 		{
-
+			body.velocity = body.velocity.normalized * speed.Value;
 		}
 
 		protected override void OnRemove()

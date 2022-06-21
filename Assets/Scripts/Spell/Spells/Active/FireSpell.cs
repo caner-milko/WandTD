@@ -6,11 +6,11 @@ namespace wtd.spell.spells
 {
 	public class FireSpell : ActiveSpell
 	{
-		[ReadOnly, SerializeField]
-		private Stat speedStat;
+		[SerializeField, AutoCopyStat(StatNames.SPEED)]
+		private Stat speedStat = new Stat(StatNames.SPEED, null, 3);
 		protected override void OnCast()
 		{
-			speedStat = castedParent.statHolder.GetStat(StatName.SPEED);
+			StatUtils.SetupStats(this);
 		}
 
 		protected override void OnRemove()

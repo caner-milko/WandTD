@@ -4,15 +4,13 @@ using UnityEngine;
 using wtd.stat;
 namespace wtd.enemy
 {
-	public class PathFollower : MonoBehaviour
+	[RequireComponent(typeof(StatHolderComp))]
+	public class PathFollower : MonoBehaviour, IStatUser
 	{
-		[SerializeField]
 		private StatHolderComp statHolderComp;
 
-		[SerializeField]
-		private StatHolder holder => statHolderComp.statHolder;
-
-		private Stat speedStat => holder.GetStat("speed", false);
+		[SerializeField, AutoCopyStat(StatNames.SPEED)]
+		private Stat speedStat = new Stat(StatNames.SPEED, null, 3);
 
 		[field: SerializeField]
 		public EnemyPath path { get; private set; }
@@ -31,8 +29,8 @@ namespace wtd.enemy
 
 		private void Awake()
 		{
-			if (statHolderComp == null || !statHolderComp)
-				statHolderComp = GetComponent<StatHolderComp>();
+			statHolderComp = GetComponent<StatHolderComp>();
+			StatUtils.SetupStats(this);
 		}
 
 		void Start()
@@ -77,5 +75,9 @@ namespace wtd.enemy
 			return dif.sqrMagnitude <= 0.03f;
 		}
 
+		public StatHolder GetStatHolder()
+		{
+			return statHolderComp.statHolder;
+		}
 	}
 }
