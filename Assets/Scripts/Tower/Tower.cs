@@ -68,5 +68,10 @@ namespace wtd.tower
 			return false;
 		}
 
+		public SpellContainer GetSpellContainer()
+		{
+			return wand.GetSpellContainer();
+		}
+
 	}
 }

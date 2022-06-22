@@ -51,7 +51,7 @@ namespace wtd.wand
 		{
 			SetupStats();
 			remainingMana = mana.Value;
-			spells = new SpellContainer((int)capacity.Value);
+			spells = new SpellContainer(this, (int)capacity.Value);
 		}
 
 		private void Start()
@@ -175,7 +175,7 @@ namespace wtd.wand
 
 		public CasterSpell AddSpell(Spell spell)
 		{
-			CasterSpell casterSpell = new CasterSpell(spell, this, spells.Count);
+			CasterSpell casterSpell = new CasterSpell(spell, this);
 			spells.AddSpell(casterSpell);
 			return casterSpell;
 		}
@@ -210,6 +210,11 @@ namespace wtd.wand
 		public StatHolder GetStatHolder()
 		{
 			return holder.statHolder;
+		}
+
+		public SpellContainer GetSpellContainer()
+		{
+			return spells;
 		}
 	}
 }

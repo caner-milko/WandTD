@@ -43,11 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f1236ae5c055684193b94ff34161847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <image>k__BackingField:
+    sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    material: {fileID: 0}
+    color: {r: 0.87058824, g: 0, b: 0.21523392, a: 1}
   spellName: Exploding
-  castModifier: 0
-  rechargeModifier: 0
+  castModifier: 0.1
+  rechargeModifier: 0.2
   mana: 25
-  triggerCount: 0
+  triggerCount: 1
   explosionRadius:
     StatName: explosionRadius
     <defaultVal>k__BackingField: 3

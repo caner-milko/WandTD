@@ -126,5 +126,10 @@ namespace wtd
 
 			return Mathf.Sqrt(maxSpeed) * GetDirection(from);
 		}
+
+		public SpellContainer GetSpellContainer()
+		{
+			return wand.GetSpellContainer();
+		}
 	}
 }

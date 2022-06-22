@@ -3,7 +3,8 @@ guid: 3c5947d848940fc48a31a6b36967cabf
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - <spellImage>k__BackingField: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
