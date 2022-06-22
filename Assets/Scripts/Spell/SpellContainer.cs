@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Events;
 namespace wtd.spell
 {
 	/// <summary>
@@ -13,11 +13,15 @@ namespace wtd.spell
 		// Max number of spells that this container can hold.
 		private int _capacity;
 
+		public readonly ISpellCaster owner;
+
 		// List of spells this container holds.
 		private List<SpellSlot> _spellSlots;
 
 		// List of validators that every spell in this container has to satisfy.
 		private List<Func<CasterSpell, bool>> _spellValidators;
+
+		public UnityEvent ContainerEdited;
 
 		// Number of spells in this container.
 		public int Count
@@ -45,7 +49,7 @@ namespace wtd.spell
 		/// Create a spell container with given capacity.
 		/// </summary>
 		/// <param name="capacity">Max number of spells that this container can hold.</param>
-		public SpellContainer(int capacity) : this(capacity, new List<Func<CasterSpell, bool>>())
+		public SpellContainer(ISpellCaster owner, int capacity) : this(owner, capacity, new List<Func<CasterSpell, bool>>())
 		{
 		}
 
@@ -54,11 +58,13 @@ namespace wtd.spell
 		/// </summary>
 		/// <param name="capacity">Max number of spells that this container can hold.</param>
 		/// <param name="spellValidators">List of spell validator functions that every spell in this container has to satisfy.</param>
-		public SpellContainer(int capacity, IEnumerable<Func<CasterSpell, bool>> spellValidators)
+		public SpellContainer(ISpellCaster owner, int capacity, IEnumerable<Func<CasterSpell, bool>> spellValidators)
 		{
+			this.owner = owner;
 			_spellSlots = new List<SpellSlot>();
 			Capacity = capacity;
 			_spellValidators = new List<Func<CasterSpell, bool>>(spellValidators);
+			ContainerEdited = new UnityEvent();
 			CreateSpellSlots();
 		}
 
@@ -70,7 +76,7 @@ namespace wtd.spell
 		{
 			for (int i = 0; i < Capacity; i++)
 			{
-				_spellSlots.Add(new SpellSlot(null));
+				_spellSlots.Add(new SpellSlot(null, i, this));
 			}
 		}
 
@@ -99,23 +105,28 @@ namespace wtd.spell
 			{
 				if (slot.IsEmpty)
 				{
-					slot.Spell = spell;
+					ChangeSpellAt(slot.slot, spell);
 					break;
 				}
 			}
 			return true;
 		}
 
-		public bool InsertSpell(int index, CasterSpell spell)
+		public bool ChangeSpellAt(int index, CasterSpell spell)
 		{
-			if (Count >= Capacity || index >= Capacity)
+			if (index >= Capacity)
 			{
 				return false;
 			}
 			//might be placeholder
-			_spellSlots[index].Spell = spell;
+			if (spell != null)
+				_spellSlots[index].Spell = spell.CloneToOwner(owner);
+			else
+				_spellSlots[index].Spell = null;
+			FireEvent();
 			return true;
 		}
+
 
 		public bool RemoveSpell(CasterSpell spell)
 		{
@@ -133,7 +144,29 @@ namespace wtd.spell
 		public bool RemoveSpell(int index)
 		{
 			_spellSlots[index].Spell = null;
+			FireEvent();
 			return true;
+		}
+
+		public bool SwapSpells(SpellSlot slot, SpellSlot toSwapWith)
+		{
+			CasterSpell before = slot.Spell;
+			ChangeSpellAt(slot.slot, toSwapWith.Spell);
+			toSwapWith.belongsTo.ChangeSpellAt(toSwapWith.slot, before);
+			return true;
+		}
+
+		public SpellSlot AtSlot(int slot)
+		{
+			if (slot >= Capacity)
+				return null;
+			return _spellSlots[slot];
+		}
+
+		private void FireEvent()
+		{
+			if (ContainerEdited != null)
+				ContainerEdited.Invoke();
 		}
 
 		/// <summary>

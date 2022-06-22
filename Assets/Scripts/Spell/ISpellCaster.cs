@@ -27,5 +27,7 @@ namespace wtd.spell
 		/// </summary>
 		/// <returns></returns>
 		public CasterSpell NextSpell();
+
+		public SpellContainer GetSpellContainer();
 	}
 }

@@ -12,6 +12,15 @@ namespace wtd.spell
 	{
 		protected bool spellActive = false;
 
+		[Serializable]
+		public struct SpellImage
+		{
+			public Sprite sprite;
+			public Material material;
+			public Color color;
+		}
+		[field: SerializeField]
+		public SpellImage image { get; private set; }
 		public string spellName;
 		public float castModifier, rechargeModifier;
 		public int mana;

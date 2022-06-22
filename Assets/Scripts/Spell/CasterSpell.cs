@@ -5,25 +5,29 @@ using UnityEngine;
 
 namespace wtd.spell
 {
-	public class CasterSpell : IComparable<CasterSpell>
+	public class CasterSpell
 	{
 		public Spell spell { get; private set; }
 		public bool isActive { get; private set; }
 		public ISpellCaster owner { get; private set; }
 
-		int slot;
-
-		public CasterSpell(Spell spell, ISpellCaster owner, int slot)
+		public CasterSpell(Spell spell, ISpellCaster owner)
 		{
 			this.spell = spell;
 			this.owner = owner;
-			this.slot = slot;
 			this.isActive = this.spell is ActiveSpell;
 		}
 
-		public int CompareTo(CasterSpell other)
+		public void SetSpell(Spell newSpell)
 		{
-			return this.slot.CompareTo(other.slot);
+			this.spell = newSpell;
+			this.isActive = this.spell is ActiveSpell;
 		}
+
+		public CasterSpell CloneToOwner(ISpellCaster newOwner)
+		{
+			return new CasterSpell(spell, newOwner);
+		}
+
 	}
 }

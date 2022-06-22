@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 1a3d780f4206d9e4a998751153e70e36
+guid: 4911f6ad4e2767e4d9dd472262cc585e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - <spellImage>k__BackingField: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
