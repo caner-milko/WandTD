@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using wtd.spell;
@@ -22,8 +20,7 @@ namespace wtd.tower
 		{
 			if (Owner == null)
 				return;
-			ISpellTarget pos;
-			if (GetTarget(out pos))
+			if (GetTarget(out ISpellTarget pos))
 			{
 				Gizmos.color = Color.green;
 				Gizmos.DrawSphere(pos.GetPosition(), 0.1f);

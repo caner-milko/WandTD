@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace wtd.tower.editor
@@ -25,7 +23,7 @@ namespace wtd.tower.editor
 			}
 		}
 
-		public void AcceptTarget(Vector3 position)
+		public virtual void AcceptTarget(Vector3 position)
 		{
 			Tower.TargetAdapter.ChangeTarget(EditorTarget);
 		}

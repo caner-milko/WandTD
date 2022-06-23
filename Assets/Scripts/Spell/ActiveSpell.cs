@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ namespace wtd.spell
 	{
 		public int triggerCount = 0;
 
-		public override void addToGroup(SpellGroupBuilder group)
+		public override void AddToGroup(SpellGroupBuilder group)
 		{
 			group.AddChildSpellGroup(triggerCount);
 		}

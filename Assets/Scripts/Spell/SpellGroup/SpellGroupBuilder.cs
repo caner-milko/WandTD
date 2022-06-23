@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
 
 namespace wtd.spell
@@ -14,24 +12,24 @@ namespace wtd.spell
 		/// <summary>
 		/// passives in the group
 		/// </summary>
-		public List<PassiveSpell> passives { get; private set; } = new List<PassiveSpell>();
+		public List<PassiveSpell> Passives { get; private set; } = new List<PassiveSpell>();
 		/// <summary>
 		/// active spell is null if the group is a multicast group
 		/// </summary>
-		public ActiveSpell active { get; private set; }
+		public ActiveSpell Active { get; private set; }
 		/// <summary>
 		/// 2 cases:
 		/// 1. Group is multicast, then childs are <see cref="SingleSpellGroup"/>s which will create the <see cref="MultiSpellGroup"/> at the end
 		/// 2. Group is single cast, then childs contains only 1 element and it is the child group of the active spell
 		/// </summary>
-		public List<SpellGroupBase> childGroups { get; private set; } = new List<SpellGroupBase>();
+		public List<SpellGroupBase> ChildGroups { get; private set; } = new List<SpellGroupBase>();
 
 		/// <summary>
 		/// caster of the group
 		/// </summary>
-		public ISpellCaster caster { get; private set; }
+		public ISpellCaster Caster { get; private set; }
 
-		public CastedSpell castedPrefab { get; private set; }
+		public CastedSpell CastedPrefab { get; private set; }
 
 		/// <summary>
 		/// if group is multicast, create a MultiSpellGroup at the end, if not create a SingleSpellGroup
@@ -43,19 +41,28 @@ namespace wtd.spell
 		/// </summary>
 		private int remCastCount;
 
+		public SpellGroupBuilder(ISpellCaster caster, CastedSpell castedPrefab, int castCount) : this(caster, castedPrefab, castCount, new())
+		{
+		}
+
 		/// <summary>
 		/// A spell group is created with a caster and given castCount
 		/// </summary>
 		/// <param name="caster">Caster who shoot the spell, generally a wand</param>
 		/// <param name="castCount">How many spells should be cast at once in the group</param>
-		public SpellGroupBuilder(ISpellCaster caster, CastedSpell castedPrefab, int castCount)
+		public SpellGroupBuilder(ISpellCaster caster, CastedSpell castedPrefab, int castCount, List<PassiveSpell> passives)
 		{
-			this.caster = caster;
-			this.castedPrefab = castedPrefab;
+			this.Caster = caster;
+			this.CastedPrefab = castedPrefab;
 			///group is multicast if there are multiple spells cast
-			///may become a multicastspell later with the <see cref="increaseRemCastCount(int)"/> method
+			///may become a multicastspell later with the <see cref="IncreaseRemCastCount(int)"/> method
 			this.multiCast = castCount > 1;
 			this.remCastCount = castCount;
+			foreach (PassiveSpell spell in passives)
+			{
+				Passives.Add(spell);
+				spell.AddToGroup(this);
+			}
 			StartBuild();
 		}
 		/// <summary>
@@ -65,13 +72,13 @@ namespace wtd.spell
 		/// <param name="spell">active spell of the group</param>
 		private SpellGroupBuilder(CasterSpell spell, CastedSpell castedPrefab)
 		{
-			this.caster = spell.owner;
-			this.castedPrefab = castedPrefab;
+			this.Caster = spell.Owner;
+			this.CastedPrefab = castedPrefab;
 			this.multiCast = false;
 			this.remCastCount = 0;
-			this.active = (ActiveSpell)spell.spell;
+			this.Active = (ActiveSpell)spell.Spell;
 			//might be a trigger spell
-			spell.spell.addToGroup(this);
+			spell.Spell.AddToGroup(this);
 			StartBuild();
 		}
 
@@ -81,7 +88,7 @@ namespace wtd.spell
 			// TODO: reached mana limit
 			while (remCastCount > 0)
 			{
-				CasterSpell selected = caster.NextSpell();
+				CasterSpell selected = Caster.NextSpell();
 				//no remaining spells
 				if (selected == null)
 					break;
@@ -89,41 +96,41 @@ namespace wtd.spell
 				//TODO: manacheck
 
 				//if the selected spell is active, add as a active spell in the childGroups or as the active spell
-				if (selected.isActive)
+				if (selected.IsActive)
 				{
 					if (multiCast)
 					{
-						childGroups.Add(new SpellGroupBuilder(selected, castedPrefab).Build());
+						ChildGroups.Add(new SpellGroupBuilder(selected, CastedPrefab).Build());
 						remCastCount--;
 					}
 					else
 					{
-						this.active = (ActiveSpell)selected.spell;
-						selected.spell.addToGroup(this);
+						this.Active = (ActiveSpell)selected.Spell;
+						selected.Spell.AddToGroup(this);
 						break;
 					}
 				}
 				//Else, add as a passive spell
 				else
 				{
-					passives.Add((PassiveSpell)selected.spell);
-					selected.spell.addToGroup(this);
+					Passives.Add((PassiveSpell)selected.Spell);
+					selected.Spell.AddToGroup(this);
 				}
 			}
 		}
 		/// <summary>
 		/// Add castCount amount of spells as child group
 		/// Only used for single casts
-		/// Mainly used for trigger spells <see cref="ActiveSpell.addToGroup(SpellGroupBuilder)"/> 
+		/// Mainly used for trigger spells <see cref="ActiveSpell.AddToGroup(SpellGroupBuilder)"/> 
 		///</summary>
 		/// <param name="castCount">CastCount of the group to be added as child, can be 0 which will do nothing</param>
 		public void AddChildSpellGroup(int castCount)
 		{
 			if (castCount > 0)
 			{
-				SpellGroupBase cgb = new SpellGroupBuilder(caster, castedPrefab, castCount).Build();
+				SpellGroupBase cgb = new SpellGroupBuilder(Caster, CastedPrefab, castCount).Build();
 				if (cgb != null)
-					childGroups.Add(cgb);
+					ChildGroups.Add(cgb);
 			}
 		}
 
@@ -138,29 +145,29 @@ namespace wtd.spell
 			/// configure the child groups
 			if (multiCast)
 			{
-				List<SingleSpellGroup> spellGroups = childGroups.Cast<SingleSpellGroup>().ToList();
-				MultiSpellGroup group = new MultiSpellGroup(caster, castedPrefab, passives, spellGroups);
+				List<SingleSpellGroup> spellGroups = ChildGroups.Cast<SingleSpellGroup>().ToList();
+				MultiSpellGroup group = new(Caster, CastedPrefab, Passives, spellGroups);
 				foreach (SingleSpellGroup singleSpellGroup in spellGroups)
 				{
-					singleSpellGroup.passives.AddRange(passives);
+					singleSpellGroup.Passives.AddRange(Passives);
 					singleSpellGroup.SetParent(group);
 				}
 				return group;
 			}
 			else
 			{
-				if (active == null)
+				if (Active == null)
 					return null;
 				///if has a child group, configure the child group then return
-				if (childGroups.Count > 0)
+				if (ChildGroups.Count > 0)
 				{
-					SingleSpellGroup spg = new SingleSpellGroup(caster, castedPrefab, passives, active, childGroups[0]);
-					spg.childGroup.SetParent(spg);
+					SingleSpellGroup spg = new(Caster, CastedPrefab, Passives, Active, ChildGroups[0]);
+					spg.ChildGroup.SetParent(spg);
 					return spg;
 				}
 				else
 				{
-					return new SingleSpellGroup(caster, castedPrefab, passives, active);
+					return new SingleSpellGroup(Caster, CastedPrefab, Passives, Active);
 				}
 
 			}
@@ -171,7 +178,7 @@ namespace wtd.spell
 		/// if the <paramref name="amount"/> is bigger than 0, then change the group to multicast
 		/// </summary>
 		/// <param name="amount">amount to increase <see cref="remCastCount"/></param>
-		public void increaseRemCastCount(int amount)
+		public void IncreaseRemCastCount(int amount)
 		{
 			remCastCount += amount;
 			multiCast = multiCast || (amount > 0);

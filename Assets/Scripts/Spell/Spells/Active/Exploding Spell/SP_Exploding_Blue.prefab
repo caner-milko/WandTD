@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -43,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f1236ae5c055684193b94ff34161847, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <image>k__BackingField:
-    sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  <Image>k__BackingField:
+    sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     material: {fileID: 0}
-    color: {r: 0.003680706, g: 0, b: 1, a: 1}
+    color: {r: 0, g: 0.12585497, b: 1, a: 1}
   spellName: Exploding Blue
   castModifier: 0.05
   rechargeModifier: 0.1
@@ -54,18 +55,18 @@ MonoBehaviour:
   triggerCount: 0
   explosionRadius:
     StatName: explosionRadius
-    <defaultVal>k__BackingField: 3
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 3
+    <Effectors>k__BackingField: []
     lastVal: 0
   damage:
     StatName: damage
-    <defaultVal>k__BackingField: 5
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 5
+    <Effectors>k__BackingField: []
     lastVal: 0
   speed:
     StatName: speed
-    <defaultVal>k__BackingField: 5
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 5
+    <Effectors>k__BackingField: []
     lastVal: 0
   collTrigger: {fileID: 7086633111279213493, guid: 39445fb3ecf48f34d90044dc7022d44a, type: 3}
   timedTrigger: {fileID: 5280905532521933119, guid: 630282a885348494ebf68124f8be4e97, type: 3}

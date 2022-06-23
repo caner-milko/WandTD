@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace wtd.spell
@@ -14,7 +12,7 @@ namespace wtd.spell
 		public struct CollisionSpellTriggerData
 		{
 			public readonly CollisionSpellTrigger trigger;
-			public CastedSpell casted => trigger.casted;
+			public CastedSpell Casted => trigger.Casted;
 
 			public readonly bool weak;
 
@@ -48,35 +46,35 @@ namespace wtd.spell
 		}
 
 		[field: SerializeField]
-		public bool weak { get; private set; } = false;
+		public bool Weak { get; private set; } = false;
 
 		[field: SerializeField]
-		public LayerMask layer { get; private set; }
+		public LayerMask ExcludingLayers { get; private set; }
 
 		[field: SerializeField]
-		public bool countTrigger { get; private set; } = false;
+		public bool CountTrigger { get; private set; } = false;
 
 		[field: SerializeField, Range(-1, 50)]
-		public int ignoreCollisionForX { get; private set; } = 0;
+		public int IgnoreCollisionForX { get; private set; } = 0;
 
 		private int collidedFor = 0;
 		private void OnTriggerEnter(Collider other)
 		{
-			if (!countTrigger)
+			if (!CountTrigger)
 				return;
-			if ((layer.value & (1 << other.gameObject.layer)) == 0)
+			if ((ExcludingLayers.value & (1 << other.gameObject.layer)) != 0)
 				return;
-			casted.HitTrigger(new CollisionSpellTriggerData(this, SpellCollisionType.ENEMY, weak, other));
+			Casted.HitTrigger(new CollisionSpellTriggerData(this, SpellCollisionType.ENEMY, Weak, other));
 		}
 
 		private void OnCollisionEnter(Collision collision)
 		{
-			if ((layer.value & (1 << collision.gameObject.layer)) == 0)
+			if ((ExcludingLayers.value & (1 << collision.gameObject.layer)) != 0)
 				return;
 			collidedFor++;
-			if (ignoreCollisionForX != -1 && collidedFor <= ignoreCollisionForX)
+			if (IgnoreCollisionForX != -1 && collidedFor <= IgnoreCollisionForX)
 				return;
-			casted.HitTrigger(new CollisionSpellTriggerData(this, SpellCollisionType.ENEMY, weak, collision));
+			Casted.HitTrigger(new CollisionSpellTriggerData(this, SpellCollisionType.ENEMY, Weak, collision));
 		}
 	}
 }

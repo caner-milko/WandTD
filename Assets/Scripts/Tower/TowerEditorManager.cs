@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ namespace wtd.tower.editor
 {
 	public class TowerEditorManager : MonoBehaviour
 	{
-		public static TowerEditorManager instance { get; private set; }
+		public static TowerEditorManager Instance { get; private set; }
 
 		public Tower CurrentlyEditing { get; private set; }
 
@@ -18,24 +17,18 @@ namespace wtd.tower.editor
 		[field: SerializeField]
 		public Material HighlightMaterial { get; private set; }
 
-		private Dictionary<MeshRenderer, Material[]> oldMaterials = new Dictionary<MeshRenderer, Material[]>();
+		private Dictionary<MeshRenderer, Material[]> oldMaterials = new();
 
 		private void Awake()
 		{
-			instance = this;
-		}
-
-		// Start is called before the first frame update
-		void Start()
-		{
-
+			Instance = this;
 		}
 
 		private void Update()
 		{
 			if (Input.GetKeyUp(KeyCode.Mouse1))
 			{
-				Tower tw = TowerManager.instance.GetTowerFromMouse();
+				//Tower tw = TowerManager.Instance.GetTowerFromMouse();
 			}
 			bool editInput = Input.GetKeyUp(KeyCode.E);
 			if (!IsEditing)
@@ -73,7 +66,7 @@ namespace wtd.tower.editor
 		public Tower GetClosestEditableToPlayer()
 		{
 			PlayerTest player = GameManager.instance.Player;
-			Tower closestToPlayer = TowerManager.instance.GetClosestTower(player.GetPosition());
+			Tower closestToPlayer = TowerManager.Instance.GetClosestTower(player.GetPosition());
 			if (IsEditableByPlayer(closestToPlayer)) return closestToPlayer;
 			return null;
 		}
@@ -81,7 +74,7 @@ namespace wtd.tower.editor
 		public bool IsEditableByPlayer(Tower tower)
 		{
 			PlayerTest player = GameManager.instance.Player;
-			return TowerManager.instance.IsCloseToTower(player.GetPosition(), player.EditableDistance, tower);
+			return TowerManager.Instance.IsCloseToTower(player.GetPosition(), player.EditableDistance, tower);
 		}
 
 		private void ShowIndicator(Tower newClosest)

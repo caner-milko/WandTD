@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using wtd.effect;
 using wtd.stat;
@@ -9,46 +7,46 @@ namespace wtd.enemy
 	public class Enemy : MonoBehaviour, IDamageable, IStatUser
 	{
 		[field: SerializeField, ReadOnly]
-		public float health { get; private set; }
+		public float Health { get; private set; }
 
 		[SerializeField, AutoCopyStat(StatNames.MAX_HEALTH)]
-		private Stat maxHealth = new Stat(StatNames.MAX_HEALTH, 20.0f);
+		private Stat maxHealth = new(StatNames.MAX_HEALTH, 20.0f);
 
 		private StatHolderComp statHolderComp;
 
 		public float GetHealth()
 		{
-			return health;
+			return Health;
 		}
 
 		public float InflictDamage(StatHolder damageStats)
 		{
 			float damage = damageStats.GetStatValue(StatNames.DAMAGE);
-			this.health -= damage;
+			this.Health -= damage;
 			return damage;
 		}
 
 		public float Heal(StatHolder healStats)
 		{
 			float heal = healStats.GetStatValue(StatNames.HEAL);
-			this.health += heal;
+			this.Health += heal;
 			return heal;
 		}
 
 		private void Awake()
 		{
 			statHolderComp = GetComponent<StatHolderComp>();
-			StatUtils.SetupStats(this);
+			((IStatUser)this).SetupStats();
 		}
 
 		private void Start()
 		{
-			this.health = maxHealth.Value;
+			this.Health = maxHealth.Value;
 		}
 
 		public StatHolder GetStatHolder()
 		{
-			return statHolderComp.statHolder;
+			return statHolderComp.RealHolder;
 		}
 	}
 }

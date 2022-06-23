@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace wtd.spell
@@ -9,7 +7,7 @@ namespace wtd.spell
 		public struct TimedSpellTriggerData
 		{
 			public readonly TimedSpellTrigger trigger;
-			public CastedSpell casted => trigger.casted;
+			public CastedSpell Casted => trigger.Casted;
 
 			public readonly bool weak;
 
@@ -20,26 +18,26 @@ namespace wtd.spell
 			}
 		}
 		[field: SerializeField]
-		public float timer { get; private set; } = 3.0f;
+		public float Timer { get; private set; } = 3.0f;
 
 		[field: SerializeField]
-		public bool weakTrigger { get; private set; } = false;
+		public bool WeakTrigger { get; private set; } = false;
 
 		private float curTime = 0.0f;
 
 		private void Update()
 		{
-			if (curTime >= timer)
+			if (curTime >= Timer)
 			{
 				return;
 			}
 
 			curTime += Time.deltaTime;
 
-			if (curTime >= timer)
+			if (curTime >= Timer)
 			{
-				TimedSpellTriggerData spellTriggerData = new TimedSpellTriggerData(this, weakTrigger);
-				casted.TimerTrigger(spellTriggerData);
+				TimedSpellTriggerData spellTriggerData = new(this, WeakTrigger);
+				Casted.TimerTrigger(spellTriggerData);
 			}
 		}
 	}

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using wtd.spell;
 namespace wtd.ui.spell
@@ -7,15 +5,15 @@ namespace wtd.ui.spell
 	public class UIHoldingSpellSlot : MonoBehaviour, ISpellCaster
 	{
 		private SpellContainer container;
-		public SpellSlot holdingSpell => container.AtSlot(0);
+		public SpellSlot HoldingSpell => container.AtSlot(0);
 
 		[field: SerializeField]
-		public UISpellSlot slot { get; private set; }
+		public UISpellSlot Slot { get; private set; }
 
 		private void Awake()
 		{
 			container = new SpellContainer(this, 1);
-			slot.setup(holdingSpell);
+			Slot.setup(HoldingSpell);
 		}
 
 		public string CasterType()

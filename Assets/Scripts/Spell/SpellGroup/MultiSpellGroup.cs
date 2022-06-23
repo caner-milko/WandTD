@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,11 +13,11 @@ namespace wtd.spell
 		/// <summary>
 		/// <see cref="SingleSpellGroup"/>s of the group, each has a <see cref="ActiveSpell"/>
 		/// </summary>
-		public List<SingleSpellGroup> spells { get; private set; } = new List<SingleSpellGroup>();
+		public List<SingleSpellGroup> Spells { get; private set; } = new List<SingleSpellGroup>();
 
 		internal MultiSpellGroup(ISpellCaster caster, CastedSpell castedPrefab, List<PassiveSpell> passives, List<SingleSpellGroup> spells) : base(caster, castedPrefab, passives)
 		{
-			this.spells = spells;
+			this.Spells = spells;
 		}
 
 		/// <summary>
@@ -28,11 +26,11 @@ namespace wtd.spell
 		public override float GetCastDelay()
 		{
 			float delay = 0;
-			foreach (PassiveSpell spell in passives)
+			foreach (PassiveSpell spell in Passives)
 			{
 				delay += spell.castModifier;
 			}
-			foreach (SingleSpellGroup group in spells)
+			foreach (SingleSpellGroup group in Spells)
 			{
 				delay += group.GetCastDelayWOPassives();
 			}
@@ -46,11 +44,11 @@ namespace wtd.spell
 		public override float GetRechargeDelay()
 		{
 			float delay = 0;
-			foreach (PassiveSpell spell in passives)
+			foreach (PassiveSpell spell in Passives)
 			{
 				delay += spell.castModifier;
 			}
-			foreach (SingleSpellGroup group in spells)
+			foreach (SingleSpellGroup group in Spells)
 			{
 				delay += group.GetRechargeDelayWOPassives();
 			}
@@ -64,8 +62,8 @@ namespace wtd.spell
 		/// <returns>Created Casted Spells in the end</returns>
 		public override List<CastedSpell> Cast(Vector3 position, ISpellTarget target)
 		{
-			List<CastedSpell> castedSpells = new List<CastedSpell>();
-			foreach (SingleSpellGroup spg in spells)
+			List<CastedSpell> castedSpells = new();
+			foreach (SingleSpellGroup spg in Spells)
 				castedSpells.Add(spg.CastSingle(position, target));
 			return castedSpells;
 		}

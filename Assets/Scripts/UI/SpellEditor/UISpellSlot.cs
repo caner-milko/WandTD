@@ -1,21 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using wtd.spell;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using wtd.spell;
 namespace wtd.ui.spell
 {
 	[RequireComponent(typeof(RectTransform))]
 	public class UISpellSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 	{
-		public RectTransform rect => (RectTransform)transform;
+		public RectTransform Rect => (RectTransform)transform;
 
 		[SerializeField]
 		private Image spellRenderer;
 		[field: SerializeField, ReadOnly]
-		public SpellSlot spellSlot { get; private set; }
-		public SpellContainer container => spellSlot.belongsTo;
+		public SpellSlot Slot { get; private set; }
+		public SpellContainer Container => Slot.belongsTo;
 		public bool DisplayImage
 		{
 			get
@@ -30,8 +28,8 @@ namespace wtd.ui.spell
 
 		public void setup(SpellSlot spellSlot)
 		{
-			this.spellSlot = spellSlot;
-			container.ContainerEdited.AddListener(RefreshImage);
+			this.Slot = spellSlot;
+			Container.ContainerEdited.AddListener(RefreshImage);
 			RefreshImage();
 		}
 
@@ -47,18 +45,18 @@ namespace wtd.ui.spell
 
 		public void OnPointerExit(PointerEventData eventData)
 		{
-			SpellEditorManager.instance.OnExitSpellSlot(this);
+			SpellEditorManager.instance.OnExitSpellSlot();
 		}
 
 		void RefreshImage()
 		{
-			if (spellSlot.IsEmpty)
+			if (Slot.IsEmpty)
 			{
 				spellRenderer.sprite = null;
 				spellRenderer.color = Color.clear;
 				return;
 			}
-			Spell.SpellImage spellImage = spellSlot.Spell.spell.image;
+			Spell.SpellImage spellImage = Slot.Spell.Spell.Image;
 			spellRenderer.sprite = spellImage.sprite;
 			spellRenderer.material = spellImage.material;
 			spellRenderer.color = spellImage.color;

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,7 +24,7 @@ namespace wtd.tower.editor
 
 		public void ChangeTowerTarget(Tower tower, TowerTarget newTarget)
 		{
-			if (!(newTarget is EditableTowerTarget))
+			if (newTarget is not EditableTowerTarget)
 			{
 				if (tower.TargetAdapter != newTarget)
 					tower.TargetAdapter.ChangeTarget(newTarget);
@@ -57,7 +56,7 @@ namespace wtd.tower.editor
 
 		private void CancelTargetEditor()
 		{
-			TTargetEditor.CancelEditor(CameraManager.instance.ScreenMousePos);
+			TTargetEditor.CancelEditor(CameraManager.Instance.ScreenMousePos);
 			EndTargetEditor();
 		}
 
@@ -72,11 +71,10 @@ namespace wtd.tower.editor
 			{
 				return;
 			}
-			((RectTransform)TowerTargetEditorIndicator.transform).anchoredPosition = CameraManager.instance.ScreenMousePos;
+			((RectTransform)TowerTargetEditorIndicator.transform).anchoredPosition = CameraManager.Instance.ScreenMousePos;
 			//change to raycast
-			RaycastHit hit;
 			bool check = false;
-			if (Physics.Raycast(CameraManager.instance.MouseRay, out hit))
+			if (Physics.Raycast(CameraManager.Instance.MouseRay, out RaycastHit hit))
 			{
 				check = TTargetEditor.CheckTarget(hit.point);
 			}

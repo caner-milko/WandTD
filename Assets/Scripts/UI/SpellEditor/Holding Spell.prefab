@@ -28,6 +28,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1817258813809606498}
   m_Father: {fileID: 0}
@@ -50,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dad4d954dbd364429c71d2fe9fc2f76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <slot>k__BackingField: {fileID: 1817258813809606503}
+  <Slot>k__BackingField: {fileID: 1817258813809606503}
 --- !u!225 &1100133726
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -156,7 +157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5945594846305591507, guid: ccc6562f05f606342922b71e67cedaa8, type: 3}
       propertyPath: m_Name
-      value: SpellSlot AAA
+      value: SpellSlot
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccc6562f05f606342922b71e67cedaa8, type: 3}

@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using wtd.wand;
+using wtd.effect;
 using wtd.spell;
 using wtd.spell.targets;
-using wtd.effect;
+using wtd.wand;
 
 namespace wtd
 {
@@ -19,8 +18,6 @@ namespace wtd
 		public Wand wand;
 
 		//test variables
-
-		int a;
 
 		public EffectHolder holder;
 
@@ -44,11 +41,10 @@ namespace wtd
 			if (Input.GetKey(KeyCode.Mouse0))
 			{
 				//output casted spell list
-				List<CastedSpell> casted;
-				Physics.Raycast(CameraManager.instance.MouseRay, out RaycastHit hit);
+				Physics.Raycast(CameraManager.Instance.MouseRay, out RaycastHit hit);
 				Vector3 mouseDir = hit.point - transform.position;
 				mouseDir.y = 0;
-				wand.Shoot(new DirectedSpellTarget(mouseDir), out casted);
+				wand.Shoot(new DirectedSpellTarget(mouseDir), out _);
 			}
 
 		}
@@ -58,7 +54,7 @@ namespace wtd
 
 
 			//basic movement
-			Vector3 vel = new Vector3(0.0f, 0.0f, 0.0f);
+			Vector3 vel = new(0.0f, 0.0f, 0.0f);
 
 			if (Input.GetKey(KeyCode.W))
 			{
@@ -87,7 +83,7 @@ namespace wtd
 			vel.Normalize();
 
 
-			transform.Translate(vel * 5.0f * Time.deltaTime);
+			transform.Translate(5.0f * Time.deltaTime * vel);
 		}
 
 		public string CasterType()

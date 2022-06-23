@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
+using UnityEngine;
 namespace wtd.stat
 {
 	[Serializable]
@@ -14,11 +12,11 @@ namespace wtd.stat
 		}
 		public readonly object source;
 		[field: ReadOnly, SerializeField]
-		public float value { get; private set; }
+		public float Value { get; private set; }
 		[field: ReadOnly, SerializeField]
-		public StatEffectorType type { get; private set; }
+		public StatEffectorType Type { get; private set; }
 		[field: ReadOnly, SerializeField]
-		public int order { get; private set; }
+		public int Order { get; private set; }
 
 		public StatEffector(float value, object Source, StatEffectorType type) : this(value, Source, type, (int)type)
 		{
@@ -26,17 +24,17 @@ namespace wtd.stat
 
 		public StatEffector(float value, object Source, StatEffectorType type, int order)
 		{
-			this.value = value;
+			this.Value = value;
 			this.source = Source;
-			this.type = type;
-			this.order = order;
+			this.Type = type;
+			this.Order = order;
 		}
 
 		public int CompareTo(StatEffector other)
 		{
 			if (other == null)
 				return 1;
-			return this.order - other.order;
+			return this.Order - other.Order;
 		}
 	}
 }

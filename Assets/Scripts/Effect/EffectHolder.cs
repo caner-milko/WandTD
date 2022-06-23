@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,14 +7,14 @@ namespace wtd.effect
 	{
 
 		[field: SerializeField]
-		public List<Effect> effects { get; private set; } = new List<Effect>();
+		public List<Effect> Effects { get; private set; } = new List<Effect>();
 
 		[SerializeField]
 		private Transform EffectsParent;
 
 		private void Start()
 		{
-			foreach (Effect effect in effects)
+			foreach (Effect effect in Effects)
 			{
 				effect.Add(this);
 			}
@@ -34,15 +33,15 @@ namespace wtd.effect
 					EffectsParent.parent = transform;
 				}
 			}
-				foreach (Effect effect in EffectsParent.GetComponentsInChildren<Effect>())
-				{
-					AddEffect(effect, false);
-				}
+			foreach (Effect effect in EffectsParent.GetComponentsInChildren<Effect>())
+			{
+				AddEffect(effect, false);
+			}
 		}
 
 		private void OnDestroy()
 		{
-			foreach (Effect effect in effects)
+			foreach (Effect effect in Effects)
 			{
 				effect.Remove();
 			}
@@ -50,9 +49,9 @@ namespace wtd.effect
 
 		public void AddEffect(Effect effect, bool instantiate)
 		{
-			if (!effect.canStack)
+			if (!effect.CanStack)
 			{
-				List<Effect> list = GetEffectByType<Effect>(effect.effectName);
+				List<Effect> list = GetEffectByType<Effect>(effect.EffectName);
 				if (list.Count > 0)
 				{
 					Effect eff = list[0];
@@ -65,29 +64,29 @@ namespace wtd.effect
 			{
 				realEffect = GameObject.Instantiate<Effect>(effect, EffectsParent);
 			}
-			effects.Add(realEffect);
+			Effects.Add(realEffect);
 			realEffect.Add(this);
 		}
 
 		public void RemoveEffect(Effect effect)
 		{
 			effect.Remove();
-			effects.Remove(effect);
+			Effects.Remove(effect);
 		}
 
 		public void ClearEffects()
 		{
-			foreach (Effect effect in effects)
+			foreach (Effect effect in Effects)
 				effect.Remove();
-			effects.Clear();
+			Effects.Clear();
 		}
 
 		public List<T> GetEffectByType<T>(string effectName) where T : Effect
 		{
-			List<T> effectsByType = new List<T>();
-			foreach (Effect effect in effects)
-				if (effect.effectName == effectName && effect is T)
-					effectsByType.Add((T)effect);
+			List<T> effectsByType = new();
+			foreach (Effect effect in Effects)
+				if (effect.EffectName == effectName && effect is T t)
+					effectsByType.Add(t);
 			return effectsByType;
 		}
 

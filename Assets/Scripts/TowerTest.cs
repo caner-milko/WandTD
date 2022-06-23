@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using wtd.tower;
 using wtd.spell;
+using wtd.tower;
 
 namespace wtd
 {
@@ -25,7 +24,7 @@ namespace wtd
 		{
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
-				tower.shoot(out _);
+				tower.Shoot(out _);
 			}
 		}
 	}

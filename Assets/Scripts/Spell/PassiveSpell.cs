@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace wtd.spell
 {
 	/// <summary>
@@ -16,7 +12,7 @@ namespace wtd.spell
 			return passiveCreated;
 		}
 
-		public override void addToGroup(SpellGroupBuilder group)
+		public override void AddToGroup(SpellGroupBuilder group)
 		{
 
 		}

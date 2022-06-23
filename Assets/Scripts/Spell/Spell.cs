@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using wtd.stat;
-using System;
 namespace wtd.spell
 {
 	/// <summary>
-	/// A spell has stats(will change), a unique static name <see cref="SpellName"/> and <see cref="addToGroup(SpellGroupBuilder)"/>, ticking and casting methods
+	/// A spell has stats(will change), a unique static name <see cref="SpellName"/> and <see cref="AddToGroup(SpellGroupBuilder)"/>, ticking and casting methods
 	/// </summary>
 	public abstract class Spell : MonoBehaviour, IStatUser
 	{
@@ -20,7 +18,7 @@ namespace wtd.spell
 			public Color color;
 		}
 		[field: SerializeField]
-		public SpellImage image { get; private set; }
+		public SpellImage Image { get; private set; }
 		public string spellName;
 		public float castModifier, rechargeModifier;
 		public int mana;
@@ -29,7 +27,7 @@ namespace wtd.spell
 		/// Called when the spelldata is added to a SpellGroupBuilder
 		/// </summary>
 		/// <param name="group"></param>
-		public abstract void addToGroup(SpellGroupBuilder group);
+		public abstract void AddToGroup(SpellGroupBuilder group);
 
 		public virtual Spell CastSpell(SingleSpellGroup group, CastedSpell casted)
 		{
@@ -38,15 +36,15 @@ namespace wtd.spell
 			return created;
 		}
 
-		public CastedSpell castedParent { get; private set; }
+		public CastedSpell CastedParent { get; private set; }
 
 		public virtual void Setup(CastedSpell castedParent)
 		{
-			if (this.castedParent != null)
+			if (this.CastedParent != null)
 			{
 				throw new NotSupportedException("Cannot set casted parent of a spell twice.");
 			}
-			this.castedParent = castedParent;
+			this.CastedParent = castedParent;
 		}
 
 		public void Cast()
@@ -98,7 +96,7 @@ namespace wtd.spell
 
 		public StatHolder GetStatHolder()
 		{
-			return castedParent.statHolder;
+			return CastedParent.StatHolder;
 		}
 
 	}

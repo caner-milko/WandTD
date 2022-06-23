@@ -1,9 +1,8 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using wtd.stat;
 using wtd.effect;
 using wtd.spell.targets;
+using wtd.stat;
 namespace wtd.spell
 {
 	/// <summary>
@@ -14,29 +13,29 @@ namespace wtd.spell
 	{
 
 
-		public SingleSpellGroup spellGroup { get; private set; }
+		public SingleSpellGroup SpellGroup { get; private set; }
 
 		public Transform PassivesParent;
-		public ISpellTarget target { get; private set; }
+		public ISpellTarget Target { get; private set; }
 		[field: SerializeField]
 		private StatHolderComp statHolderComp;
-		public StatHolder statHolder => statHolderComp != null ? statHolderComp.statHolder : null;
+		public StatHolder StatHolder => statHolderComp != null ? statHolderComp.RealHolder : null;
 		[field: SerializeField]
-		public EffectHolder effectHolder { get; private set; }
+		public EffectHolder EffectHolder { get; private set; }
 
-		public bool casted { get; private set; } = false;
+		public bool Casted { get; private set; } = false;
 
-		public ActiveSpell active { get; private set; }
-		public List<PassiveSpell> passives { get; private set; } = new List<PassiveSpell>();
+		public ActiveSpell Active { get; private set; }
+		public List<PassiveSpell> Passives { get; private set; } = new List<PassiveSpell>();
 
-		public List<SpellTrigger> triggers { get; private set; } = new List<SpellTrigger>();
+		public List<SpellTrigger> Triggers { get; private set; } = new List<SpellTrigger>();
 
 		[field: ReadOnly, SerializeField,]
-		public bool toDestroy { get; private set; } = false;
+		public bool ToDestroy { get; private set; } = false;
 
 		private bool didCastChild = false;
 
-		public Transform mainMesh { get; private set; }
+		public Transform MainMesh { get; private set; }
 
 		private void Awake()
 		{
@@ -44,9 +43,9 @@ namespace wtd.spell
 			{
 				statHolderComp = GetComponent<StatHolderComp>();
 			}
-			if (effectHolder == null || !effectHolder)
+			if (EffectHolder == null || !EffectHolder)
 			{
-				effectHolder = GetComponent<EffectHolder>();
+				EffectHolder = GetComponent<EffectHolder>();
 			}
 			if (PassivesParent == null || !PassivesParent)
 			{
@@ -58,32 +57,32 @@ namespace wtd.spell
 		public void Init(Vector3 position, ISpellTarget target, SingleSpellGroup spellGroup)
 		{
 			this.transform.position = position;
-			this.target = target;
-			this.spellGroup = spellGroup;
+			this.Target = target;
+			this.SpellGroup = spellGroup;
 
-			this.active = (ActiveSpell)spellGroup.active.CastSpell(spellGroup, this);
-			name = "Casted: " + active.spellName;
-			if (spellGroup.passives.Count > 0)
+			this.Active = (ActiveSpell)spellGroup.Active.CastSpell(spellGroup, this);
+			name = "Casted: " + Active.spellName;
+			if (spellGroup.Passives.Count > 0)
 				name += " (";
-			foreach (PassiveSpell passive in spellGroup.passives)
+			foreach (PassiveSpell passive in spellGroup.Passives)
 			{
-				this.passives.Add((PassiveSpell)passive.CastSpell(spellGroup, this));
+				this.Passives.Add((PassiveSpell)passive.CastSpell(spellGroup, this));
 				name += passive.spellName + ", ";
 			}
-			if (spellGroup.passives.Count > 0)
+			if (spellGroup.Passives.Count > 0)
 			{
-				name = name.Substring(0, name.Length - 2);
+				name = name[..^2];
 				name += ")";
 			}
-			active.Setup(this);
-			foreach (PassiveSpell passive in passives)
+			Active.Setup(this);
+			foreach (PassiveSpell passive in Passives)
 				passive.Setup(this);
 		}
 
 		public void Cast()
 		{
-			active.Cast();
-			foreach (PassiveSpell passive in passives)
+			Active.Cast();
+			foreach (PassiveSpell passive in Passives)
 			{
 				passive.Cast();
 			}
@@ -96,7 +95,7 @@ namespace wtd.spell
 			{
 				realTrigger = GameObject.Instantiate<SpellTrigger>(trigger, transform);
 			}
-			triggers.Add(realTrigger);
+			Triggers.Add(realTrigger);
 			realTrigger.Setup(this);
 			return realTrigger;
 		}
@@ -106,10 +105,10 @@ namespace wtd.spell
 		{
 			if (!didCastChild)
 			{
-				ISpellTarget target = null;
+				ISpellTarget target;
 				if (triggerData.isTrigger)
 				{
-					target = this.target;
+					target = this.Target;
 				}
 				else
 				{
@@ -119,14 +118,14 @@ namespace wtd.spell
 			}
 			if (triggerData.weak)
 				return;
-			bool shouldDestroy = active.HitTrigger(triggerData);
-			foreach (PassiveSpell passive in passives)
+			bool shouldDestroy = Active.HitTrigger(triggerData);
+			foreach (PassiveSpell passive in Passives)
 			{
 				shouldDestroy = shouldDestroy && passive.HitTrigger(triggerData);
 			}
 			if (shouldDestroy)
 			{
-				toDestroy = shouldDestroy;
+				ToDestroy = shouldDestroy;
 			}
 		}
 
@@ -134,46 +133,46 @@ namespace wtd.spell
 		{
 			if (triggerData.weak)
 			{
-				ShootChild(this.target);
+				ShootChild(this.Target);
 				return;
 			}
-			bool shouldDestroy = active.TimerTrigger(triggerData);
-			foreach (PassiveSpell passive in passives)
+			bool shouldDestroy = Active.TimerTrigger(triggerData);
+			foreach (PassiveSpell passive in Passives)
 			{
 				shouldDestroy = shouldDestroy && passive.TimerTrigger(triggerData);
 			}
 			if (shouldDestroy)
 			{
-				toDestroy = shouldDestroy;
+				ToDestroy = shouldDestroy;
 			}
 		}
 
 		public void SetMainMesh(Transform mainMesh)
 		{
-			if (this.mainMesh != null)
+			if (this.MainMesh != null)
 			{
 				Debug.LogError("Cannot set main mesh twice in casted spell.");
 				return;
 			}
-			this.mainMesh = mainMesh;
+			this.MainMesh = mainMesh;
 		}
 
 		protected void ShootChild(ISpellTarget target)
 		{
 			if (didCastChild)
 				return;
-			this.spellGroup.CastChild(mainMesh.position + target.GetDirection(mainMesh.position) * 0.1f, target);
+			this.SpellGroup.CastChild(MainMesh.position + target.GetDirection(MainMesh.position) * 0.1f, target);
 			didCastChild = true;
 		}
 
 		private void LateUpdate()
 		{
-			if (toDestroy)
+			if (ToDestroy)
 			{
-				active.Remove();
-				foreach (PassiveSpell passive in passives)
+				Active.Remove();
+				foreach (PassiveSpell passive in Passives)
 					passive.Remove();
-				ShootChild(this.target);
+				ShootChild(this.Target);
 				Destroy(gameObject);
 			}
 		}

@@ -1,7 +1,6 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 namespace wtd.stat
 {
 	[Serializable]
@@ -12,10 +11,10 @@ namespace wtd.stat
 		public readonly StatHolder holder;
 		public float Value => GetValue();
 		[field: SerializeField]
-		public float defaultVal { get; private set; } = 0.0f;
+		public float DefaultVal { get; private set; } = 0.0f;
 
 		[field: SerializeField]
-		public List<StatEffector> effectors { get; private set; } = new List<StatEffector>();
+		public List<StatEffector> Effectors { get; private set; } = new List<StatEffector>();
 
 		[SerializeField, ReadOnly]
 		private float lastVal = 0.0f;
@@ -30,7 +29,7 @@ namespace wtd.stat
 		{
 			StatName = statName;
 			this.holder = holder;
-			this.defaultVal = defaultVal;
+			this.DefaultVal = defaultVal;
 			calculated = false;
 		}
 
@@ -38,28 +37,28 @@ namespace wtd.stat
 		{
 			if (calculated)
 				return lastVal;
-			float calc = defaultVal;
+			float calc = DefaultVal;
 			float percAdd = 1.0f;
 			bool lastPercAdd = false;
-			foreach (StatEffector effector in effectors)
+			foreach (StatEffector effector in Effectors)
 			{
-				if (lastPercAdd && effector.type != StatEffector.StatEffectorType.PercentAdd)
+				if (lastPercAdd && effector.Type != StatEffector.StatEffectorType.PercentAdd)
 				{
 					calc *= percAdd;
 					percAdd = 1.0f;
 					lastPercAdd = false;
 				}
-				switch (effector.type)
+				switch (effector.Type)
 				{
 					case StatEffector.StatEffectorType.Add:
-						calc += effector.value;
+						calc += effector.Value;
 						break;
 					case StatEffector.StatEffectorType.PercentAdd:
-						percAdd += effector.value;
+						percAdd += effector.Value;
 						lastPercAdd = true;
 						break;
 					case StatEffector.StatEffectorType.PercentMul:
-						calc *= 1f + effector.value;
+						calc *= 1f + effector.Value;
 						break;
 				}
 			}
@@ -71,36 +70,36 @@ namespace wtd.stat
 
 		public void SetDefault(float val)
 		{
-			this.defaultVal = val;
+			this.DefaultVal = val;
 		}
 
 		public void AddEffector(params StatEffector[] toAdd)
 		{
-			effectors.AddRange(toAdd);
-			effectors.Sort();
+			Effectors.AddRange(toAdd);
+			Effectors.Sort();
 			calculated = false;
 		}
 
 		public void RemoveEffector(StatEffector effector)
 		{
-			effectors.Remove(effector);
+			Effectors.Remove(effector);
 			calculated = false;
 		}
 
 		public void RemoveEffectorsFromSource(object source)
 		{
-			for (int i = effectors.Count - 1; i >= 0; i--)
+			for (int i = Effectors.Count - 1; i >= 0; i--)
 			{
-				if (effectors[i].source == source)
-					effectors.RemoveAt(i);
+				if (Effectors[i].source == source)
+					Effectors.RemoveAt(i);
 			}
 			calculated = false;
 		}
 
 		public Stat CloneToHolder(StatHolder holder)
 		{
-			Stat newStat = new Stat(StatName, holder, this.defaultVal);
-			newStat.AddEffector(this.effectors.ToArray());
+			Stat newStat = new(StatName, holder, this.DefaultVal);
+			newStat.AddEffector(this.Effectors.ToArray());
 			return newStat;
 		}
 	}

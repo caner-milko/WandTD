@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using wtd.spell;
@@ -9,9 +8,8 @@ namespace wtd.tower
 	public class Tower : MonoBehaviour, ISpellCaster, ISpellTarget
 	{
 		public Wand wand;
-		public List<PassiveSpell> alwaysCast = new List<PassiveSpell>();
+		public List<PassiveSpell> alwaysCast = new();
 
-		[field: SerializeField]
 		public TowerTargetAdapter TargetAdapter;
 		public TowerTarget Target => TargetAdapter != null ? TargetAdapter.Target : null;
 
@@ -57,10 +55,9 @@ namespace wtd.tower
 			return wand.NextSpell();
 		}
 
-		public virtual bool shoot(out List<CastedSpell> casted)
+		public virtual bool Shoot(out List<CastedSpell> casted)
 		{
-			ISpellTarget selTarget;
-			if (Target.GetTarget(out selTarget))
+			if (Target.GetTarget(out ISpellTarget selTarget))
 			{
 				return wand.Shoot(selTarget, out casted);
 			}

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,11 +7,11 @@ namespace wtd.stat
 	public class StatHolder
 	{
 		[SerializeField]
-		private List<Stat> Stats = new List<Stat>();
+		private List<Stat> Stats = new();
 
-		private Dictionary<string, Stat> stats = new Dictionary<string, Stat>();
+		private readonly Dictionary<string, Stat> stats = new();
 
-		public void setup()
+		public void Setup()
 		{
 			foreach (Stat stat in Stats)
 			{
@@ -26,7 +25,7 @@ namespace wtd.stat
 			{
 				if (addEffectorsIfExists)
 				{
-					result.AddEffector(stat.effectors.ToArray());
+					result.AddEffector(stat.Effectors.ToArray());
 				}
 				return result;
 			}
@@ -50,7 +49,7 @@ namespace wtd.stat
 			}
 			if (!createIfNull)
 				return null;
-			Stat stat = new Stat(statName, this, defaultVal);
+			Stat stat = new(statName, this, defaultVal);
 			AddStat(stat);
 			return stat;
 		}

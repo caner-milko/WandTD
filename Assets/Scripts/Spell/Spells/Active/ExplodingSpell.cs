@@ -1,19 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using wtd.stat;
 using wtd.enemy;
+using wtd.stat;
 
 namespace wtd.spell.spells
 {
 	public class ExplodingSpell : ActiveSpell
 	{
 		[SerializeField, AutoCopyStat("explosionRadius")]
-		private Stat explosionRadius = new Stat("explosionRadius", null, 3f);
+		private Stat explosionRadius = new("explosionRadius", null, 3f);
 		[SerializeField, AutoCopyStat(StatNames.DAMAGE)]
-		private Stat damage = new Stat(StatNames.DAMAGE, null, 5f);
+		private Stat damage = new(StatNames.DAMAGE, null, 5f);
 		[SerializeField, AutoCopyStat(StatNames.SPEED)]
-		private Stat speed = new Stat(StatNames.SPEED, null, 5f);
+		private Stat speed = new(StatNames.SPEED, null, 5f);
 
 		[SerializeField]
 		private CollisionSpellTrigger collTrigger;
@@ -23,13 +21,13 @@ namespace wtd.spell.spells
 		private Rigidbody body;
 		protected override void OnCast()
 		{
-			StatUtils.SetupStats(this);
+			((IStatUser)this).SetupStats();
 
-			collTrigger = (CollisionSpellTrigger)castedParent.AddTrigger(collTrigger, true);
+			collTrigger = (CollisionSpellTrigger)CastedParent.AddTrigger(collTrigger, true);
 			body = collTrigger.GetComponent<Rigidbody>();
-			timedTrigger = (TimedSpellTrigger)castedParent.AddTrigger(timedTrigger, true);
-			castedParent.SetMainMesh(body.transform);
-			body.velocity = castedParent.target.GetVelocityVector(transform.position, speed.Value);
+			timedTrigger = (TimedSpellTrigger)CastedParent.AddTrigger(timedTrigger, true);
+			CastedParent.SetMainMesh(body.transform);
+			body.velocity = CastedParent.Target.GetVelocityVector(transform.position, speed.Value);
 		}
 
 		protected override void OnFixedUpdate()
@@ -61,7 +59,7 @@ namespace wtd.spell.spells
 
 		private void CreateExplosion()
 		{
-			Vector3 pos = castedParent.transform.position;
+			Vector3 pos = CastedParent.transform.position;
 			float expRad = explosionRadius.Value;
 			Collider[] collided = Physics.OverlapSphere(pos, expRad, LayerMask.GetMask("Enemy"));
 			foreach (Collider coll in collided)
@@ -69,10 +67,9 @@ namespace wtd.spell.spells
 				float calcDamage = damage.Value;
 				//square damage falloff
 				calcDamage *= 1 - coll.ClosestPoint(pos).sqrMagnitude / (expRad * expRad);
-				StatHolder calcDamageStat = new StatHolder();
+				StatHolder calcDamageStat = new();
 				calcDamageStat.AddStat(new Stat("damage", calcDamageStat, calcDamage));
-				Enemy enemy = coll.GetComponent<Enemy>();
-				if (enemy != null)
+				if (coll.TryGetComponent(out Enemy enemy))
 				{
 					enemy.InflictDamage(calcDamageStat);
 					Debug.Log("Inflicted " + calcDamage + " on " + enemy.name + ".");

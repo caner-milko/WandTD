@@ -1,25 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace wtd
 {
 	public class CameraManager : MonoBehaviour
 	{
-		public static CameraManager instance { get; private set; }
-		public Camera mainCam { get; private set; }
+		public static CameraManager Instance { get; private set; }
+		public Camera MainCam { get; private set; }
 
-		public Vector3 WorldMousePos => mainCam.ScreenToWorldPoint(Input.mousePosition);
+		public Vector3 WorldMousePos => MainCam.ScreenToWorldPoint(Input.mousePosition);
 
-		public Ray MouseRay => mainCam.ScreenPointToRay(ScreenMousePos);
+		public Ray MouseRay => MainCam.ScreenPointToRay(ScreenMousePos);
 
 		public Vector2 ScreenMousePos => Input.mousePosition;
 
 		void Awake()
 		{
-			instance = this;
-			if (mainCam == null)
-				mainCam = Camera.main;
+			Instance = this;
+			if (MainCam == null)
+				MainCam = Camera.main;
 		}
 	}
 }

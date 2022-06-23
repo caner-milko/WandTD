@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.Events;
 namespace wtd.spell
 {
@@ -16,10 +15,10 @@ namespace wtd.spell
 		public readonly ISpellCaster owner;
 
 		// List of spells this container holds.
-		private List<SpellSlot> _spellSlots;
+		private readonly List<SpellSlot> _spellSlots;
 
 		// List of validators that every spell in this container has to satisfy.
-		private List<Func<CasterSpell, bool>> _spellValidators;
+		private readonly List<Func<CasterSpell, bool>> _spellValidators;
 
 		public UnityEvent ContainerEdited;
 
@@ -179,7 +178,7 @@ namespace wtd.spell
 		{
 			_spellValidators.Add(spellValidator);
 
-			List<CasterSpell> _invalidSpells = new List<CasterSpell>();
+			List<CasterSpell> _invalidSpells = new();
 
 			foreach (SpellSlot spellSlot in _spellSlots)
 			{

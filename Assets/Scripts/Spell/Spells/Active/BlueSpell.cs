@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using wtd.stat;
 namespace wtd.spell.spells
@@ -7,10 +5,10 @@ namespace wtd.spell.spells
 	public class BlueSpell : ActiveSpell
 	{
 		[SerializeField, AutoCopyStat(StatNames.SPEED)]
-		private Stat speedStat = new Stat(StatNames.SPEED, null, 3);
+		private Stat speedStat = new(StatNames.SPEED, null, 3);
 		protected override void OnCast()
 		{
-			StatUtils.SetupStats(this);
+			((IStatUser)this).SetupStats();
 		}
 
 
@@ -25,10 +23,10 @@ namespace wtd.spell.spells
 		}
 		protected override void OnFixedUpdate()
 		{
-			Vector3 vel = castedParent.target.GetVelocityVector(castedParent.transform.position, speedStat.Value);
+			Vector3 vel = CastedParent.Target.GetVelocityVector(CastedParent.transform.position, speedStat.Value);
 			if (vel.sqrMagnitude < 0.001f)
 				return;
-			castedParent.transform.Translate(vel * Time.deltaTime);
+			CastedParent.transform.Translate(vel * Time.deltaTime);
 		}
 
 	}

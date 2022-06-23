@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using wtd.spell;
-using UnityEngine.EventSystems;
 
 namespace wtd.ui.spell
 {
@@ -55,7 +51,7 @@ namespace wtd.ui.spell
 			this.hoveringContainer = container;
 		}
 
-		public void OnExitContainer(UISpellContainer container)
+		public void OnExitContainer()
 		{
 			this.hoveringContainer = null;
 		}
@@ -65,18 +61,18 @@ namespace wtd.ui.spell
 			this.hoveringSlot = slot;
 		}
 
-		public void OnExitSpellSlot(UISpellSlot slot)
+		public void OnExitSpellSlot()
 		{
 			this.hoveringSlot = null;
 		}
 
 		public void PickSpellSlot()
 		{
-			if (hoveringSlot.spellSlot.IsEmpty)
+			if (hoveringSlot.Slot.IsEmpty)
 				return;
-			pickedSlot = hoveringSlot;
-			pickedSlot.container.SwapSpells(pickedSlot.spellSlot, holdingSlot.holdingSpell);
 			holdingSlot.gameObject.SetActive(true);
+			pickedSlot = hoveringSlot;
+			pickedSlot.Container.SwapSpells(pickedSlot.Slot, holdingSlot.HoldingSpell);
 		}
 
 		public void PickSpellContainer()
@@ -93,9 +89,9 @@ namespace wtd.ui.spell
 
 		public void SwapSpells()
 		{
-			hoveringSlot.container.SwapSpells(hoveringSlot.spellSlot, holdingSlot.holdingSpell);
+			hoveringSlot.Container.SwapSpells(hoveringSlot.Slot, holdingSlot.HoldingSpell);
 			ReleasePicked();
-			if (!holdingSlot.holdingSpell.IsEmpty)
+			if (!holdingSlot.HoldingSpell.IsEmpty)
 			{
 				holdingSlot.gameObject.SetActive(true);
 				pickedSlot = hoveringSlot;

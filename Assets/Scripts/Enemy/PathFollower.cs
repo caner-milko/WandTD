@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using wtd.stat;
 namespace wtd.enemy
@@ -10,17 +8,17 @@ namespace wtd.enemy
 		private StatHolderComp statHolderComp;
 
 		[SerializeField, AutoCopyStat(StatNames.SPEED)]
-		private Stat speedStat = new Stat(StatNames.SPEED, null, 3);
+		private Stat speedStat = new(StatNames.SPEED, null, 3);
 
 		[field: SerializeField]
-		public EnemyPath path { get; private set; }
+		public EnemyPath Path { get; private set; }
 		public int lastPoint = -1;
-		public bool Finished => lastPoint >= path.positions.Count - 1;
+		public bool Finished => lastPoint >= Path.Positions.Count - 1;
 		public Vector3 NextPosition
 		{
 			get
 			{
-				return Finished ? path.positions[lastPoint] : path.positions[lastPoint + 1];
+				return Finished ? Path.Positions[lastPoint] : Path.Positions[lastPoint + 1];
 			}
 		}
 
@@ -30,15 +28,15 @@ namespace wtd.enemy
 		private void Awake()
 		{
 			statHolderComp = GetComponent<StatHolderComp>();
-			StatUtils.SetupStats(this);
+			((IStatUser)this).SetupStats();
 		}
 
 		void Start()
 		{
-			if (path != null && path.positions.Count > 0)
+			if (Path != null && Path.Positions.Count > 0)
 			{
 				lastPoint = 0;
-				transform.position = path.positions[0];
+				transform.position = Path.Positions[0];
 			}
 		}
 
@@ -65,7 +63,7 @@ namespace wtd.enemy
 			float speed = Mathf.Max(speedStat.Value, dif.magnitude);
 
 
-			dif = dif.normalized * speed * Time.fixedDeltaTime;
+			dif = speed * Time.fixedDeltaTime * dif.normalized;
 			transform.Translate(dif);
 		}
 
@@ -77,7 +75,7 @@ namespace wtd.enemy
 
 		public StatHolder GetStatHolder()
 		{
-			return statHolderComp.statHolder;
+			return statHolderComp.RealHolder;
 		}
 	}
 }

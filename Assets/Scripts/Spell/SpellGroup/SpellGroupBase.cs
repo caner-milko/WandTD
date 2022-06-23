@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,18 +13,18 @@ namespace wtd.spell
 		/// <summary>
 		/// <see cref="PassiveSpell"/>s of the spell group
 		/// </summary>
-		public List<PassiveSpell> passives { get; private set; } = new List<PassiveSpell>();
+		public List<PassiveSpell> Passives { get; private set; } = new List<PassiveSpell>();
 
 		/// <summary>
 		/// Parent of group of the spell group, can be null
 		/// </summary>
-		public SpellGroupBase parent { get; private set; }
+		public SpellGroupBase Parent { get; private set; }
 
-		public bool hasParent
+		public bool HasParent
 		{
 			get
 			{
-				return parent != null;
+				return Parent != null;
 			}
 		}
 
@@ -34,13 +33,13 @@ namespace wtd.spell
 		/// <summary>
 		/// Caster of the spell group
 		/// </summary>
-		public ISpellCaster caster { get; private set; }
+		public ISpellCaster Caster { get; private set; }
 
 		protected SpellGroupBase(ISpellCaster caster, CastedSpell castedPrefab, List<PassiveSpell> passives)
 		{
-			this.caster = caster;
+			this.Caster = caster;
 			this.castedPrefab = castedPrefab;
-			this.passives = passives;
+			this.Passives = passives;
 		}
 
 		/// <summary>
@@ -69,11 +68,11 @@ namespace wtd.spell
 		/// <param name="parent">Parent of the group</param>
 		public void SetParent(SpellGroupBase parent)
 		{
-			if (this.parent != null)
+			if (this.Parent != null)
 			{
 				throw new NotSupportedException("Trying to change the parent of a already parented group.");
 			}
-			this.parent = parent;
+			this.Parent = parent;
 		}
 
 	}

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +5,11 @@ namespace wtd.tower
 {
 	public class TowerManager : MonoBehaviour
 	{
-		public static TowerManager instance { get; private set; }
+		public static TowerManager Instance { get; private set; }
 
 		private void Awake()
 		{
-			instance = this;
+			Instance = this;
 		}
 
 		[SerializeField]
@@ -39,9 +38,8 @@ namespace wtd.tower
 
 		public Tower GetTowerFromMouse()
 		{
-			Ray mouseRay = CameraManager.instance.MouseRay;
-			RaycastHit hit;
-			if (!Physics.Raycast(mouseRay, out hit, 100f, LayerMask.GetMask("tower")))
+			Ray mouseRay = CameraManager.Instance.MouseRay;
+			if (!Physics.Raycast(mouseRay, out RaycastHit hit, 100f, LayerMask.GetMask("tower")))
 				return null;
 			return hit.transform.gameObject.GetComponent<Tower>();
 		}

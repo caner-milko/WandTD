@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace wtd.effect
@@ -7,32 +5,32 @@ namespace wtd.effect
 	public abstract class Effect : MonoBehaviour
 	{
 		[field: SerializeField]
-		public string effectName { get; private set; }
+		public string EffectName { get; private set; }
 
 		[field: SerializeField]
-		public bool canStack { get; private set; }
+		public bool CanStack { get; private set; }
 
-		public EffectHolder holder { get; private set; }
+		public EffectHolder Holder { get; private set; }
 
 		[field: SerializeField]
-		public EffectTrigger trigger { get; private set; }
+		public EffectTrigger EffTrigger { get; private set; }
 
 		private void Start()
 		{
-			if (trigger == null)
-				trigger = GetComponent<EffectTrigger>();
+			if (EffTrigger == null)
+				EffTrigger = GetComponent<EffectTrigger>();
 		}
 
 		public void Add(EffectHolder holder)
 		{
-			this.holder = holder;
+			this.Holder = holder;
 			OnAdd();
 		}
 
 		public void Remove(bool removeFromHolder = false)
 		{
 			if (removeFromHolder)
-				holder.RemoveEffect(this);
+				Holder.RemoveEffect(this);
 			else
 				OnRemove();
 			Destroy(gameObject);
@@ -40,7 +38,7 @@ namespace wtd.effect
 
 		private void Update()
 		{
-			if (holder == null)
+			if (Holder == null)
 			{
 				return;
 			}
@@ -55,8 +53,8 @@ namespace wtd.effect
 		public void Renew(Effect newEffect)
 		{
 			OnRenew(newEffect);
-			if (trigger != null)
-				trigger.Renew(newEffect);
+			if (EffTrigger != null)
+				EffTrigger.Renew(newEffect);
 		}
 
 		protected abstract void OnAdd();

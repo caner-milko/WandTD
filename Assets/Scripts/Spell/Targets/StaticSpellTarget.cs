@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-using wtd.wand;
+﻿using UnityEngine;
 
 
 namespace wtd.spell.targets
@@ -15,15 +12,6 @@ namespace wtd.spell.targets
 			this.position = position;
 		}
 
-		public float DistanceToSqr(Vector3 from)
-		{
-			return (position - from).sqrMagnitude;
-		}
-
-		public Vector3 GetDirection(Vector3 from)
-		{
-			return (position - from).normalized;
-		}
 
 		public Vector3 GetPosition()
 		{
@@ -33,13 +21,6 @@ namespace wtd.spell.targets
 		public string GetTargetType()
 		{
 			return "ST_static";
-		}
-
-		public Vector3 GetVelocityVector(Vector3 from, float speed)
-		{
-			float maxSpeed = Mathf.Min(DistanceToSqr(from), speed * speed);
-
-			return Mathf.Sqrt(maxSpeed) * GetDirection(from);
 		}
 	}
 }

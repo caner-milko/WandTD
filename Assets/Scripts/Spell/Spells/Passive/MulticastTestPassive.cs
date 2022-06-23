@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace wtd.spell.spells
 {
 	public class MulticastTestPassive : MulticastPassiveSpell

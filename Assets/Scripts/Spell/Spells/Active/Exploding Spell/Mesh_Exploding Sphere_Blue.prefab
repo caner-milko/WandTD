@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -54,6 +55,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -125,9 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f55be2f4e21e14da6e929d47bffed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <weak>k__BackingField: 0
-  <layer>k__BackingField:
+  <Weak>k__BackingField: 0
+  <ExcludingLayers>k__BackingField:
     serializedVersion: 2
-    m_Bits: 4294967295
-  <countTrigger>k__BackingField: 0
-  <ignoreCollisionForX>k__BackingField: 0
+    m_Bits: 0
+  <CountTrigger>k__BackingField: 0
+  <IgnoreCollisionForX>k__BackingField: 0

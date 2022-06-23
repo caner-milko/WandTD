@@ -1,26 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Reflection;
 using System;
+using System.Reflection;
 namespace wtd.stat
 {
 	public interface IStatUser
 	{
 		public StatHolder GetStatHolder();
-	}
 
-	public class StatUtils
-	{
-		public static void SetupStats(IStatUser statUser)
+		public void SetupStats()
 		{
 			BindingFlags bindingFlags = BindingFlags.Public |
 							BindingFlags.NonPublic |
 							BindingFlags.Instance;
 
-			StatHolder holder = statUser.GetStatHolder();
+			StatHolder holder = GetStatHolder();
 
-			foreach (var curStatField in statUser.GetType().GetFields(bindingFlags))
+			foreach (var curStatField in GetType().GetFields(bindingFlags))
 			{
 				if (curStatField.GetCustomAttributes(typeof(AutoCopyStat), true).Length == 0) continue;
 
@@ -28,27 +22,26 @@ namespace wtd.stat
 
 				if (curStatField.FieldType == typeof(Stat))
 				{
-					Stat curStat = (Stat)curStatField.GetValue(statUser);
+					Stat curStat = (Stat)curStatField.GetValue(this);
 					if (attr.HasName)
 						curStat.StatName = attr.StatName;
-					curStatField.SetValue(statUser, holder.AddStat(curStat, true));
+					curStatField.SetValue(this, holder.AddStat(curStat, true));
 				}
 				if (curStatField.FieldType == typeof(float) || curStatField.FieldType == typeof(int))
 				{
 					if (!attr.HasName)
 						continue;
-					Stat curStat = new Stat(attr.StatName, (float)curStatField.GetValue(statUser));
+					Stat curStat = new(attr.StatName, (float)curStatField.GetValue(this));
 					holder.AddStat(curStat, true, true);
 				}
 			}
-
 		}
 	}
 
 	[AttributeUsage(AttributeTargets.Field)]
 	public class AutoCopyStat : Attribute
 	{
-		private string statName = null;
+		private readonly string statName = null;
 
 		public AutoCopyStat(string statName = null)
 		{

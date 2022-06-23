@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace wtd.spell
@@ -20,14 +18,20 @@ namespace wtd.spell
 		/// </summary>
 		/// <param name="from"></param>
 		/// <returns>Direction to target from <paramref name="from"/></returns>
-		public Vector3 GetDirection(Vector3 from);
+		public Vector3 GetDirection(Vector3 from)
+		{
+			return (GetPosition() - from).normalized;
+		}
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="from"></param>
 		/// <returns>Distance to target from <paramref name="from"/>, or -1 if the distance is infinite</returns>
-		public float DistanceToSqr(Vector3 from);
+		public float DistanceToSqr(Vector3 from)
+		{
+			return (GetPosition() - from).sqrMagnitude;
+		}
 
 		/// <summary>
 		/// 
@@ -35,7 +39,13 @@ namespace wtd.spell
 		/// <param name="from"></param>
 		/// <param name="speed"></param>
 		/// <returns><see cref="GetDirection(Vector3)"/> multiplied by speed or sqrt(<see cref="DistanceToSqr(Vector3)"/>), whichever is lower</returns>
-		public Vector3 GetVelocityVector(Vector3 from, float speed);
+		public Vector3 GetVelocityVector(Vector3 from, float speed)
+		{
+			float maxSpeed = Mathf.Min(DistanceToSqr(from), speed * speed);
+
+			return Mathf.Sqrt(maxSpeed) * GetDirection(from);
+
+		}
 
 		/// <summary>
 		/// Should be unique and static for each implementation<br/>

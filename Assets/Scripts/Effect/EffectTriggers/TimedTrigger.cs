@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace wtd.effect.triggers
@@ -7,16 +5,16 @@ namespace wtd.effect.triggers
 	public class TimedTrigger : EffectTrigger
 	{
 		[field: SerializeField]
-		public float time { get; private set; }
-		public float curTime { get; private set; }
+		public float TriggerTime { get; private set; }
+		public float CurTime { get; private set; }
 
 		public float timeMultiplier = 1f;
 
 		// Update is called once per frame
 		void Update()
 		{
-			curTime += Time.deltaTime;
-			if (curTime > time)
+			CurTime += UnityEngine.Time.deltaTime;
+			if (CurTime > TriggerTime)
 			{
 				Trigger();
 			}
@@ -24,8 +22,8 @@ namespace wtd.effect.triggers
 
 		public override void Renew(Effect newEffect)
 		{
-			Debug.Log("Timer renewed after " + curTime + " seconds.");
-			this.curTime = 0;
+			Debug.Log("Timer renewed after " + CurTime + " seconds.");
+			this.CurTime = 0;
 		}
 
 	}

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using wtd.spell;
@@ -15,8 +14,8 @@ namespace wtd.wand
 		public float remainingMana = 0.0f;
 
 		[field: SerializeField, ReadOnly]
-		public bool isRecharging { get; private set; } = false;
-		public bool canShoot => curCastDelay <= 0.0f && !isRecharging;
+		public bool IsRecharging { get; private set; } = false;
+		public bool CanShoot => curCastDelay <= 0.0f && !IsRecharging;
 
 		// Owner of this wand
 		public ISpellCaster owner;
@@ -25,27 +24,27 @@ namespace wtd.wand
 		public SpellContainer spells;
 
 		// Spells yet to be cast since last recharge
-		public Queue<CasterSpell> remSpells = new Queue<CasterSpell>();
+		public Queue<CasterSpell> remSpells = new();
 
 		public SpellGroupBuilder curBuilder;
 
 		public CastedSpell castedPrefab;
 
 		[field: SerializeField]
-		public StatHolderComp holder { get; private set; }
+		public StatHolderComp Holder { get; private set; }
 
 		[SerializeField, AutoCopyStat(StatNames.WAND_MANA)]
-		private Stat mana = new Stat(StatNames.WAND_MANA, null, 150);
+		private Stat mana = new(StatNames.WAND_MANA, null, 150);
 		[SerializeField, AutoCopyStat(StatNames.WAND_MANA_RECHARGE)]
-		private Stat manaRecharge = new Stat(StatNames.WAND_MANA_RECHARGE, null, 20);
+		private Stat manaRecharge = new(StatNames.WAND_MANA_RECHARGE, null, 20);
 		[SerializeField, AutoCopyStat(StatNames.WAND_CAPACITY)]
-		private Stat capacity = new Stat(StatNames.WAND_CAPACITY, null, 4);
+		private Stat capacity = new(StatNames.WAND_CAPACITY, null, 4);
 		[SerializeField, AutoCopyStat(StatNames.WAND_RECHARGE_DELAY)]
-		private Stat rechargeDelay = new Stat(StatNames.WAND_RECHARGE_DELAY, null, 0.5f);
+		private Stat rechargeDelay = new(StatNames.WAND_RECHARGE_DELAY, null, 0.5f);
 		[SerializeField, AutoCopyStat(StatNames.WAND_CAST_DELAY)]
-		private Stat castDelay = new Stat(StatNames.WAND_CAST_DELAY, null, 0.2f);
+		private Stat castDelay = new(StatNames.WAND_CAST_DELAY, null, 0.2f);
 		[SerializeField, AutoCopyStat(StatNames.WAND_CAST_COUNT)]
-		private Stat castCount = new Stat(StatNames.WAND_CAST_COUNT, null, 1);
+		private Stat castCount = new(StatNames.WAND_CAST_COUNT, null, 1);
 
 		private void Awake()
 		{
@@ -61,20 +60,20 @@ namespace wtd.wand
 
 		private void SetupStats()
 		{
-			if (holder == null || !holder)
+			if (Holder == null || !Holder)
 			{
-				holder = GetComponent<StatHolderComp>();
-				if (holder == null)
-					holder = gameObject.AddComponent<StatHolderComp>();
+				Holder = GetComponent<StatHolderComp>();
+				if (Holder == null)
+					Holder = gameObject.AddComponent<StatHolderComp>();
 			}
 
-			StatUtils.SetupStats(this);
+			((IStatUser)this).SetupStats();
 		}
 
 		private void Update()
 		{
 			remainingMana = Mathf.Min(remainingMana + manaRecharge.Value * Time.deltaTime, mana.Value);
-			if (isRecharging)
+			if (IsRecharging)
 			{
 				curRechargeDelay -= Time.deltaTime;
 				if (curRechargeDelay <= 0.0f)
@@ -86,7 +85,7 @@ namespace wtd.wand
 			{
 				curCastDelay -= Time.deltaTime;
 			}
-			if (canShoot)
+			if (CanShoot)
 			{
 				curCastDelay = 0.0f;
 			}
@@ -100,8 +99,7 @@ namespace wtd.wand
 		/// <returns>true if at least one spell casted, false otherwise</returns>
 		public bool Shoot(ISpellTarget target, out List<CastedSpell> casted)
 		{
-			SpellGroupBase group;
-			if (PrepareSpellGroup(new List<PassiveSpell>(), out group))
+			if (PrepareSpellGroup(new List<PassiveSpell>(), out SpellGroupBase group))
 			{
 				casted = group.Cast(transform.position, target);
 				return true;
@@ -119,12 +117,12 @@ namespace wtd.wand
 		public bool PrepareSpellGroup(List<PassiveSpell> passives, out SpellGroupBase group)
 		{
 			// TODO: If there are no remaining spells return false
-			if (!canShoot)
+			if (!CanShoot)
 			{
 				group = null;
 				return false;
 			}
-			SpellGroupBuilder builder = new SpellGroupBuilder(this, castedPrefab, Mathf.FloorToInt(castCount.Value));
+			SpellGroupBuilder builder = new(this, castedPrefab, Mathf.FloorToInt(castCount.Value), passives);
 
 			curBuilder = builder;
 
@@ -136,7 +134,7 @@ namespace wtd.wand
 			}
 			if (remSpells.Count == 0)
 			{
-				isRecharging = true;
+				IsRecharging = true;
 				curRechargeDelay += rechargeDelay.Value;
 			}
 			return group != null;
@@ -149,7 +147,7 @@ namespace wtd.wand
 
 		public void RechargeSpells()
 		{
-			isRecharging = false;
+			IsRecharging = false;
 			curRechargeDelay = 0.0f;
 			remSpells = new Queue<CasterSpell>(spells);
 		}
@@ -163,9 +161,9 @@ namespace wtd.wand
 			while (remSpells.Count > 0)
 			{
 				CasterSpell nextSpell = remSpells.Dequeue();
-				if (nextSpell.spell.mana <= this.remainingMana)
+				if (nextSpell.Spell.mana <= this.remainingMana)
 				{
-					this.remainingMana -= nextSpell.spell.mana;
+					this.remainingMana -= nextSpell.Spell.mana;
 					return nextSpell;
 				}
 			}
@@ -175,7 +173,7 @@ namespace wtd.wand
 
 		public CasterSpell AddSpell(Spell spell)
 		{
-			CasterSpell casterSpell = new CasterSpell(spell, this);
+			CasterSpell casterSpell = new(spell, this);
 			spells.AddSpell(casterSpell);
 			return casterSpell;
 		}
@@ -209,7 +207,7 @@ namespace wtd.wand
 
 		public StatHolder GetStatHolder()
 		{
-			return holder.statHolder;
+			return Holder.RealHolder;
 		}
 
 		public SpellContainer GetSpellContainer()

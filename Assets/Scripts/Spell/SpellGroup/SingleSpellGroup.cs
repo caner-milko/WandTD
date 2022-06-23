@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,23 +14,23 @@ namespace wtd.spell
 		/// <summary>
 		/// Active spell of the group
 		/// </summary>
-		public ActiveSpell active { get; private set; }
+		public ActiveSpell Active { get; private set; }
 
 		/// <summary>
 		/// Child group of the group, might be null
 		/// </summary>
-		public SpellGroupBase childGroup { get; private set; }
+		public SpellGroupBase ChildGroup { get; private set; }
 
 		internal SingleSpellGroup(ISpellCaster caster, CastedSpell castedPrefab, List<PassiveSpell> passives, ActiveSpell active) : base(caster, castedPrefab, passives)
 		{
-			this.active = active;
-			this.childGroup = null;
+			this.Active = active;
+			this.ChildGroup = null;
 		}
 
 		internal SingleSpellGroup(ISpellCaster caster, CastedSpell castedPrefab, List<PassiveSpell> passives, ActiveSpell active, SpellGroupBase childGroup) : base(caster, castedPrefab, passives)
 		{
-			this.active = active;
-			this.childGroup = childGroup;
+			this.Active = active;
+			this.ChildGroup = childGroup;
 		}
 		/// <summary>
 		/// </summary>
@@ -40,7 +38,7 @@ namespace wtd.spell
 		public override float GetCastDelay()
 		{
 			float delay = 0;
-			foreach (PassiveSpell spell in passives)
+			foreach (PassiveSpell spell in Passives)
 			{
 				delay += spell.castModifier;
 			}
@@ -54,7 +52,7 @@ namespace wtd.spell
 		public override float GetRechargeDelay()
 		{
 			float delay = 0;
-			foreach (PassiveSpell spell in passives)
+			foreach (PassiveSpell spell in Passives)
 			{
 				delay += spell.castModifier;
 			}
@@ -68,7 +66,7 @@ namespace wtd.spell
 		/// <returns>Cast delay of the active spell</returns>
 		public float GetCastDelayWOPassives()
 		{
-			return active.castModifier;
+			return Active.castModifier;
 		}
 
 		/// <summary>
@@ -77,7 +75,7 @@ namespace wtd.spell
 		/// <returns>Recharge delay total of the active spell and the child group</returns>
 		public float GetRechargeDelayWOPassives()
 		{
-			return (childGroup != null ? childGroup.GetRechargeDelay() : 0.0f) + active.rechargeModifier;
+			return (ChildGroup != null ? ChildGroup.GetRechargeDelay() : 0.0f) + Active.rechargeModifier;
 		}
 
 		/// <summary>
@@ -87,7 +85,7 @@ namespace wtd.spell
 		/// <returns>A list with a single <see cref="CastedSpell"/></returns>
 		public override List<CastedSpell> Cast(Vector3 position, ISpellTarget target)
 		{
-			List<CastedSpell> castedSpells = new List<CastedSpell>();
+			List<CastedSpell> castedSpells = new();
 			castedSpells.Add(CastSingle(position, target));
 			return castedSpells;
 		}
@@ -102,9 +100,9 @@ namespace wtd.spell
 
 		public List<CastedSpell> CastChild(Vector3 position, ISpellTarget target)
 		{
-			if (childGroup == null)
+			if (ChildGroup == null)
 				return new List<CastedSpell>();
-			return childGroup.Cast(position, target);
+			return ChildGroup.Cast(position, target);
 		}
 
 	}
