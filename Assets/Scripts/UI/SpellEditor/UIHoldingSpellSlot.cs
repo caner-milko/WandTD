@@ -13,7 +13,7 @@ namespace wtd.ui.spell
 		private void Awake()
 		{
 			container = new SpellContainer(this, 1);
-			Slot.setup(HoldingSpell);
+			Slot.Setup(HoldingSpell);
 		}
 
 		public string CasterType()

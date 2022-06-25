@@ -1,5 +1,5 @@
+using System.Collections;
 using UnityEngine;
-
 namespace wtd.spell
 {
 	[RequireComponent(typeof(Rigidbody))]
@@ -58,8 +58,30 @@ namespace wtd.spell
 		public int IgnoreCollisionForX { get; private set; } = 0;
 
 		private int collidedFor = 0;
+
+		[SerializeField]
+		private float ImmuneFor = 0.1f;
+
+		[field: SerializeField, ReadOnly]
+		public bool IsImmune { get; private set; } = true;
+
+		private void Awake()
+		{
+			StartCoroutine(WaitImmune());
+		}
+
+		private IEnumerator WaitImmune()
+		{
+			IsImmune = true;
+			yield return new WaitForSeconds(ImmuneFor);
+			IsImmune = false;
+		}
+
+
 		private void OnTriggerEnter(Collider other)
 		{
+			if (IsImmune)
+				return;
 			if (!CountTrigger)
 				return;
 			if ((ExcludingLayers.value & (1 << other.gameObject.layer)) != 0)
@@ -69,6 +91,8 @@ namespace wtd.spell
 
 		private void OnCollisionEnter(Collision collision)
 		{
+			if (IsImmune)
+				return;
 			if ((ExcludingLayers.value & (1 << collision.gameObject.layer)) != 0)
 				return;
 			collidedFor++;

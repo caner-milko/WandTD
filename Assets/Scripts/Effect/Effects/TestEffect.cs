@@ -8,8 +8,6 @@ namespace wtd.effect.effects
 		private Stat speedStat = new(StatNames.SPEED, null, 3);
 		protected override void OnAdd()
 		{
-			Debug.Log("Added effect to " + Holder.gameObject.name);
-
 			((IStatUser)this).SetupStats();
 
 			speedStat.AddEffector(new StatEffector(0.5f, this, StatEffector.StatEffectorType.PercentAdd)
@@ -19,7 +17,6 @@ namespace wtd.effect.effects
 
 		protected override void OnRemove()
 		{
-			Debug.Log("Removed effect from " + Holder.gameObject.name);
 			if (speedStat != null)
 				speedStat.RemoveEffectorsFromSource(this);
 		}

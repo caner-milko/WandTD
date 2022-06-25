@@ -35,7 +35,8 @@ namespace wtd.spell
 
 		private bool didCastChild = false;
 
-		public Transform MainMesh { get; private set; }
+		[field: SerializeField, ReadOnly]
+		public Rigidbody MainBody { get; private set; } = null;
 
 		private void Awake()
 		{
@@ -108,7 +109,7 @@ namespace wtd.spell
 				ISpellTarget target;
 				if (triggerData.isTrigger)
 				{
-					target = this.Target;
+					target = new DirectedSpellTarget(GetVelocity());
 				}
 				else
 				{
@@ -133,7 +134,7 @@ namespace wtd.spell
 		{
 			if (triggerData.weak)
 			{
-				ShootChild(this.Target);
+				ShootChild(new DirectedSpellTarget(GetVelocity()));
 				return;
 			}
 			bool shouldDestroy = Active.TimerTrigger(triggerData);
@@ -147,21 +148,21 @@ namespace wtd.spell
 			}
 		}
 
-		public void SetMainMesh(Transform mainMesh)
+		public void SetMainBody(Rigidbody mainBody)
 		{
-			if (this.MainMesh != null)
+			if (this.MainBody != null)
 			{
 				Debug.LogError("Cannot set main mesh twice in casted spell.");
 				return;
 			}
-			this.MainMesh = mainMesh;
+			this.MainBody = mainBody;
 		}
 
 		protected void ShootChild(ISpellTarget target)
 		{
 			if (didCastChild)
 				return;
-			this.SpellGroup.CastChild(MainMesh.position + target.GetDirection(MainMesh.position) * 0.1f, target);
+			this.SpellGroup.CastChild(MainBody.position, target);
 			didCastChild = true;
 		}
 
@@ -172,10 +173,23 @@ namespace wtd.spell
 				Active.Remove();
 				foreach (PassiveSpell passive in Passives)
 					passive.Remove();
-				ShootChild(this.Target);
+				ShootChild(new DirectedSpellTarget(GetVelocity()));
 				Destroy(gameObject);
 			}
 		}
+
+		public Vector3 GetVelocity()
+		{
+			if (MainBody == null)
+			{
+				return this.Target.GetDirection(Vector3.zero);
+			}
+			else
+			{
+				return this.MainBody.velocity;
+			}
+		}
+
 
 	}
 }

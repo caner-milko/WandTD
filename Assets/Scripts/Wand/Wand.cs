@@ -17,8 +17,9 @@ namespace wtd.wand
 		public bool IsRecharging { get; private set; } = false;
 		public bool CanShoot => curCastDelay <= 0.0f && !IsRecharging;
 
+		[field: SerializeField]
 		// Owner of this wand
-		public ISpellCaster owner;
+		public WandContainer Container { get; private set; }
 
 		// Spells in this wand's slot
 		public SpellContainer spells;
@@ -31,7 +32,7 @@ namespace wtd.wand
 		public CastedSpell castedPrefab;
 
 		[field: SerializeField]
-		public StatHolderComp Holder { get; private set; }
+		public StatHolderComp StatHolderC { get; private set; }
 
 		[SerializeField, AutoCopyStat(StatNames.WAND_MANA)]
 		private Stat mana = new(StatNames.WAND_MANA, null, 150);
@@ -46,11 +47,28 @@ namespace wtd.wand
 		[SerializeField, AutoCopyStat(StatNames.WAND_CAST_COUNT)]
 		private Stat castCount = new(StatNames.WAND_CAST_COUNT, null, 1);
 
+		[System.Serializable]
+		public struct WandImage
+		{
+			public Sprite sprite;
+			public Material material;
+			public Color color;
+		}
+
+		[field: SerializeField]
+		public WandImage Image { get; private set; }
+
 		private void Awake()
 		{
 			SetupStats();
 			remainingMana = mana.Value;
 			spells = new SpellContainer(this, (int)capacity.Value);
+			spells.ContainerEdited.AddListener(StartRecharge);
+		}
+
+		public void ChangeOwner(WandContainer container)
+		{
+			this.Container = container;
 		}
 
 		private void Start()
@@ -60,11 +78,11 @@ namespace wtd.wand
 
 		private void SetupStats()
 		{
-			if (Holder == null || !Holder)
+			if (StatHolderC == null || !StatHolderC)
 			{
-				Holder = GetComponent<StatHolderComp>();
-				if (Holder == null)
-					Holder = gameObject.AddComponent<StatHolderComp>();
+				StatHolderC = GetComponent<StatHolderComp>();
+				if (StatHolderC == null)
+					StatHolderC = gameObject.AddComponent<StatHolderComp>();
 			}
 
 			((IStatUser)this).SetupStats();
@@ -134,10 +152,15 @@ namespace wtd.wand
 			}
 			if (remSpells.Count == 0)
 			{
-				IsRecharging = true;
-				curRechargeDelay += rechargeDelay.Value;
+				StartRecharge();
 			}
 			return group != null;
+		}
+
+		public void StartRecharge()
+		{
+			IsRecharging = true;
+			curRechargeDelay += rechargeDelay.Value;
 		}
 
 		public string CasterType()
@@ -202,12 +225,12 @@ namespace wtd.wand
 
 		public Vector3 GetPosition()
 		{
-			return owner.GetPosition();
+			return Container.GetPosition();
 		}
 
 		public StatHolder GetStatHolder()
 		{
-			return Holder.RealHolder;
+			return StatHolderC.RealHolder;
 		}
 
 		public SpellContainer GetSpellContainer()

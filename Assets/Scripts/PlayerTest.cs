@@ -15,7 +15,10 @@ namespace wtd
 
 		public float EditableDistanceSqr => EditableDistance * EditableDistance;
 
-		public Wand wand;
+		public WandContainer wandContainer;
+
+		//TODO add wand scrolling change later
+		public Wand SelectedWand => wandContainer.First;
 
 		//test variables
 
@@ -23,12 +26,14 @@ namespace wtd
 
 		public Effect effectPrefab;
 
-		public List<Spell> spells;
+		[SerializeField]
+		private List<Spell> spells;
 
-		void Awake()
+		void Start()
 		{
-			foreach (Spell spell in spells)
-				wand.AddSpell(spell);
+			if (SelectedWand != null)
+				foreach (Spell spell in spells)
+					SelectedWand.AddSpell(spell);
 		}
 
 		void Update()
@@ -38,13 +43,13 @@ namespace wtd
 				holder.AddEffect(effectPrefab, true);
 			}
 
-			if (Input.GetKey(KeyCode.Mouse0))
+			if (Input.GetKey(KeyCode.Mouse0) && SelectedWand != null)
 			{
 				//output casted spell list
 				Physics.Raycast(CameraManager.Instance.MouseRay, out RaycastHit hit);
 				Vector3 mouseDir = hit.point - transform.position;
 				mouseDir.y = 0;
-				wand.Shoot(new DirectedSpellTarget(mouseDir), out _);
+				SelectedWand.Shoot(new DirectedSpellTarget(mouseDir), out _);
 			}
 
 		}
@@ -103,7 +108,7 @@ namespace wtd
 
 		public CasterSpell NextSpell()
 		{
-			return wand == null ? null : wand.NextSpell();
+			return SelectedWand == null ? null : SelectedWand.NextSpell();
 		}
 
 		public float DistanceToSqr(Vector3 from)
@@ -125,7 +130,7 @@ namespace wtd
 
 		public SpellContainer GetSpellContainer()
 		{
-			return wand.GetSpellContainer();
+			return SelectedWand.GetSpellContainer();
 		}
 	}
 }

@@ -26,7 +26,7 @@ namespace wtd.spell.spells
 			collTrigger = (CollisionSpellTrigger)CastedParent.AddTrigger(collTrigger, true);
 			body = collTrigger.GetComponent<Rigidbody>();
 			timedTrigger = (TimedSpellTrigger)CastedParent.AddTrigger(timedTrigger, true);
-			CastedParent.SetMainMesh(body.transform);
+			CastedParent.SetMainBody(body);
 			body.velocity = CastedParent.Target.GetVelocityVector(transform.position, speed.Value);
 		}
 

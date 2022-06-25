@@ -5,7 +5,7 @@ using wtd.spell;
 namespace wtd.ui.spell
 {
 	[RequireComponent(typeof(RectTransform))]
-	public class UISpellSlot : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+	public class UISpellSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	{
 		public RectTransform Rect => (RectTransform)transform;
 
@@ -26,26 +26,24 @@ namespace wtd.ui.spell
 			}
 		}
 
-		public void setup(SpellSlot spellSlot)
+		public void Setup(SpellSlot spellSlot)
 		{
 			this.Slot = spellSlot;
 			Container.ContainerEdited.AddListener(RefreshImage);
 			RefreshImage();
 		}
 
-		public void OnPointerClick(PointerEventData eventData)
-		{
-			SpellEditorManager.instance.Click(eventData.button == PointerEventData.InputButton.Left);
-		}
 
 		public void OnPointerEnter(PointerEventData eventData)
 		{
-			SpellEditorManager.instance.OnEnterSpellSlot(this);
+			WandEditorManager.instance.OnEnterSpellSlot(this);
 		}
 
 		public void OnPointerExit(PointerEventData eventData)
 		{
-			SpellEditorManager.instance.OnExitSpellSlot();
+			if (eventData.pointerCurrentRaycast.gameObject.transform.IsChildOf(transform))
+				return;
+			WandEditorManager.instance.OnExitSpellSlot();
 		}
 
 		void RefreshImage()

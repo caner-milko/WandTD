@@ -123,6 +123,44 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &25897120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 25897121}
+  m_Layer: 5
+  m_Name: Holdings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &25897121
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25897120}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1100133724}
+  - {fileID: 1549813305}
+  m_Father: {fileID: 1755281858}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &63331770
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,6 +189,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1290030469}
   m_RootOrder: 1
@@ -227,6 +266,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1043633787}
   m_RootOrder: 2
@@ -304,6 +344,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 836651479}
   - {fileID: 765615210}
@@ -392,6 +433,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 766424833}
   m_RootOrder: 0
@@ -542,6 +584,7 @@ Transform:
   m_LocalRotation: {x: 0.35355338, y: 0.35355338, z: -0.1464466, w: 0.8535535}
   m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 519420032}
   m_Father: {fileID: 1875112784}
@@ -575,6 +618,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1603998131}
   m_RootOrder: 3
@@ -650,6 +694,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1603998131}
   m_RootOrder: 5
@@ -741,6 +786,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -789,9 +835,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &304233581
 GameObject:
@@ -821,6 +868,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1273503162}
   m_RootOrder: 1
@@ -897,6 +945,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 572328372}
   m_Father: {fileID: 731300891}
@@ -1020,6 +1069,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1723922138}
   m_Father: {fileID: 534804339}
@@ -1053,6 +1103,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1603998131}
   m_RootOrder: 4
@@ -1128,6 +1179,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1603998131}
   m_RootOrder: 1
@@ -1203,6 +1255,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1290030469}
   m_RootOrder: 5
@@ -1250,41 +1303,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505972167}
   m_CullTransparentMesh: 1
---- !u!1 &513426746
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 513426747}
-  m_Layer: 5
-  m_Name: SpellSlots
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &513426747
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 513426746}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1417200627}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1364,6 +1382,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -40}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 149891839}
   m_RootOrder: 0
@@ -1403,7 +1422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9674df0837a2942478e3c5c50b037f51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <effects>k__BackingField: []
+  <Effects>k__BackingField: []
   EffectsParent: {fileID: 0}
 --- !u!65 &534804336
 BoxCollider:
@@ -1429,6 +1448,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -1477,10 +1497,11 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.92, y: 0.91, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 403963184}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &534804340
 MonoBehaviour:
@@ -1496,10 +1517,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedStat:
     StatName: speed
-    <defaultVal>k__BackingField: 3
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 3
+    <Effectors>k__BackingField: []
     lastVal: 0
-  <path>k__BackingField: {fileID: 1662975924}
+  <Path>k__BackingField: {fileID: 1662975924}
   lastPoint: -1
   loop: 1
 --- !u!114 &534804341
@@ -1514,11 +1535,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf68574f026bca24585bad104c261aa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <health>k__BackingField: 0
+  <Health>k__BackingField: 0
   maxHealth:
     StatName: maxHealth
-    <defaultVal>k__BackingField: 10
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 20
+    <Effectors>k__BackingField: []
     lastVal: 0
 --- !u!114 &534804342
 MonoBehaviour:
@@ -1532,7 +1553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ad39d22cfd9c6479bc64be561f7597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <statHolder>k__BackingField:
+  <RealHolder>k__BackingField:
     Stats: []
 --- !u!1 &572328371
 GameObject:
@@ -1560,6 +1581,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1951849425}
   m_Father: {fileID: 346215631}
@@ -1597,6 +1619,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1710496882}
   - {fileID: 1425285362}
@@ -1651,6 +1674,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1710496882}
   m_RootOrder: 1
@@ -1799,9 +1823,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 960, y: 540, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &731300890
 GameObject:
@@ -1832,6 +1857,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1932128661}
   - {fileID: 346215631}
@@ -1939,6 +1965,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1290030469}
   m_RootOrder: 3
@@ -2014,6 +2041,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 105101186}
   m_RootOrder: 1
@@ -2087,6 +2115,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 109976589}
   - {fileID: 1656500920}
@@ -2126,6 +2155,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1295517571}
   m_RootOrder: 1
@@ -2239,6 +2269,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 403963184}
     m_Modifications:
+    - target: {fileID: 2041152854709249513, guid: f4931b0e15652b841bf18de710039483, type: 3}
+      propertyPath: <TriggerTime>k__BackingField
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2041152854709249518, guid: f4931b0e15652b841bf18de710039483, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2317,6 +2351,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 105101186}
   m_RootOrder: 0
@@ -2420,39 +2455,44 @@ MonoBehaviour:
   curCastDelay: 0
   curRechargeDelay: 0
   remainingMana: 0
-  <isRecharging>k__BackingField: 0
+  <IsRecharging>k__BackingField: 0
+  <Container>k__BackingField: {fileID: 0}
   castedPrefab: {fileID: 0}
-  <holder>k__BackingField: {fileID: 902979552}
+  <StatHolderC>k__BackingField: {fileID: 0}
   mana:
     StatName: wandMana
-    <defaultVal>k__BackingField: 150
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 150
+    <Effectors>k__BackingField: []
     lastVal: 0
   manaRecharge:
     StatName: wandManaRecharge
-    <defaultVal>k__BackingField: 20
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 20
+    <Effectors>k__BackingField: []
     lastVal: 0
   capacity:
     StatName: wandCapacity
-    <defaultVal>k__BackingField: 4
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 4
+    <Effectors>k__BackingField: []
     lastVal: 0
   rechargeDelay:
     StatName: wandRechargeDelay
-    <defaultVal>k__BackingField: 0.5
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 0.5
+    <Effectors>k__BackingField: []
     lastVal: 0
   castDelay:
     StatName: wandCastDelay
-    <defaultVal>k__BackingField: 0.2
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 0.2
+    <Effectors>k__BackingField: []
     lastVal: 0
   castCount:
     StatName: wandCastCount
-    <defaultVal>k__BackingField: 1
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 1
+    <Effectors>k__BackingField: []
     lastVal: 0
+  <Image>k__BackingField:
+    sprite: {fileID: 0}
+    material: {fileID: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &902979548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2492,6 +2532,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -4.19, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3187664563878258051}
   - {fileID: 4991777870923842330}
@@ -2525,228 +2566,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ad39d22cfd9c6479bc64be561f7597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <statHolder>k__BackingField:
-    Stats:
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
+  <RealHolder>k__BackingField:
+    Stats: []
 --- !u!1 &928532514
 GameObject:
   m_ObjectHideFlags: 0
@@ -2773,6 +2594,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1140220977}
   - {fileID: 1333872249}
@@ -2814,6 +2636,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1273503162}
   m_RootOrder: 0
@@ -2948,6 +2771,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 105101186}
   m_RootOrder: 2
@@ -3081,6 +2905,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1043633787}
   m_RootOrder: 4
@@ -3094,14 +2919,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 972781322}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4911f6ad4e2767e4d9dd472262cc585e, type: 3}
+  m_Script: {fileID: 11500000, guid: caad02849340bcc43ad2f772c21e4532, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Raycaster>k__BackingField: {fileID: 1755281855}
+  <EventSystem>k__BackingField: {fileID: 1733635085}
+  holdingsParent: {fileID: 25897121}
   holdingSlot: {fileID: 1100133725}
+  holdingWand: {fileID: 1549813307}
+  UIWandPrefab: {fileID: 7423148708575360647, guid: ebaf9b79e592dfd40b29fa845f0b7194, type: 3}
   pickedSlot: {fileID: 0}
-  pickedContainer: {fileID: 0}
-  hoveringContainer: {fileID: 0}
+  pickedWand: {fileID: 0}
   hoveringSlot: {fileID: 0}
+  hoveringWand: {fileID: 0}
 --- !u!4 &980309274 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4ca20b7b48285324c84c2eccee55f923, type: 3}
@@ -3135,6 +2965,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1290030469}
   m_RootOrder: 2
@@ -3182,6 +3013,42 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007674413}
   m_CullTransparentMesh: 1
+--- !u!1 &1014033527
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1014033528}
+  m_Layer: 5
+  m_Name: Wand Slots
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1014033528
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014033527}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1364156084}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -5}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &1017642856
 GameObject:
   m_ObjectHideFlags: 0
@@ -3210,6 +3077,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1755281858}
   m_RootOrder: 0
@@ -3283,6 +3151,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1477586610}
   - {fileID: 583889229}
@@ -3290,7 +3159,7 @@ Transform:
   - {fileID: 1603612487}
   - {fileID: 972781323}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1049101700
 GameObject:
@@ -3318,6 +3187,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 105101186}
   m_Father: {fileID: 1932128661}
@@ -3454,6 +3324,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 928532515}
   m_RootOrder: 2
@@ -3529,6 +3400,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 928532515}
   m_RootOrder: 0
@@ -3604,6 +3476,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1295517571}
   - {fileID: 766424833}
@@ -3682,6 +3555,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 948630367}
   - {fileID: 304233582}
@@ -3818,6 +3692,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1306408988}
   - {fileID: 63331771}
@@ -3859,6 +3734,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2142320457}
   - {fileID: 772027447}
@@ -3900,6 +3776,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1290030469}
   m_RootOrder: 0
@@ -3973,6 +3850,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 583889229}
   m_RootOrder: 2
@@ -4010,39 +3888,44 @@ MonoBehaviour:
   curCastDelay: 0
   curRechargeDelay: 0
   remainingMana: 0
-  <isRecharging>k__BackingField: 0
+  <IsRecharging>k__BackingField: 0
+  <Container>k__BackingField: {fileID: 1875112787}
   castedPrefab: {fileID: 8880163925323000403, guid: 888f7f471174d1c4da7608d3106af5ae, type: 3}
-  <holder>k__BackingField: {fileID: 1312932238}
+  <StatHolderC>k__BackingField: {fileID: 0}
   mana:
     StatName: wandMana
-    <defaultVal>k__BackingField: 150
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 150
+    <Effectors>k__BackingField: []
     lastVal: 0
   manaRecharge:
     StatName: wandManaRecharge
-    <defaultVal>k__BackingField: 150
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 20
+    <Effectors>k__BackingField: []
     lastVal: 0
   capacity:
     StatName: wandCapacity
-    <defaultVal>k__BackingField: 4
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 4
+    <Effectors>k__BackingField: []
     lastVal: 0
   rechargeDelay:
     StatName: wandRechargeDelay
-    <defaultVal>k__BackingField: -1
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 0.5
+    <Effectors>k__BackingField: []
     lastVal: 0
   castDelay:
     StatName: wandCastDelay
-    <defaultVal>k__BackingField: -1
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 0.2
+    <Effectors>k__BackingField: []
     lastVal: 0
   castCount:
     StatName: wandCastCount
-    <defaultVal>k__BackingField: 1
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 1
+    <Effectors>k__BackingField: []
     lastVal: 0
+  <Image>k__BackingField:
+    sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+    material: {fileID: 0}
+    color: {r: 0.6586163, g: 1, b: 0.3820755, a: 1}
 --- !u!114 &1312932238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4055,7 +3938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ad39d22cfd9c6479bc64be561f7597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <statHolder>k__BackingField:
+  <RealHolder>k__BackingField:
     Stats: []
 --- !u!4 &1312932239
 Transform:
@@ -4067,6 +3950,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1875112784}
   m_RootOrder: 1
@@ -4099,6 +3983,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 928532515}
   m_RootOrder: 1
@@ -4146,7 +4031,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1333872248}
   m_CullTransparentMesh: 1
---- !u!1 &1417200626
+--- !u!1 &1364156083
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4154,74 +4039,75 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1417200627}
-  - component: {fileID: 1417200630}
-  - component: {fileID: 1417200629}
-  - component: {fileID: 1417200628}
+  - component: {fileID: 1364156084}
+  - component: {fileID: 1364156087}
+  - component: {fileID: 1364156086}
+  - component: {fileID: 1364156085}
   m_Layer: 5
-  m_Name: SpellContainer
+  m_Name: WandContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &1417200627
+--- !u!224 &1364156084
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417200626}
+  m_GameObject: {fileID: 1364156083}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 513426747}
+  - {fileID: 1014033528}
   m_Father: {fileID: 1755281858}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 300}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1417200628
+  m_AnchoredPosition: {x: -658, y: 493}
+  m_SizeDelta: {x: 512, y: 620}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &1364156085
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417200626}
+  m_GameObject: {fileID: 1364156083}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6623781fad488048bc5424f9654de35, type: 3}
+  m_Script: {fileID: 11500000, guid: 7cb08b1fbb5f7864c8ecf682a3dfcc68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spellSlotsParent: {fileID: 513426747}
-  slotPrefab: {fileID: 5945594846305591511, guid: ccc6562f05f606342922b71e67cedaa8, type: 3}
-  wand: {fileID: 1312932237}
---- !u!114 &1417200629
+  wandSlotPrefab: {fileID: 3244682677046251870, guid: 07fb80d664ecc0047b5455e71d1779fa, type: 3}
+  wandSlotsParent: {fileID: 1014033528}
+  <Container>k__BackingField: {fileID: 1875112787}
+--- !u!114 &1364156086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417200626}
+  m_GameObject: {fileID: 1364156083}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.3254902}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.31764707}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4230,13 +4116,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!222 &1417200630
+--- !u!222 &1364156087
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1417200626}
+  m_GameObject: {fileID: 1364156083}
   m_CullTransparentMesh: 1
 --- !u!1 &1425285361
 GameObject:
@@ -4264,6 +4150,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 583889229}
   m_RootOrder: 1
@@ -4296,6 +4183,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 928532515}
   m_RootOrder: 3
@@ -4371,6 +4259,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1710496882}
   m_RootOrder: 0
@@ -4431,6 +4320,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1043633787}
   m_RootOrder: 0
@@ -4449,6 +4339,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Player>k__BackingField: {fileID: 1875112782}
   State: 0
+--- !u!224 &1549813305 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+  m_PrefabInstance: {fileID: 5069602489806755091}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1549813307 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5069602489066476328, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+  m_PrefabInstance: {fileID: 5069602489806755091}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e37b45380b45e746a3f4ff97f13d0a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1581320560
 GameObject:
   m_ObjectHideFlags: 0
@@ -4477,6 +4383,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1603998131}
   m_RootOrder: 0
@@ -4551,6 +4458,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1043633787}
   m_RootOrder: 3
@@ -4595,6 +4503,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1581320561}
   - {fileID: 475231183}
@@ -4676,6 +4585,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1290030469}
   m_RootOrder: 4
@@ -4751,6 +4661,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1290030469}
   - {fileID: 928532515}
@@ -4829,11 +4740,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70058dc8783fc6c4e88f19cd87d79450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <positions>k__BackingField:
+  <Positions>k__BackingField:
   - {x: 0, y: 1, z: 0}
-  - {x: 0, y: 1, z: 3}
-  - {x: 2, y: 1, z: 3}
-  - {x: -1.74, y: 1, z: 5.03}
+  - {x: 3.15, y: 1, z: 0}
+  - {x: 2.28, y: 1, z: 2.37}
+  - {x: -0.96, y: 1, z: 4.89}
 --- !u!4 &1662975925
 Transform:
   m_ObjectHideFlags: 0
@@ -4844,9 +4755,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1710496881
 GameObject:
@@ -4874,6 +4786,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1460021321}
   - {fileID: 589869661}
@@ -4912,6 +4825,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 2.04, y: 0, z: -4.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 651572895}
   - {fileID: 849348513}
@@ -4964,39 +4878,44 @@ MonoBehaviour:
   curCastDelay: 0
   curRechargeDelay: 0
   remainingMana: 0
-  <isRecharging>k__BackingField: 0
+  <IsRecharging>k__BackingField: 0
+  <Container>k__BackingField: {fileID: 0}
   castedPrefab: {fileID: 0}
-  <holder>k__BackingField: {fileID: 1719218585}
+  <StatHolderC>k__BackingField: {fileID: 0}
   mana:
     StatName: wandMana
-    <defaultVal>k__BackingField: 150
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 150
+    <Effectors>k__BackingField: []
     lastVal: 0
   manaRecharge:
     StatName: wandManaRecharge
-    <defaultVal>k__BackingField: 20
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 20
+    <Effectors>k__BackingField: []
     lastVal: 0
   capacity:
     StatName: wandCapacity
-    <defaultVal>k__BackingField: 4
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 4
+    <Effectors>k__BackingField: []
     lastVal: 0
   rechargeDelay:
     StatName: wandRechargeDelay
-    <defaultVal>k__BackingField: 0.5
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 0.5
+    <Effectors>k__BackingField: []
     lastVal: 0
   castDelay:
     StatName: wandCastDelay
-    <defaultVal>k__BackingField: 0.2
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 0.2
+    <Effectors>k__BackingField: []
     lastVal: 0
   castCount:
     StatName: wandCastCount
-    <defaultVal>k__BackingField: 1
-    <effectors>k__BackingField: []
+    <DefaultVal>k__BackingField: 1
+    <Effectors>k__BackingField: []
     lastVal: 0
+  <Image>k__BackingField:
+    sprite: {fileID: 0}
+    material: {fileID: 0}
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!65 &1719218583
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5036,228 +4955,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1ad39d22cfd9c6479bc64be561f7597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <statHolder>k__BackingField:
-    Stats:
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandMana
-      <defaultVal>k__BackingField: 150
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCapacity
-      <defaultVal>k__BackingField: 4
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandRechargeDelay
-      <defaultVal>k__BackingField: 0.5
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastDelay
-      <defaultVal>k__BackingField: 0.2
-      <effectors>k__BackingField: []
-      lastVal: 0
-    - StatName: wandCastCount
-      <defaultVal>k__BackingField: 1
-      <effectors>k__BackingField: []
-      lastVal: 0
+  <RealHolder>k__BackingField:
+    Stats: []
 --- !u!4 &1723922138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2041152854709249518, guid: f4931b0e15652b841bf18de710039483, type: 3}
@@ -5325,9 +5024,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1755281854
 GameObject:
@@ -5419,13 +5119,14 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1017642857}
   - {fileID: 1180924082}
-  - {fileID: 1417200627}
-  - {fileID: 1100133724}
+  - {fileID: 1364156084}
+  - {fileID: 25897121}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5498,10 +5199,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1875112784}
-  - component: {fileID: 1875112782}
   - component: {fileID: 1875112785}
   - component: {fileID: 1875112783}
   - component: {fileID: 1875112786}
+  - component: {fileID: 1875112787}
+  - component: {fileID: 1875112782}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5522,7 +5224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <EditableDistance>k__BackingField: 1
-  wand: {fileID: 1312932237}
+  wandContainer: {fileID: 1875112787}
   holder: {fileID: 534804335}
   effectPrefab: {fileID: 2041152854709249512, guid: f4931b0e15652b841bf18de710039483, type: 3}
   spells:
@@ -5546,11 +5248,12 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.09, y: 0.6, z: 0.63}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 149891839}
   - {fileID: 1312932239}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1875112785
 MeshRenderer:
@@ -5563,6 +5266,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -5607,6 +5311,24 @@ CapsuleCollider:
   m_Height: 1.9999999
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1875112787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1875112780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56dbc35ccc544b745a5a9a344f85ffac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingWands:
+  - {fileID: 1312932237}
+  capacity: 1
+  ContainerEdited:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1932128660
 GameObject:
   m_ObjectHideFlags: 0
@@ -5636,6 +5358,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1049101701}
   m_Father: {fileID: 731300891}
@@ -5725,6 +5448,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 572328372}
   m_RootOrder: 0
@@ -5800,6 +5524,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1603998131}
   m_RootOrder: 2
@@ -5936,9 +5661,10 @@ Transform:
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
   m_LocalPosition: {x: 0.95, y: 3.74, z: -4.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &2091035726
 GameObject:
@@ -5966,11 +5692,12 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 902979550}
   - {fileID: 1719218579}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2142320456
 GameObject:
@@ -6000,6 +5727,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1295517571}
   m_RootOrder: 0
@@ -6047,67 +5775,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142320456}
   m_CullTransparentMesh: 1
---- !u!1001 &2920547453627886957
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 9121750884510721152, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121750884510721152, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.1869731
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121750884510721152, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.8387415
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121750884510721152, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121750884510721152, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121750884510721152, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121750884510721152, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121750884510721152, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121750884510721152, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121750884510721152, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121750884510721152, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121750884510721154, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
-      propertyPath: m_Name
-      value: BlueCircle
-      objectReference: {fileID: 0}
-    - target: {fileID: 9121750884510721154, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: e561d1eb201f01848b4edfef2fff287f, type: 3}
 --- !u!1001 &3187664563878258049
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6259,16 +5926,117 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4996342456383419276, guid: bec171c9e107f8d4fa9bae3eacf830fd, type: 3}
   m_PrefabInstance: {fileID: 4991777870923842329}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5069602489806755091
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 25897121}
+    m_Modifications:
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476330, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5069602489066476331, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
+      propertyPath: m_Name
+      value: Holding Wand
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b23cc43a87fa5cb4dbb5e7997d5f93fe, type: 3}
 --- !u!1001 &5456898481548467355
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1755281858}
+    m_TransformParent: {fileID: 25897121}
     m_Modifications:
     - target: {fileID: 5456898480498944448, guid: 5178ae9dfce7518488d61b56a346db1b, type: 3}
       propertyPath: m_Name
       value: Holding Spell
+      objectReference: {fileID: 0}
+    - target: {fileID: 5456898480498944448, guid: 5178ae9dfce7518488d61b56a346db1b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5456898480498944455, guid: 5178ae9dfce7518488d61b56a346db1b, type: 3}
       propertyPath: m_Pivot.x
@@ -6280,7 +6048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5456898480498944455, guid: 5178ae9dfce7518488d61b56a346db1b, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5456898480498944455, guid: 5178ae9dfce7518488d61b56a346db1b, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6356,64 +6124,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5178ae9dfce7518488d61b56a346db1b, type: 3}
---- !u!1001 &7567547263302739903
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7567547263178081297, guid: 550b3bba9b9a1cb4b8ff4693b4b6d2e6, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567547263178081297, guid: 550b3bba9b9a1cb4b8ff4693b4b6d2e6, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567547263178081297, guid: 550b3bba9b9a1cb4b8ff4693b4b6d2e6, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567547263178081297, guid: 550b3bba9b9a1cb4b8ff4693b4b6d2e6, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567547263178081297, guid: 550b3bba9b9a1cb4b8ff4693b4b6d2e6, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567547263178081297, guid: 550b3bba9b9a1cb4b8ff4693b4b6d2e6, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567547263178081297, guid: 550b3bba9b9a1cb4b8ff4693b4b6d2e6, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567547263178081297, guid: 550b3bba9b9a1cb4b8ff4693b4b6d2e6, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567547263178081297, guid: 550b3bba9b9a1cb4b8ff4693b4b6d2e6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567547263178081297, guid: 550b3bba9b9a1cb4b8ff4693b4b6d2e6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567547263178081297, guid: 550b3bba9b9a1cb4b8ff4693b4b6d2e6, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567547263178081299, guid: 550b3bba9b9a1cb4b8ff4693b4b6d2e6, type: 3}
-      propertyPath: m_Name
-      value: Circle
-      objectReference: {fileID: 0}
-    - target: {fileID: 7567547263178081299, guid: 550b3bba9b9a1cb4b8ff4693b4b6d2e6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 550b3bba9b9a1cb4b8ff4693b4b6d2e6, type: 3}
