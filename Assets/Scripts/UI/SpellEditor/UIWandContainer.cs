@@ -32,7 +32,7 @@ namespace wtd.ui.spell
 				UIWandSlot newSlot = GameObject.Instantiate<UIWandSlot>(wandSlotPrefab, wandSlotsParent);
 				newSlot.gameObject.name = "Wand Slot " + i;
 				newSlot.Setup(container.AtSlot(i));
-				newSlot.Rect.position += new Vector3(200 * i, 0, 0);
+				newSlot.Rect.position += new Vector3(0, newSlot.Rect.rect.height * (float)i * -1.05f, 0);
 				WandSlots.Add(newSlot);
 			}
 		}

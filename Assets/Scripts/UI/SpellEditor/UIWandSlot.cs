@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using wtd.wand;
 namespace wtd.ui.spell
 {
-	public class UIWandSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+	[RequireComponent(typeof(RectTransform))]
+	public class UIWandSlot : MonoBehaviour
 	{
 
 		public RectTransform Rect => (RectTransform)transform;
@@ -17,6 +19,9 @@ namespace wtd.ui.spell
 
 		public Wand RealWand => Slot.Holding;
 
+		public bool IsHovering { get; private set; } = false;
+
+
 		public void Setup(WandSlot slot)
 		{
 			this.Slot = slot;
@@ -26,17 +31,20 @@ namespace wtd.ui.spell
 			}
 			Container.ContainerEdited.AddListener(RefreshHolding);
 		}
-
-		public void OnPointerEnter(PointerEventData eventData)
+		private void LateUpdate()
 		{
-			WandEditorManager.instance.OnEnterWandSlot(this);
-		}
-
-		public void OnPointerExit(PointerEventData eventData)
-		{
-			if (eventData.pointerCurrentRaycast.gameObject == null || eventData.pointerCurrentRaycast.gameObject.transform.IsChildOf(transform))
-				return;
-			WandEditorManager.instance.OnExitWandSlot();
+			List<RaycastResult> lastResults = WandEditorManager.instance.LastRaycastResults;
+			foreach (RaycastResult res in lastResults)
+			{
+				if (res.gameObject == this.gameObject)
+				{
+					IsHovering = true;
+					WandEditorManager.instance.OnEnterWandSlot(this);
+					return;
+				}
+			}
+			WandEditorManager.instance.OnExitWandSlot(this);
+			IsHovering = false;
 		}
 
 		public void ChangeHolding(UIWand newHolding)
@@ -46,6 +54,9 @@ namespace wtd.ui.spell
 
 		public void RefreshHolding()
 		{
+			if (HoldingWand == null && Slot.IsEmpty)
+				return;
+
 			if ((!Slot.IsEmpty && HoldingWand == null) || RealWand != HoldingWand.RealWand)
 			{
 				if (Slot.IsEmpty)
@@ -54,6 +65,5 @@ namespace wtd.ui.spell
 					HoldingWand = WandEditorManager.instance.PutUIWandToSlot(RealWand, Rect);
 			}
 		}
-
 	}
 }

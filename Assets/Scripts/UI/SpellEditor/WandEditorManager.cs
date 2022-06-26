@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using wtd.wand;
@@ -36,6 +37,18 @@ namespace wtd.ui.spell
 		[ReadOnly]
 		public UIWandSlot hoveringWand = null;
 
+		private bool isEditing = false;
+
+		public bool IsEditing
+		{
+			get { return isEditing; }
+			set { isEditing = value; }
+		}
+
+		[field: SerializeField]
+		public UnityEvent StartEditing { get; private set; } = new UnityEvent();
+		[field: SerializeField]
+		public UnityEvent StopEditing { get; private set; } = new UnityEvent();
 
 		public bool IsWandValid => hoveringWand != null;
 		public bool IsSlotValid => hoveringSlot != null;
@@ -44,21 +57,33 @@ namespace wtd.ui.spell
 		public bool DidPickSlot => pickedSlot != null;
 
 
+		public List<RaycastResult> LastRaycastResults { get; private set; } = new();
+
 		private void Awake()
 		{
 			instance = this;
-		}
-
-		private void Start()
-		{
+			StartEditing.AddListener(StartEdit);
+			StopEditing.AddListener(StopEdit);
 			holdingSlot.gameObject.SetActive(false);
 			holdingWand.gameObject.SetActive(false);
 		}
 
 		private void Update()
 		{
+			if (Input.GetKeyDown(KeyCode.Tab))
+			{
+				if (IsEditing)
+				{
+					StopEditing.Invoke();
+				}
+				else
+					StartEditing.Invoke();
+			}
+			if (!IsEditing)
+				return;
 			holdingsParent.position = Input.mousePosition;
 
+			DetectHovers();
 
 			if (Input.GetMouseButtonDown(0))
 			{
@@ -70,63 +95,56 @@ namespace wtd.ui.spell
 			}
 		}
 
+		private void StartEdit()
+		{
+			IsEditing = true;
+		}
+		private void StopEdit()
+		{
+			IsEditing = false;
+			ReleasePicked();
+		}
+
 		private void DetectHovers()
 		{
 			PointerEventData = new PointerEventData(EventSystem);
 			PointerEventData.position = Input.mousePosition;
 
-			List<RaycastResult> results = new List<RaycastResult>();
+			LastRaycastResults = new List<RaycastResult>();
 
-			Raycaster.Raycast(PointerEventData, results);
-
-			bool foundHoveringWand = false;
-			bool foundHoveringSpell = false;
-
-
-
-			foreach (RaycastResult result in results)
-			{
-				if (!foundHoveringWand)
-				{
-					if (IsWandValid)
-					{
-						if (result.gameObject != hoveringWand.gameObject)
-						{
-
-						}
-					}
-				}
-			}
-
-			if (!foundHoveringSpell)
-			{
-				hoveringSlot = null;
-			}
-
-			if (!foundHoveringWand)
-			{
-				hoveringWand = null;
-			}
+			Raycaster.Raycast(PointerEventData, LastRaycastResults);
 		}
 
-		public void OnEnterWandSlot(UIWandSlot container)
+		public bool OnEnterWandSlot(UIWandSlot container)
 		{
-			this.hoveringWand = container;
+			if (hoveringWand == container)
+				return false;
+			hoveringWand = container;
+			return true;
 		}
 
-		public void OnExitWandSlot()
+		public bool OnExitWandSlot(UIWandSlot container)
 		{
+			if (hoveringWand != container)
+				return false;
 			this.hoveringWand = null;
+			return true;
 		}
 
-		public void OnEnterSpellSlot(UISpellSlot slot)
+		public bool OnEnterSpellSlot(UISpellSlot slot)
 		{
+			if (hoveringWand == slot)
+				return false;
 			this.hoveringSlot = slot;
+			return true;
 		}
 
-		public void OnExitSpellSlot()
+		public bool OnExitSpellSlot(UISpellSlot slot)
 		{
+			if (hoveringSlot != slot)
+				return false;
 			this.hoveringSlot = null;
+			return true;
 		}
 
 		public void PickSpellSlot()
@@ -149,13 +167,18 @@ namespace wtd.ui.spell
 
 		public void ReleasePicked()
 		{
-			pickedWand = null;
+			if (pickedWand != null)
+			{
+				pickedWand.Container.SwapSlots(pickedWand.Slot, holdingWand.Slot);
+				pickedWand = null;
+			}
 			if (pickedSlot != null)
 			{
 				pickedSlot.Container.SwapSpells(pickedSlot.Slot, holdingSlot.HoldingSpell);
 				pickedSlot = null;
 			}
 			holdingSlot.gameObject.SetActive(false);
+			holdingWand.gameObject.SetActive(false);
 		}
 
 		public void SwapSpells()
@@ -225,14 +248,14 @@ namespace wtd.ui.spell
 			}
 		}
 
-		public UIWand PutUIWandToSlot(Wand wand, RectTransform newParent)
+		public UIWand PutUIWandToSlot(Wand wand, RectTransform newSlot)
 		{
 			if (Wands.TryGetValue(wand, out UIWand uiwand))
 			{
-				uiwand.transform.SetParent(newParent, false);
+				uiwand.transform.SetParent(newSlot.transform, false);
 				return uiwand;
 			}
-			UIWand newUIWand = GameObject.Instantiate<UIWand>(UIWandPrefab, newParent);
+			UIWand newUIWand = GameObject.Instantiate<UIWand>(UIWandPrefab, newSlot.transform);
 			newUIWand.Setup(wand);
 			Wands.Add(wand, newUIWand);
 			return newUIWand;

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -5,7 +6,7 @@ using wtd.spell;
 namespace wtd.ui.spell
 {
 	[RequireComponent(typeof(RectTransform))]
-	public class UISpellSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+	public class UISpellSlot : MonoBehaviour
 	{
 		public RectTransform Rect => (RectTransform)transform;
 
@@ -26,6 +27,8 @@ namespace wtd.ui.spell
 			}
 		}
 
+		public bool IsHovering { get; private set; } = false;
+
 		public void Setup(SpellSlot spellSlot)
 		{
 			this.Slot = spellSlot;
@@ -34,18 +37,33 @@ namespace wtd.ui.spell
 		}
 
 
-		public void OnPointerEnter(PointerEventData eventData)
+		private void LateUpdate()
+		{
+			List<RaycastResult> lastResults = WandEditorManager.instance.LastRaycastResults;
+			foreach (RaycastResult res in lastResults)
+			{
+				if (res.gameObject == this.gameObject)
+				{
+					WandEditorManager.instance.OnEnterSpellSlot(this);
+					IsHovering = true;
+					return;
+				}
+			}
+			WandEditorManager.instance.OnExitSpellSlot(this);
+			IsHovering = false;
+		}
+
+		/*public void OnPointerEnter(PointerEventData eventData)
 		{
 			WandEditorManager.instance.OnEnterSpellSlot(this);
 		}
 
 		public void OnPointerExit(PointerEventData eventData)
 		{
-			if (eventData.pointerCurrentRaycast.gameObject.transform.IsChildOf(transform))
-				return;
-			WandEditorManager.instance.OnExitSpellSlot();
+			if (eventData.pointerCurrentRaycast.gameObject == null || !eventData.pointerCurrentRaycast.gameObject.transform.IsChildOf(transform))
+				WandEditorManager.instance.OnExitSpellSlot();
 		}
-
+		*/
 		void RefreshImage()
 		{
 			if (Slot.IsEmpty)

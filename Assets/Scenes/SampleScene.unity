@@ -2932,6 +2932,36 @@ MonoBehaviour:
   pickedWand: {fileID: 0}
   hoveringSlot: {fileID: 0}
   hoveringWand: {fileID: 0}
+  <StartEditing>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1364156083}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  <StopEditing>k__BackingField:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1364156083}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &980309274 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4ca20b7b48285324c84c2eccee55f923, type: 3}
@@ -4044,12 +4074,12 @@ GameObject:
   - component: {fileID: 1364156086}
   - component: {fileID: 1364156085}
   m_Layer: 5
-  m_Name: WandContainer
+  m_Name: Player Wand Container
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1364156084
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5325,7 +5355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingWands:
   - {fileID: 1312932237}
-  capacity: 1
+  capacity: 2
   ContainerEdited:
     m_PersistentCalls:
       m_Calls: []

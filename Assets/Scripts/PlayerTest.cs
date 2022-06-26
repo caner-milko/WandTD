@@ -3,8 +3,8 @@ using UnityEngine;
 using wtd.effect;
 using wtd.spell;
 using wtd.spell.targets;
+using wtd.ui.spell;
 using wtd.wand;
-
 namespace wtd
 {
 	public class PlayerTest : MonoBehaviour, ISpellTarget, ISpellCaster
@@ -38,6 +38,8 @@ namespace wtd
 
 		void Update()
 		{
+			if (WandEditorManager.instance.IsEditing)
+				return;
 			if (Input.GetKeyDown(KeyCode.K))
 			{
 				holder.AddEffect(effectPrefab, true);
